@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageButton
+            android:id="@+id/prevButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/prev_btn_selector"
+            android:scaleType="fitXY"
+            android:onClick="onBtnPrev"
+            />
+
+        <TextView
+            android:id="@+id/headerTextView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:text="1/5 this is for debug"
+            />
+
+        <ImageButton
+            android:id="@+id/nextButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/next_btn_selector"
+            android:scaleType="fitXY"
+            android:onClick="onBtnNext"
+            />
+
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/mainImageView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:src="@mipmap/mm0"
+    />
+
+</LinearLayout>
