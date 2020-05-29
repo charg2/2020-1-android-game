@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.charg2dang.blocksample.res.bitmap;
+package kr.ac.kpu.game.charg2dang.cookierun.res.bitmap;
 
 import android.graphics.Canvas;
 import android.graphics.Matrix;
@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-import kr.ac.kpu.game.charg2dang.blocksample.util.IndexTimer;
+import kr.ac.kpu.game.charg2dang.cookierun.util.IndexTimer;
 
 public class FrameAnimationBitmap
 {

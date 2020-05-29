@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.charg2dang.blocksample.game.framework;
+package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -10,8 +10,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-import kr.ac.kpu.game.charg2dang.blocksample.game.iface.GameObject;
-import kr.ac.kpu.game.charg2dang.blocksample.game.iface.Recyclable;
+import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
+import kr.ac.kpu.game.charg2dang.cookierun.game.iface.Recyclable;
 
 public abstract class GameWorld
 {

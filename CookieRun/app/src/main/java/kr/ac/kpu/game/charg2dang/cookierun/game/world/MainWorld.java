@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.charg2dang.blocksample.game.world;
+package kr.ac.kpu.game.charg2dang.cookierun.game.world;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,24 +9,17 @@ import android.view.MotionEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
-import kr.ac.kpu.game.charg2dang.blocksample.R;
-import kr.ac.kpu.game.charg2dang.blocksample.game.framework.GameWorld;
-import kr.ac.kpu.game.charg2dang.blocksample.game.iface.GameObject;
-import kr.ac.kpu.game.charg2dang.blocksample.game.obj.Ball;
-import kr.ac.kpu.game.charg2dang.blocksample.game.obj.EnemyGenerator;
-import kr.ac.kpu.game.charg2dang.blocksample.game.obj.Fighter;
-import kr.ac.kpu.game.charg2dang.blocksample.game.obj.Joystick;
-import kr.ac.kpu.game.charg2dang.blocksample.game.obj.Plane;
-import kr.ac.kpu.game.charg2dang.blocksample.game.obj.ScoreObject;
-import kr.ac.kpu.game.charg2dang.blocksample.game.obj.bg.ImageScrollBackground;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameWorld;
+import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
+//import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Ball;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.EnemyGenerator;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Cookie;
+//import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Joystick;
+//import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Plane;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ScoreObject;
 
 public class MainWorld extends GameWorld
 {
-
-
-	void doTesintg()
-	{}
-
 	private  enum PlayState
 	{
 		normal, paused, gameOver
@@ -40,10 +33,10 @@ public class MainWorld extends GameWorld
 	private static final int BALL_COUNT = 10;
 	public static final String PREF_KEY_HIGHSCORE = "highscore";
 	public static String PREFS_NAME = "Prefs";
-	private Joystick joystick;
-	private Fighter fighter;
+//	private Joystick joystick;
+	private Cookie cookie;
 	private EnemyGenerator enemyGenerator = new EnemyGenerator();
-	private Plane plane;
+//	private Plane plane;
 	private ScoreObject scoreObject;
 	private ScoreObject highScoreObject;
 
@@ -95,30 +88,31 @@ public class MainWorld extends GameWorld
 			float dy = (float) (rand.nextFloat() * 50.0f - 25.0f);
 			float dx = (float) (rand.nextFloat() * 50.0f - 25.0f);
 
-			add(LayerType.missile, new Ball(res, x, y, dx, dy));
+//			add(LayerType.missile, new Ball(res, x, y, dx, dy));
 		}
 
-		float playerY = rect.bottom - 100;
-		plane =  new Plane(res, 500, playerY, 0.0f, 0.0f);
-		add(LayerType.player, plane);
+//		float playerY = rect.bottom - 100;
+//		plane =  new Plane(res, 500, playerY, 0.0f, 0.0f);
+//		add(LayerType.player, plane);
 
 
-		fighter = new Fighter( 200, 700);
-		add(LayerType.enemy, fighter);
+		cookie = new Cookie( 350, 700);
+		cookie.setScale(3);
+		add(LayerType.player, cookie);
 
-		scoreObject = new ScoreObject(800, 100, R.mipmap.number_64x84);
-		add(LayerType.ui, scoreObject);
+//		scoreObject = new ScoreObject(800, 100, R.mipmap.number_64x84);
+//		add(LayerType.ui, scoreObject);
+//
+//		highScoreObject = new ScoreObject(800, 100, R.mipmap.number_24x32);
+//		add(LayerType.ui, highScoreObject);
+//
+//		add(LayerType.bg, new ImageScrollBackground(R.mipmap.bg_city, ImageScrollBackground.Orientation.vertical, -25));
+//		add(LayerType.bg, new ImageScrollBackground(R.mipmap.cloud1, ImageScrollBackground.Orientation.vertical, 100));
 
-		highScoreObject = new ScoreObject(800, 100, R.mipmap.number_24x32);
-		add(LayerType.ui, highScoreObject);
+//		joystick = new Joystick(100, rect.bottom - 200);
+//		add(LayerType.ui, joystick);
 
-		add(LayerType.bg, new ImageScrollBackground(R.mipmap.bg_city, ImageScrollBackground.Orientation.vertical, -25));
-		add(LayerType.bg, new ImageScrollBackground(R.mipmap.cloud1, ImageScrollBackground.Orientation.vertical, 100));
-
-		joystick = new Joystick(100, rect.bottom - 200);
-		add(LayerType.ui, joystick);
-
-		plane.setJoystick(joystick);
+//		plane.setJoystick(joystick);
 
 		startGame();
 	}
@@ -126,11 +120,11 @@ public class MainWorld extends GameWorld
 	private void startGame()
 	{
 		playState = PlayState.normal;
-		scoreObject.reset();
+//		scoreObject.reset();
 
-		SharedPreferences prefs = view.getContext().getSharedPreferences( PREFS_NAME, Context.MODE_PRIVATE);
-		int highScore = prefs.getInt(PREF_KEY_HIGHSCORE, 0);
-		highScoreObject.setScore(highScore);
+//		SharedPreferences prefs = view.getContext().getSharedPreferences( PREFS_NAME, Context.MODE_PRIVATE);
+//		int highScore = prefs.getInt(PREF_KEY_HIGHSCORE, 0);
+//		highScoreObject.setScore(highScore);
 	}
 
 	public void endGame()
@@ -150,7 +144,7 @@ public class MainWorld extends GameWorld
 
 	public void doAction()
 	{
-		fighter.fire();
+//		cookie.fire();
 	}
 
 	public void addScore(int score)
@@ -175,7 +169,7 @@ public class MainWorld extends GameWorld
 
 	public boolean onTouchEvent(MotionEvent event)
 	{
-		joystick.onTouchEvent(event);
+//		joystick.onTouchEvent(event);
 		int action = event.getAction();
 		if(action == MotionEvent.ACTION_DOWN)
 		{

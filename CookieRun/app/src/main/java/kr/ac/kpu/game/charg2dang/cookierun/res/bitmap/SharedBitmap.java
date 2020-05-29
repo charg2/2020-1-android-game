@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.charg2dang.blocksample.res.bitmap;
+package kr.ac.kpu.game.charg2dang.cookierun.res.bitmap;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;

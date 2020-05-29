@@ -1,6 +1,4 @@
-package kr.ac.kpu.game.charg2dang.blocksample.util;
-
-import android.os.SystemClock;
+package kr.ac.kpu.game.charg2dang.cookierun.util;
 
 public class Timer
 {

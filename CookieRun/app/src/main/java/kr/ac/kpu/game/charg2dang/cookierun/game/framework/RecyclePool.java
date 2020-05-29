@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.charg2dang.blocksample.game.framework;
+package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 
 import java.util.ArrayList;
 import java.util.HashMap;

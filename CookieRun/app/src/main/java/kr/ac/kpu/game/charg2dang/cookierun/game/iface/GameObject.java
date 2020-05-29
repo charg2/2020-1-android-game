@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.charg2dang.blocksample.game.iface;
+package kr.ac.kpu.game.charg2dang.cookierun.game.iface;
 
 import android.graphics.Canvas;
 

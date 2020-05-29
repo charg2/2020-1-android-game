@@ -1,17 +1,15 @@
-package kr.ac.kpu.game.charg2dang.blocksample.ui.activity;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package kr.ac.kpu.game.charg2dang.cookierun.ui.activity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
-import kr.ac.kpu.game.charg2dang.blocksample.game.framework.GameWorld;
-import kr.ac.kpu.game.charg2dang.blocksample.res.sound.soundEffects;
-import kr.ac.kpu.game.charg2dang.blocksample.game.world.MainWorld;
-import kr.ac.kpu.game.charg2dang.blocksample.ui.view.GameView;
+import kr.ac.kpu.game.charg2dang.cookierun.game.world.MainWorld;
+import kr.ac.kpu.game.charg2dang.cookierun.res.sound.soundEffects;
+import kr.ac.kpu.game.charg2dang.cookierun.ui.view.GameView;
 
 public class MainActivity extends AppCompatActivity
 {

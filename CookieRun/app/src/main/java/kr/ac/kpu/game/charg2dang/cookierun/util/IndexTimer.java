@@ -1,7 +1,7 @@
-package kr.ac.kpu.game.charg2dang.blocksample.util;
+package kr.ac.kpu.game.charg2dang.cookierun.util;
 
 
-import kr.ac.kpu.game.charg2dang.blocksample.game.framework.GameWorld;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameWorld;
 
 public class IndexTimer
 {
