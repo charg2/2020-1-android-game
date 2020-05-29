@@ -3,6 +3,7 @@ package kr.ac.kpu.game.charg2dang.cookierun.ui.activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity
         MainWorld.create();
         super.onCreate(savedInstanceState);
 
+        doFullScreen();
+
         gameView = new GameView(this);
         setContentView(gameView);
 
@@ -31,24 +34,8 @@ public class MainActivity extends AppCompatActivity
         se.init(this);
         se.loadAll();
 
-//        gameView = findViewById(R.id.gameView);
-
-//        postUpdate();
     }
 
-//    private void postUpdate()
-//    {
-//        gameView.postDelayed(new Runnable()
-//        {
-//            @Override
-//            public void run()
-//            {
-//                gameView.update();
-//                gameView.invalidate();
-//                postUpdate();
-//            }
-//        }, GAMEVIEW_UPDATE_INTERVAL_MSEC);
-//    }
 
 //    @Override
 //    public boolean onTouchEvent(MotionEvent event)
@@ -86,5 +73,16 @@ public class MainActivity extends AppCompatActivity
         gameView.resume();
 //        GameWorld.get().resume();
         super.onResume();
+    }
+
+    private void doFullScreen() {
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE|
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE|
+                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION|
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|
+                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|
+                        View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 }
