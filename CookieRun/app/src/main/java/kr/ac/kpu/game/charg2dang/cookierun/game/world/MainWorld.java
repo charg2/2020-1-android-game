@@ -13,7 +13,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameWorld;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 //import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Ball;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.EnemyGenerator;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Cookie;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 //import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Joystick;
 //import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Plane;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ScoreObject;
