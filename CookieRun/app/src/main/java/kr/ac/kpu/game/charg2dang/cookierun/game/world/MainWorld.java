@@ -3,6 +3,7 @@ package kr.ac.kpu.game.charg2dang.cookierun.game.world;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.Debug;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ImageButton;
@@ -101,7 +102,8 @@ public class MainWorld extends GameWorld
 //		add(LayerType.player, plane);
 
 
-		cookie = new Cookie( 350, 700);
+		cookie = Cookie.getInstande();
+		cookie.setPosition( 350, 700);
 		cookie.setScale(3);
 		add(LayerType.player, cookie);
 
@@ -117,12 +119,12 @@ public class MainWorld extends GameWorld
 //		add(LayerType.bg, new ImageScrollBackground(R.mipmap.cloud1, ImageScrollBackground.Orientation.vertical, 100));
 
 
-		jumpButton = new JumpButton(100, 200);
+		jumpButton = new JumpButton(250, 1250);
 		jumpButton.setScale(4);
 		add(LayerType.ui, jumpButton);
 
 
-		slideButton = new SlideButton(700, 200);
+		slideButton = new SlideButton(2300, 1200);
 		slideButton.setScale(4);
 		add(LayerType.ui, slideButton);
 
@@ -183,23 +185,30 @@ public class MainWorld extends GameWorld
 
 	public boolean onTouchEvent(MotionEvent event)
 	{
-//		joystick.onTouchEvent(event);
-		int action = event.getAction();
-		if(action == MotionEvent.ACTION_DOWN)
-		{
-			if(playState == PlayState.gameOver)
-			{
-				startGame();
-				return false;
-			}
-			doAction();
+		jumpButton.onTouchEvent(event);
+		slideButton.onTouchEvent(event);
 
-//			plane.head(event.getX(), event.getY());
-		}
-		else if(action == MotionEvent.ACTION_MOVE)
-		{
-//			plane.head(event.getX(), event.getY());
-		}
+		event.getX();
+		event.getY();
+		String state = "Y : " +  event.getY() + " , X : "+ event.getX();
+		Log.d(TAG, state );
+
+//		int action = event.getAction();
+//		if(action == MotionEvent.ACTION_DOWN)
+//		{
+//			if(playState == PlayState.gameOver)
+//			{
+//				startGame();
+//				return false;
+//			}
+//			doAction();
+//
+////			plane.head(event.getX(), event.getY());
+//		}
+//		else if(action == MotionEvent.ACTION_MOVE)
+//		{
+////			plane.head(event.getX(), event.getY());
+//		}
 
 		return true;
 	}
