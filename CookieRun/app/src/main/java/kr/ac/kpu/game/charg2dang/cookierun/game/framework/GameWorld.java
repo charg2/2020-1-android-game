@@ -79,7 +79,7 @@ public abstract class GameWorld
         {
             for (GameObject o : objects)
             {
-                o.update();
+                o.update(timeDiffNanos);
             }
         }
 

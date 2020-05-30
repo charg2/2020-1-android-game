@@ -19,6 +19,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 //import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Joystick;
 //import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Plane;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ScoreObject;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.JumpState;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.JumpButton;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.SlideButton;
 
@@ -42,7 +43,8 @@ public class MainWorld extends GameWorld
 	private JumpButton  jumpButton;
 	private SlideButton slideButton;
 	private ItemSpawner enemyGenerator = new ItemSpawner();
-//	private Plane plane;
+
+
 	private ScoreObject scoreObject;
 	private ScoreObject highScoreObject;
 
@@ -118,17 +120,16 @@ public class MainWorld extends GameWorld
 //		add(LayerType.bg, new ImageScrollBackground(R.mipmap.bg_city, ImageScrollBackground.Orientation.vertical, -25));
 //		add(LayerType.bg, new ImageScrollBackground(R.mipmap.cloud1, ImageScrollBackground.Orientation.vertical, 100));
 
-
-		jumpButton = new JumpButton(250, 1250);
+		jumpButton = JumpButton.getInstance();
+		jumpButton.setPosition(250, 1050);
 		jumpButton.setScale(4);
 		add(LayerType.ui, jumpButton);
 
 
-		slideButton = new SlideButton(2300, 1200);
+		slideButton = SlideButton.getInstance();
+		slideButton.setPosition(2300, 1050);
 		slideButton.setScale(4);
 		add(LayerType.ui, slideButton);
-
-//		plane.setJoystick(joystick);
 
 		startGame();
 	}
@@ -187,11 +188,10 @@ public class MainWorld extends GameWorld
 	{
 		jumpButton.onTouchEvent(event);
 		slideButton.onTouchEvent(event);
-
-		event.getX();
-		event.getY();
-		String state = "Y : " +  event.getY() + " , X : "+ event.getX();
-		Log.d(TAG, state );
+//		event.getX();
+//		event.getY();
+//		String state = "Y : " +  event.getY() + " , X : "+ event.getX();
+//		Log.d(TAG, state );
 
 //		int action = event.getAction();
 //		if(action == MotionEvent.ACTION_DOWN)

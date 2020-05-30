@@ -16,7 +16,7 @@ public abstract class FSM
 	}
 
 
-	public void update()
+	public void update(long timeDiffNanos)
 	{
 	}
 

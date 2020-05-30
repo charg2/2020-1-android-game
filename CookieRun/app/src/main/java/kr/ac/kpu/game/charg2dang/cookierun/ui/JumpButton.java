@@ -1,12 +1,8 @@
 package kr.ac.kpu.game.charg2dang.cookierun.ui;
 
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.util.Log;
 import android.view.MotionEvent;
-
-import java.sql.Ref;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
@@ -19,13 +15,30 @@ public class JumpButton implements GameObject
 	private final SharedBitmap jump;
 	private final SharedBitmap jumpPressed;
 	private RectF box;
-	private final float x, y;
-	private double angle;
+	private float x, y;
 	private boolean down;
 	private float scale;
 	private Cookie cookie;
 
-	public JumpButton(float x, float y)
+
+	private static JumpButton instance;
+	public static JumpButton getInstance()
+	{
+		if(instance == null)
+		{
+			instance = new JumpButton(0, 0);
+		}
+
+		return instance;
+	}
+
+	public void setPosition(float x, float y)
+	{
+		this.x = x;
+		this.y = y;
+		organizeBox();
+	}
+	private JumpButton(float x, float y)
 	{
 		this.jump = SharedBitmap.load(R.mipmap.jump);
 		this.jumpPressed = SharedBitmap.load(R.mipmap.jump_pressed);
@@ -39,17 +52,17 @@ public class JumpButton implements GameObject
 
 		cookie = Cookie.getInstande();
 
-		resizeBox();
+		organizeBox();
 	}
 
 	public void setScale(float scale)
 	{
 		this.scale = scale;
 
-		resizeBox();
+		organizeBox();
 	}
 
-	public void resizeBox()
+	public void organizeBox()
 	{
 		box.left = x;
 		box.right = x + (scale * jump.getWidth());
@@ -59,7 +72,7 @@ public class JumpButton implements GameObject
 
 
 	@Override
-	public void update()
+	public void update(long timeDiffNanos)
 	{ }
 
 	@Override
@@ -73,6 +86,12 @@ public class JumpButton implements GameObject
 
 		canvas.restore();
 	}
+
+	public boolean isPressed()
+	{
+		return down;
+	}
+
 
 	public void onTouchEvent(MotionEvent event)
 	{

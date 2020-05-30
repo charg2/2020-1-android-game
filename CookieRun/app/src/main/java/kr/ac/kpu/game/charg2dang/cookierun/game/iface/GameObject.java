@@ -4,6 +4,8 @@ import android.graphics.Canvas;
 
 public interface GameObject
 {
-    public void update();
+	public void update(long timeDiffNanos);
     public void draw(Canvas canvs);
+
+
 }

@@ -15,13 +15,24 @@ public class SlideButton implements GameObject
 	private final SharedBitmap slide;
 	private final SharedBitmap slidePressed;
 
-	private final float x, y;
+	private float x, y;
 	private final Cookie cookie;
-	private float yDown, xDown;
-	private double angle;
 	private boolean down;
 	private float scale;
 	private RectF box;
+
+
+	private static SlideButton instance;
+	public static SlideButton getInstance()
+	{
+		if(instance == null)
+		{
+			instance = new SlideButton(0, 0);
+		}
+
+		return instance;
+	}
+
 
 	public SlideButton(float x, float y)
 	{
@@ -50,11 +61,19 @@ public class SlideButton implements GameObject
 	public void setScale(float scale)
 	{
 		this.scale = scale;
-
 		resizeBox();
 	}
+
+	public void setPosition(float x, float y)
+	{
+		this.x = x;
+		this.y = y;
+		resizeBox();
+	}
+
+
 	@Override
-	public void update()
+	public void update(long timeDiffNanos)
 	{ }
 
 	@Override
@@ -67,6 +86,11 @@ public class SlideButton implements GameObject
 		else slidePressed.draw(canvas, x, y);
 
 		canvas.restore();
+	}
+
+	public boolean isPressed()
+	{
+		return down;
 	}
 
 

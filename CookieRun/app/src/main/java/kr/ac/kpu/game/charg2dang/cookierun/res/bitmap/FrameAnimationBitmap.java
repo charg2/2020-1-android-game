@@ -10,7 +10,6 @@ import kr.ac.kpu.game.charg2dang.cookierun.util.IndexTimer;
 
 public class FrameAnimationBitmap
 {
-
     private static final String TAG = FrameAnimationBitmap.class.getSimpleName();
     private SharedBitmap sbmp;
     private int frameWidth;
@@ -19,6 +18,7 @@ public class FrameAnimationBitmap
     private Rect srcRect = new Rect();
     private RectF dstRect = new RectF();
     private IndexTimer indexTimer;
+    private Paint paint = new Paint();
 
 
     public FrameAnimationBitmap(int resId, int framesPerSecond, int frameCount)
@@ -47,8 +47,17 @@ public class FrameAnimationBitmap
         dstRect.top = y - halfHeight;
         dstRect.right = x + halfWidth;
         dstRect.bottom = y + halfHeight;
-        draw(canvas, dstRect, null);
+        draw(canvas, dstRect, paint);
     }
+
+
+    // alphaValue range : 0 ~ 255
+    public void setAlpha(int alphaValue)
+    {
+        paint.setAlpha(alphaValue);
+    }
+
+
     public void draw(Canvas canvas, RectF rect, Paint paint)
     {
         int index = indexTimer.getIndex();
