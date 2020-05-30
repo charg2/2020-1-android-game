@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,11 +13,13 @@ import java.util.Random;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameWorld;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 //import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Ball;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.EnemyGenerator;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ItemSpawner;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 //import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Joystick;
 //import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Plane;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ScoreObject;
+import kr.ac.kpu.game.charg2dang.cookierun.ui.JumpButton;
+import kr.ac.kpu.game.charg2dang.cookierun.ui.SlideButton;
 
 public class MainWorld extends GameWorld
 {
@@ -27,15 +30,17 @@ public class MainWorld extends GameWorld
 
 	public enum LayerType
 	{
-		bg, missile, enemy, player, ui, MAX
+		bg, enemy, player, ui, MAX
 	}
 	private static final String TAG = MainWorld.class.getSimpleName();
 	private static final int BALL_COUNT = 10;
 	public static final String PREF_KEY_HIGHSCORE = "highscore";
 	public static String PREFS_NAME = "Prefs";
-//	private Joystick joystick;
+
 	private Cookie cookie;
-	private EnemyGenerator enemyGenerator = new EnemyGenerator();
+	private JumpButton  jumpButton;
+	private SlideButton slideButton;
+	private ItemSpawner enemyGenerator = new ItemSpawner();
 //	private Plane plane;
 	private ScoreObject scoreObject;
 	private ScoreObject highScoreObject;
@@ -100,6 +105,8 @@ public class MainWorld extends GameWorld
 		cookie.setScale(3);
 		add(LayerType.player, cookie);
 
+
+
 //		scoreObject = new ScoreObject(800, 100, R.mipmap.number_64x84);
 //		add(LayerType.ui, scoreObject);
 //
@@ -109,8 +116,15 @@ public class MainWorld extends GameWorld
 //		add(LayerType.bg, new ImageScrollBackground(R.mipmap.bg_city, ImageScrollBackground.Orientation.vertical, -25));
 //		add(LayerType.bg, new ImageScrollBackground(R.mipmap.cloud1, ImageScrollBackground.Orientation.vertical, 100));
 
-//		joystick = new Joystick(100, rect.bottom - 200);
-//		add(LayerType.ui, joystick);
+
+		jumpButton = new JumpButton(100, 200);
+		jumpButton.setScale(4);
+		add(LayerType.ui, jumpButton);
+
+
+		slideButton = new SlideButton(700, 200);
+		slideButton.setScale(4);
+		add(LayerType.ui, slideButton);
 
 //		plane.setJoystick(joystick);
 

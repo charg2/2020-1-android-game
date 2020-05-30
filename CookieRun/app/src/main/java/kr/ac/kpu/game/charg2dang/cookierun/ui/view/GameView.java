@@ -97,17 +97,6 @@ public class GameView extends View
 	}
 
 
-//    @Override
-//    protected void onSizeChanged(int w, int h, int oldw, int oldh)
-//    {
-//        super.onSizeChanged(w, h, oldw, oldh);
-//        mainRect.left = getPaddingLeft();
-//        mainRect.top = getPaddingTop();
-//        mainRect.right = getWidth() - getPaddingRight();
-//        mainRect.bottom = getHeight() - getPaddingBottom();
-//
-//        world.setRect(mainRect);
-//    }
 
 	@Override
 	protected void onDraw(Canvas canvas)

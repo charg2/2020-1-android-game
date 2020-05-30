@@ -6,6 +6,9 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 
 public class CollisionHelper
 {
+
+
+
 	private static RectF r2 = new RectF();
 	private static RectF r1 = new RectF();
 
