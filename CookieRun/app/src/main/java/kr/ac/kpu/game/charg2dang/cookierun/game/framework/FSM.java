@@ -3,7 +3,6 @@ package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 import android.graphics.Canvas;
 
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.RunState;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.FrameAnimationBitmap;
 
 public abstract class FSM
@@ -15,19 +14,11 @@ public abstract class FSM
 		this.cookie = cookie;
 	}
 
+	abstract public void update(long timeDiffNanos);
 
-	public void update(long timeDiffNanos)
-	{
-	}
+	abstract public void draw(Canvas canvs);
 
-	public void draw(Canvas canvs)
-	{
-	}
-
-	public void exit()
-	{
-	}
-
+	abstract public void exit();
 
 	public FrameAnimationBitmap getFab()
 	{

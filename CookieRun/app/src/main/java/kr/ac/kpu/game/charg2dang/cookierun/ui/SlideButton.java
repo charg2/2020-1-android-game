@@ -106,7 +106,6 @@ public class SlideButton implements GameObject
 				{
 					if (box.bottom <= dy && dy <= box.top)
 					{
-						cookie.slide();
 						down = true;
 					}
 				}

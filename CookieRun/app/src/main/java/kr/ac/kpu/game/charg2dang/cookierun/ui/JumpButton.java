@@ -105,7 +105,6 @@ public class JumpButton implements GameObject
 				{
 					if (box.bottom <= dy && dy <= box.top)
 					{
-						cookie.jump();
 						down = true;
 					}
 				}
