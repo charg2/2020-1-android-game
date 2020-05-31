@@ -106,7 +106,7 @@ public class MainWorld extends GameWorld
 
 
 		cookie = Cookie.getInstance();
-		cookie.setPosition( 350, 700);
+		cookie.setPosition( 350, 850);
 		cookie.setScale(3);
 		add(LayerType.player, cookie);
 

@@ -23,6 +23,8 @@ public class SlideButton implements GameObject
 
 
 	private static SlideButton instance;
+	private boolean state = true;
+
 	public static SlideButton getInstance()
 	{
 		if(instance == null)
@@ -45,7 +47,7 @@ public class SlideButton implements GameObject
 
 		box = new RectF();
 
-		cookie = Cookie.getInstande();
+		cookie = Cookie.getInstance();
 		resizeBox();
 	}
 
@@ -86,6 +88,12 @@ public class SlideButton implements GameObject
 		else slidePressed.draw(canvas, x, y);
 
 		canvas.restore();
+	}
+
+	@Override
+	public boolean getState()
+	{
+		return state;
 	}
 
 	public boolean isPressed()

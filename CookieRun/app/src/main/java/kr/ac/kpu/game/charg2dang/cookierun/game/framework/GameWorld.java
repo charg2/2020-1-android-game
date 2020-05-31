@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.Recyclable;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 import kr.ac.kpu.game.charg2dang.cookierun.game.world.MainWorld;
 import kr.ac.kpu.game.charg2dang.cookierun.util.CollisionHelper;
 
@@ -97,11 +98,17 @@ public abstract class GameWorld
 
     public void collide(long frameTimeNanos)
     {
+        if (layers.size() == 0)
+        {
+            return;
+        }
+
+
         ArrayList<GameObject> items     = layers.get(MainWorld.LayerType.item.ordinal());
         ArrayList<GameObject> players   = layers.get(MainWorld.LayerType.player.ordinal());
         ArrayList<GameObject> obstacles = layers.get(MainWorld.LayerType.obstacle.ordinal());
 
-        GameObject cookie = players.get(0);
+        Cookie cookie = Cookie.getInstance();
 
         for( GameObject item : items )
         {

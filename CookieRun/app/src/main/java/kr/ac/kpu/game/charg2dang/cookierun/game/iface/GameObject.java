@@ -7,5 +7,5 @@ public interface GameObject
 	public void update(long timeDiffNanos);
     public void draw(Canvas canvs);
 
-
+	public boolean getState();
 }

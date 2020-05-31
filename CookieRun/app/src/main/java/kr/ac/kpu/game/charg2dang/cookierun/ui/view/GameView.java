@@ -89,7 +89,7 @@ public class GameView extends View
 				public void doFrame(long frameTimeNanos)
 				{
 					update(frameTimeNanos);
-					update(frameTimeNanos);
+					collide(frameTimeNanos);
 					invalidate();
 					postFrameCallback();
 				}

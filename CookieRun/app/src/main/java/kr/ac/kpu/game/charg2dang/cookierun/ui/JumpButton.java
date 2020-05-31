@@ -22,6 +22,8 @@ public class JumpButton implements GameObject
 
 
 	private static JumpButton instance;
+	private boolean state = true;
+
 	public static JumpButton getInstance()
 	{
 		if(instance == null)
@@ -50,7 +52,7 @@ public class JumpButton implements GameObject
 
 		box = new RectF();
 
-		cookie = Cookie.getInstande();
+		cookie = Cookie.getInstance();
 
 		organizeBox();
 	}
@@ -85,6 +87,12 @@ public class JumpButton implements GameObject
 		else jumpPressed.draw(canvas, x, y);
 
 		canvas.restore();
+	}
+
+	@Override
+	public boolean getState()
+	{
+		return state;
 	}
 
 	public boolean isPressed()
