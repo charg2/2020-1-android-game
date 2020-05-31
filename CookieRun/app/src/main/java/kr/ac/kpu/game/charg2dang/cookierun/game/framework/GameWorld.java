@@ -10,8 +10,11 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.Recyclable;
+import kr.ac.kpu.game.charg2dang.cookierun.game.world.MainWorld;
+import kr.ac.kpu.game.charg2dang.cookierun.util.CollisionHelper;
 
 public abstract class GameWorld
 {
@@ -24,6 +27,7 @@ public abstract class GameWorld
     private ArrayList<GameObject> trash = new ArrayList<>();
     protected Rect rect;
     protected ArrayList<ArrayList<GameObject>> layers;
+    private CollisionHelper collisionHelper = new CollisionHelper();
 
     public static GameWorld get()
     {
@@ -89,6 +93,25 @@ public abstract class GameWorld
         }
 
         trash.clear();
+    }
+
+    public void collide(long frameTimeNanos)
+    {
+        ArrayList<GameObject> items     = layers.get(MainWorld.LayerType.item.ordinal());
+        ArrayList<GameObject> players   = layers.get(MainWorld.LayerType.player.ordinal());
+        ArrayList<GameObject> obstacles = layers.get(MainWorld.LayerType.obstacle.ordinal());
+
+        GameObject cookie = players.get(0);
+
+        for( GameObject item : items )
+        {
+            collisionHelper.collides((BoxCollidable)cookie, (BoxCollidable)item);
+        }
+
+        for( GameObject obstacle : obstacles )
+        {
+            collisionHelper.collides((BoxCollidable)cookie, (BoxCollidable)obstacle);
+        }
     }
 
 

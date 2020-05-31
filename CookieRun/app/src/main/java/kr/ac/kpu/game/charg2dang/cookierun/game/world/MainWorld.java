@@ -32,8 +32,9 @@ public class MainWorld extends GameWorld
 
 	public enum LayerType
 	{
-		bg, enemy, player, ui, MAX
+		bg, obstacle, item, player, ui, MAX
 	}
+
 	private static final String TAG = MainWorld.class.getSimpleName();
 	private static final int BALL_COUNT = 10;
 	public static final String PREF_KEY_HIGHSCORE = "highscore";
@@ -104,7 +105,7 @@ public class MainWorld extends GameWorld
 //		add(LayerType.player, plane);
 
 
-		cookie = Cookie.getInstande();
+		cookie = Cookie.getInstance();
 		cookie.setPosition( 350, 700);
 		cookie.setScale(3);
 		add(LayerType.player, cookie);

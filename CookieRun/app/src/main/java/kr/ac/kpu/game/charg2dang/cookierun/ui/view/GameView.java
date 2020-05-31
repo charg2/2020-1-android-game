@@ -89,6 +89,7 @@ public class GameView extends View
 				public void doFrame(long frameTimeNanos)
 				{
 					update(frameTimeNanos);
+					update(frameTimeNanos);
 					invalidate();
 					postFrameCallback();
 				}
@@ -121,6 +122,13 @@ public class GameView extends View
 			timer.reset();
 		}
 	}
+
+
+	public void collide(long frameTimeNanos)
+	{
+		world.collide(frameTimeNanos);
+	}
+
 
 
 	@Override
