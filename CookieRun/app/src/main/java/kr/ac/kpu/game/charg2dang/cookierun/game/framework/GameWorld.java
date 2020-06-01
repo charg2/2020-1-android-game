@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.RectF;
+import android.os.Debug;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -103,21 +105,36 @@ public abstract class GameWorld
             return;
         }
 
+//        Cookie cookie = Cookie.getInstance();
+
 
         ArrayList<GameObject> items     = layers.get(MainWorld.LayerType.item.ordinal());
         ArrayList<GameObject> players   = layers.get(MainWorld.LayerType.player.ordinal());
         ArrayList<GameObject> obstacles = layers.get(MainWorld.LayerType.obstacle.ordinal());
 
-        Cookie cookie = Cookie.getInstance();
 
-        for( GameObject item : items )
+        for( GameObject player : players )
         {
-            collisionHelper.collides((BoxCollidable)cookie, (BoxCollidable)item);
-        }
+            RectF box = ((Cookie)player).getBox();
+            if(box == null)
+            {
 
-        for( GameObject obstacle : obstacles )
-        {
-            collisionHelper.collides((BoxCollidable)cookie, (BoxCollidable)obstacle);
+                return;
+            }
+
+
+
+            for (GameObject item : items)
+            {
+                collisionHelper.collides((BoxCollidable) player, (BoxCollidable) item);
+            }
+
+            for (GameObject obstacle : obstacles)
+            {
+                collisionHelper.collides((BoxCollidable) player, (BoxCollidable) obstacle);
+            }
+
+            return;
         }
     }
 

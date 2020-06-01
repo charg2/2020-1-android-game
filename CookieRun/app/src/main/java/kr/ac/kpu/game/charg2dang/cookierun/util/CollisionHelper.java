@@ -1,6 +1,7 @@
 package kr.ac.kpu.game.charg2dang.cookierun.util;
 
 import android.graphics.RectF;
+import android.util.Log;
 
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 
@@ -31,8 +32,11 @@ public class CollisionHelper
 
 	public static void collides(BoxCollidable o1, BoxCollidable o2)
 	{
-		o1.getBox(r1);
-		o2.getBox(r2);
+		RectF r1 = o1.getBox();
+		RectF r2 = o2.getBox();
+
+
+		Log.d("Collidion", o1.getTag().toString() + ": "+r1.toString() + ", " + o2.getTag().toString() +" : " + r2.toString() );
 
 		if(r1.left > r2.right)
 			return;
@@ -46,8 +50,8 @@ public class CollisionHelper
 		if(r1.bottom < r2.top)
 			return;
 
+
 		o1.onCollision(o2);
 		o2.onCollision(o1);
-
 	}
 }

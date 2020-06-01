@@ -14,6 +14,7 @@ import java.util.Random;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameWorld;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 //import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Ball;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Coin;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ItemSpawner;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 //import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Joystick;
@@ -110,7 +111,8 @@ public class MainWorld extends GameWorld
 		cookie.setScale(3);
 		add(LayerType.player, cookie);
 
-
+		Coin coin = new Coin(1500 , 850);
+		add(LayerType.item, coin);
 
 //		scoreObject = new ScoreObject(800, 100, R.mipmap.number_64x84);
 //		add(LayerType.ui, scoreObject);
