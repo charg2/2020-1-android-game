@@ -106,8 +106,6 @@ public abstract class GameWorld
         }
 
 //        Cookie cookie = Cookie.getInstance();
-
-
         ArrayList<GameObject> items     = layers.get(MainWorld.LayerType.item.ordinal());
         ArrayList<GameObject> players   = layers.get(MainWorld.LayerType.player.ordinal());
         ArrayList<GameObject> obstacles = layers.get(MainWorld.LayerType.obstacle.ordinal());
@@ -118,11 +116,8 @@ public abstract class GameWorld
             RectF box = ((Cookie)player).getBox();
             if(box == null)
             {
-
                 return;
             }
-
-
 
             for (GameObject item : items)
             {

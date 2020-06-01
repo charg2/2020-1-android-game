@@ -35,6 +35,4 @@ public class RecyclePool
 
 		return list.remove(0);
 	}
-
-
 }
