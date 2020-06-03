@@ -15,11 +15,10 @@ import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 
-import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameWorld;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
 import kr.ac.kpu.game.charg2dang.cookierun.util.IndexTimer;
@@ -32,7 +31,7 @@ public class GameView extends View
 	private Paint mainPaint;
 
 	private ArrayList<GameObject> objects;
-	private GameWorld world;
+	private Scene world;
 	private IndexTimer timer;
 	private boolean paused;
 
@@ -64,7 +63,7 @@ public class GameView extends View
 		mainPaint = new Paint();
 		mainPaint.setColor(0xFFFFEEEE);
 
-		world = GameWorld.get();
+		world = Scene.get();
 		world.setRect(mainRect);
 		world.initResources(this);
 

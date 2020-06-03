@@ -1,7 +1,7 @@
 package kr.ac.kpu.game.charg2dang.cookierun.util;
 
 
-import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameWorld;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 
 public class IndexTimer
 {
@@ -14,12 +14,12 @@ public class IndexTimer
 	{
 		this.count = count;
 		this.fps = framePerSecond;
-		this.time = GameWorld.get().getCurrentFrameTimeNanos();
+		this.time = Scene.get().getCurrentFrameTimeNanos();
 	}
 
 	public int getIndex()
 	{
-		long elapsed = GameWorld.get().getCurrentFrameTimeNanos() - time;
+		long elapsed = Scene.get().getCurrentFrameTimeNanos() - time;
 		int index = (int)((elapsed * fps + 500_000_000)/ 1_000_000_000);
 
 		return index % count;
@@ -27,7 +27,7 @@ public class IndexTimer
 
 	public boolean done()
 	{
-		long elapsed = GameWorld.get().getCurrentFrameTimeNanos() - time;
+		long elapsed = Scene.get().getCurrentFrameTimeNanos() - time;
 		int index = (int)((elapsed * fps + 500_000_000)/ 1_000_000_000);
 
 		return index >= count;
@@ -36,6 +36,6 @@ public class IndexTimer
 
 	public void reset()
 	{
-		this.time = GameWorld.get().getCurrentFrameTimeNanos();
+		this.time = Scene.get().getCurrentFrameTimeNanos();
 	}
 }

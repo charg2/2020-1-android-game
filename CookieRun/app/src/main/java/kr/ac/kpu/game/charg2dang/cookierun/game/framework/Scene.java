@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.os.Debug;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,19 +13,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
+import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.Recyclable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
-import kr.ac.kpu.game.charg2dang.cookierun.game.world.MainWorld;
 import kr.ac.kpu.game.charg2dang.cookierun.util.CollisionHelper;
 
-public abstract class GameWorld
+public abstract class Scene
 {
-    private static final String TAG = GameWorld.class.getSimpleName();
-    protected static GameWorld singleton;
+    private static final String TAG = Scene.class.getSimpleName();
+    protected static Scene singleton;
     private RecyclePool recyclePool = new RecyclePool();
     protected View view;
+
+    protected static SceneType currentSceneType = SceneType.main;
     private long frameTimeNanos;
     private long timeDiffNanos;
     private ArrayList<GameObject> trash = new ArrayList<>();
@@ -34,14 +35,14 @@ public abstract class GameWorld
     protected ArrayList<ArrayList<GameObject>> layers;
     private CollisionHelper collisionHelper = new CollisionHelper();
 
-    public static GameWorld get()
+    public static Scene get()
     {
-        if(GameWorld.singleton == null)
+        if(Scene.singleton == null)
         {
             Log.e(TAG, "Gameworld subclass not created!!!");
         }
 
-        return GameWorld.singleton;
+        return Scene.singleton;
     }
 
 
@@ -60,6 +61,8 @@ public abstract class GameWorld
     public void initResources(View view)
     {
         this.view = view;
+
+
         initLayers();
         initObjects();
     }
@@ -74,6 +77,12 @@ public abstract class GameWorld
             }
         }
     }
+
+    public static SceneType getCurrentSceneType()
+    {
+        return Scene.currentSceneType;
+    }
+
 
     public void update(long frameTimeNanos)
     {
@@ -155,29 +164,6 @@ public abstract class GameWorld
                 }
             }
         }
-
-
-//        for ( int tIndex = trash.size() - 1; tIndex >= 0; tIndex-- )
-//        {
-//            GameObject tObj = trash.get(tIndex);
-//
-//            for(ArrayList<GameObject> objects : layers)
-//            {
-//                int index = objects.indexOf(tObj);
-//                if( index >= 0)
-//                {
-//                    objects.remove(index);
-//                    break;
-//                }
-//            }
-//
-//            trash.remove(tIndex);
-//            if(tObj instanceof Recyclable)
-//            {
-//                ((Recyclable) tObj).recycle();
-//                getRecyclePool().add(tObj);
-//            }
-//        }
     }
 
     public void add(final int index, final GameObject obj)
@@ -192,7 +178,7 @@ public abstract class GameWorld
             }
         });
     }
-    protected GameWorld()  { }
+    protected Scene()  { }
     public void remove(GameObject obj)
     {
         trash.add(obj);
@@ -250,13 +236,18 @@ public abstract class GameWorld
         return (float)(timeDiffNanos / 1_000_000_000.0);
     }
 
+
     public void pause()
     {
     }
 
     public void resume()
     {
-
     }
 
+
+    public void setCurrentSceneType(SceneType currentSceneType)
+    {
+        Scene.currentSceneType = currentSceneType;
+    }
 }

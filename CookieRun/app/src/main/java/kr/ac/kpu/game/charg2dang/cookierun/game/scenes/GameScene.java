@@ -1,18 +1,16 @@
-package kr.ac.kpu.game.charg2dang.cookierun.game.world;
+package kr.ac.kpu.game.charg2dang.cookierun.game.scenes;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.os.Debug;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
-import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameWorld;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Coin;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.CoinSilver;
@@ -22,15 +20,14 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ScoreObject;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.JumpButton;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.SlideButton;
 
-public class MainWorld extends GameWorld
+public class GameScene extends Scene
 {
 	private  enum PlayState
 	{
 		normal, paused, gameOver
 	}
 
-
-	private static final String TAG = MainWorld.class.getSimpleName();
+	private static final String TAG = GameScene.class.getSimpleName();
 	private static final int BALL_COUNT = 10;
 	public static final String PREF_KEY_HIGHSCORE = "highscore";
 	public static String PREFS_NAME = "Prefs";
@@ -38,13 +35,12 @@ public class MainWorld extends GameWorld
 	private Cookie cookie;
 	private JumpButton  jumpButton;
 	private SlideButton slideButton;
-	private ItemSpawner enemyGenerator = new ItemSpawner();
-
+	private ItemSpawner itemGenerator = new ItemSpawner();
 
 	private ScoreObject scoreObject;
 	private ScoreObject highScoreObject;
 
-	private MainWorld.PlayState playState = PlayState.normal;
+	private GameScene.PlayState playState = PlayState.normal;
 
 	public static void create()
 	{
@@ -53,7 +49,7 @@ public class MainWorld extends GameWorld
 			Log.e(TAG, "Gameworld sublcass ");
 		}
 
-		GameWorld.singleton = new MainWorld();
+		Scene.singleton = new GameScene();
 	}
 
 	public void add(final LayerType layerType, final GameObject obj)
@@ -67,11 +63,10 @@ public class MainWorld extends GameWorld
 	{
 		return LayerType.MAX.ordinal();
 	}
-	public static MainWorld get()
+	public static GameScene get()
 	{
-		return (MainWorld) singleton;
+		return (GameScene) singleton;
 	}
-
 
 	public ArrayList<GameObject> objectsAt(LayerType enemy)
 	{
@@ -159,11 +154,6 @@ public class MainWorld extends GameWorld
 		}
 	}
 
-	public void doAction()
-	{
-//		cookie.fire();
-	}
-
 	public void addScore(int score)
 	{
 		scoreObject.addScore(score);
@@ -179,9 +169,8 @@ public class MainWorld extends GameWorld
 			return;
 		}
 
-		enemyGenerator.update();
+		itemGenerator.update();
 	}
-
 
 
 	public boolean onTouchEvent(MotionEvent event)

@@ -8,7 +8,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import kr.ac.kpu.game.charg2dang.cookierun.game.world.MainWorld;
+import kr.ac.kpu.game.charg2dang.cookierun.game.scenes.GameScene;
 import kr.ac.kpu.game.charg2dang.cookierun.res.sound.soundEffects;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.view.GameView;
 
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        MainWorld.create();
+        GameScene.create();
         super.onCreate(savedInstanceState);
 
         doFullScreen();
