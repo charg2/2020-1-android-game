@@ -87,12 +87,7 @@ public class GameScene extends Scene
 			float dy = (float) (rand.nextFloat() * 50.0f - 25.0f);
 			float dx = (float) (rand.nextFloat() * 50.0f - 25.0f);
 
-//			add(LayerType.missile, new Ball(res, x, y, dx, dy));
 		}
-
-//		float playerY = rect.bottom - 100;
-//		plane =  new Plane(res, 500, playerY, 0.0f, 0.0f);
-//		add(LayerType.player, plane);
 
 
 		cookie = Cookie.getInstance();
@@ -177,11 +172,6 @@ public class GameScene extends Scene
 	{
 		jumpButton.onTouchEvent(event);
 		slideButton.onTouchEvent(event);
-//		event.getX();
-//		event.getY();
-//		String state = "Y : " +  event.getY() + " , X : "+ event.getX();
-//		Log.d(TAG, state );
-
 //		int action = event.getAction();
 //		if(action == MotionEvent.ACTION_DOWN)
 //		{

@@ -18,7 +18,9 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
 import kr.ac.kpu.game.charg2dang.cookierun.util.IndexTimer;
@@ -31,7 +33,10 @@ public class GameView extends View
 	private Paint mainPaint;
 
 	private ArrayList<GameObject> objects;
-	private Scene world;
+	private Scene scene;
+
+	private SceneManager sceneManager;
+
 	private IndexTimer timer;
 	private boolean paused;
 
@@ -53,6 +58,8 @@ public class GameView extends View
 
 	private void initResource()
 	{
+		sceneManager = SceneManager.getInstance();
+
 		WindowManager wm = (WindowManager) getContext().getSystemService((Service.WINDOW_SERVICE));
 		Point size = new Point();
 		wm.getDefaultDisplay().getSize(size);
@@ -63,12 +70,22 @@ public class GameView extends View
 		mainPaint = new Paint();
 		mainPaint.setColor(0xFFFFEEEE);
 
-		world = Scene.get();
-		world.setRect(mainRect);
-		world.initResources(this);
+
+
+		prepareScene();
 
 		timer = new IndexTimer(FRAME_RATE_SECONDS, 1);
+
 		postFrameCallback();
+	}
+
+	private void prepareScene()
+	{
+		scene = Scene.get();
+		scene.setRect(mainRect);
+		scene.initResources(this);
+		sceneManager.addScene(SceneType.game, scene);
+		sceneManager.changeScene(SceneType.game);
 
 	}
 
@@ -87,8 +104,11 @@ public class GameView extends View
 				@Override
 				public void doFrame(long frameTimeNanos)
 				{
-					update(frameTimeNanos);
-					collide(frameTimeNanos);
+
+					sceneManager.update(frameTimeNanos);
+//					update(frameTimeNanos);
+					sceneManager.collide(frameTimeNanos);
+//					collide(frameTimeNanos);
 					invalidate();
 					postFrameCallback();
 				}
@@ -97,50 +117,48 @@ public class GameView extends View
 	}
 
 
+	public void collide(long frameTimeNanos)
+	{
+		scene.collide(frameTimeNanos);
+	}
 
 	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		canvas.drawRect(mainRect, mainPaint);
-		world.draw(canvas);
-//        canvas.drawBitmap(ballImage, xBall, yBall, null);
+//		scene.draw(canvas);
+		sceneManager.draw(canvas);
 	}
 
 
-	private int count;
+
+	private int frameCheckCounter = 0;
 	public void update(long frameTimeNanos)
 	{
-		world.update(frameTimeNanos);
-//        Log.d(TAG, "update() : " + xBall + ", " + yBall);
+		scene.update(frameTimeNanos);
 
-		count++;
+		frameCheckCounter++;
 		if(timer.done())
 		{
-			Log.d(TAG, "Frames Per Second = " + ((float)count / FRAME_RATE_SECONDS));
-			count = 0;
+			Log.d(TAG, "Frames Per Second = " + ((float) frameCheckCounter / FRAME_RATE_SECONDS));
+			frameCheckCounter = 0;
 			timer.reset();
 		}
 	}
 
 
-	public void collide(long frameTimeNanos)
-	{
-		world.collide(frameTimeNanos);
-	}
 
 
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event)
 	{
-		return world.onTouchEvent(event);
+		return scene.onTouchEvent(event);
 	};
-
 	public void pause()
 	{
 		this.paused = true;
 	}
-
 	public void resume()
 	{
 		this.paused = false;

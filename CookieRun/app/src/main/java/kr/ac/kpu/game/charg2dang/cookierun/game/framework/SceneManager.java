@@ -6,20 +6,31 @@ import java.util.ArrayList;
 
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 
-public class SceneManger
+public class SceneManager
 {
-	static final String TAG = SceneManger.class.getSimpleName();
+	static final String TAG = SceneManager.class.getSimpleName();
 	private SceneType 			currentSceneType;
 	private Scene 				currentScene;
-	private ArrayList<Scene> 	scenes;
+//	private ArrayList<Scene> 	scenes = new ArrayList<>();
+	private Scene[]				scenes = new Scene[SceneType.max.ordinal()];
 
-	private SceneManger(){}
-	static SceneManger inctance;
-	public SceneManger getInctance()
+	private SceneManager()
+	{
+
+	}
+	static SceneManager inctance;
+
+	public void addScene(SceneType sceneType, Scene scene )
+	{
+		scenes[sceneType.ordinal()] = scene;
+	}
+
+
+	public static SceneManager getInstance()
 	{
 		if(inctance == null)
 		{
-			inctance = new SceneManger();
+			inctance = new SceneManager();
 		}
 
 		return inctance;
@@ -29,7 +40,8 @@ public class SceneManger
 	{
 		if(currentSceneType != currentScene.getCurrentSceneType())
 		{
-			currentScene = scenes.get(currentSceneType.ordinal());
+//			currentScene = scenes.get(currentSceneType.ordinal());
+			currentScene = scenes[currentSceneType.ordinal()];
 			currentScene.setCurrentSceneType(currentSceneType);
 		}
 
@@ -38,14 +50,16 @@ public class SceneManger
 
 	public void changeScene(SceneType sceneType)
 	{
-
+		this.currentSceneType = sceneType;
 	}
 
-
-	public void render(Canvas canvas)
+	public void draw(Canvas canvas)
 	{
 		currentScene.draw(canvas);
 	}
 
-
+	public void collide(long frameTimeNanos)
+	{
+		currentScene.collide(frameTimeNanos);
+	}
 }
