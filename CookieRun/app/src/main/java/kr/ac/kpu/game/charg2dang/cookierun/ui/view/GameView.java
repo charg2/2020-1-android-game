@@ -16,12 +16,9 @@ import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
-
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
-import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
 import kr.ac.kpu.game.charg2dang.cookierun.util.IndexTimer;
 
@@ -31,12 +28,8 @@ public class GameView extends View
 	private static final int FRAME_RATE_SECONDS = 10;
 	private Rect mainRect;
 	private Paint mainPaint;
-
-	private ArrayList<GameObject> objects;
 	private Scene scene;
-
 	private SceneManager sceneManager;
-
 	private IndexTimer timer;
 	private boolean paused;
 
@@ -53,7 +46,6 @@ public class GameView extends View
 		super(context, attrs);
 
 		initResource();;
-
 	}
 
 	private void initResource()
@@ -71,7 +63,6 @@ public class GameView extends View
 		mainPaint.setColor(0xFFFFEEEE);
 
 
-
 		prepareScene();
 
 		timer = new IndexTimer(FRAME_RATE_SECONDS, 1);
@@ -85,8 +76,8 @@ public class GameView extends View
 		scene.setRect(mainRect);
 		scene.initResources(this);
 		sceneManager.addScene(SceneType.game, scene);
-		sceneManager.changeScene(SceneType.game);
 
+		sceneManager.changeScene(SceneType.game);
 	}
 
 
@@ -105,10 +96,8 @@ public class GameView extends View
 				public void doFrame(long frameTimeNanos)
 				{
 
-					sceneManager.update(frameTimeNanos);
-//					update(frameTimeNanos);
-					sceneManager.collide(frameTimeNanos);
-//					collide(frameTimeNanos);
+					update(frameTimeNanos);
+					collide(frameTimeNanos);
 					invalidate();
 					postFrameCallback();
 				}
@@ -119,23 +108,20 @@ public class GameView extends View
 
 	public void collide(long frameTimeNanos)
 	{
-		scene.collide(frameTimeNanos);
+		sceneManager.collide(frameTimeNanos);
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas)
 	{
 		canvas.drawRect(mainRect, mainPaint);
-//		scene.draw(canvas);
 		sceneManager.draw(canvas);
 	}
-
-
 
 	private int frameCheckCounter = 0;
 	public void update(long frameTimeNanos)
 	{
-		scene.update(frameTimeNanos);
+		sceneManager.update(frameTimeNanos);
 
 		frameCheckCounter++;
 		if(timer.done())
@@ -145,9 +131,6 @@ public class GameView extends View
 			timer.reset();
 		}
 	}
-
-
-
 
 
 	@Override

@@ -15,6 +15,7 @@ public class SharedBitmap
     private static Resources resources;
     private static HashMap<Integer, SharedBitmap> map = new HashMap<>();
     private static BitmapFactory.Options noScaleOption;
+
     static
     {
         noScaleOption = new BitmapFactory.Options();

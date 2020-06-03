@@ -15,6 +15,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Coin;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.CoinSilver;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ItemSpawner;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Terrain;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ScoreObject;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.JumpButton;
@@ -121,6 +122,10 @@ public class GameScene extends Scene
 		slideButton.setScale(4);
 		add(LayerType.ui, slideButton);
 
+
+		Terrain terrain = new Terrain(1300, 1200);
+
+		add(LayerType.terrain, terrain);
 		startGame();
 	}
 

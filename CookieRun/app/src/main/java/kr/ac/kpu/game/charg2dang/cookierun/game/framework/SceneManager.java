@@ -15,9 +15,9 @@ public class SceneManager
 	private Scene[]				scenes = new Scene[SceneType.max.ordinal()];
 
 	private SceneManager()
-	{
+	{ }
 
-	}
+
 	static SceneManager inctance;
 
 	public void addScene(SceneType sceneType, Scene scene )
@@ -32,7 +32,6 @@ public class SceneManager
 		{
 			inctance = new SceneManager();
 		}
-
 		return inctance;
 	}
 
