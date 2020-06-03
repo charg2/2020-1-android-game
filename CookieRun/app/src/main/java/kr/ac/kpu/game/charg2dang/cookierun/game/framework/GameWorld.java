@@ -11,7 +11,9 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
+import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.Recyclable;
@@ -90,10 +92,10 @@ public abstract class GameWorld
             }
         }
 
-        if(trash.size() > 0)
-        {
-            removeTrashObjects();
-        }
+//        if(trash.size() > 0)
+//        {
+        removeTrashObjects();
+//        }
 
         trash.clear();
     }
@@ -106,9 +108,9 @@ public abstract class GameWorld
         }
 
 //        Cookie cookie = Cookie.getInstance();
-        ArrayList<GameObject> items     = layers.get(MainWorld.LayerType.item.ordinal());
-        ArrayList<GameObject> players   = layers.get(MainWorld.LayerType.player.ordinal());
-        ArrayList<GameObject> obstacles = layers.get(MainWorld.LayerType.obstacle.ordinal());
+        ArrayList<GameObject> items     = layers.get(LayerType.item.ordinal());
+        ArrayList<GameObject> players   = layers.get(LayerType.player.ordinal());
+        ArrayList<GameObject> obstacles = layers.get(LayerType.obstacle.ordinal());
 
 
         for( GameObject player : players )
@@ -136,27 +138,46 @@ public abstract class GameWorld
 
     private void removeTrashObjects()
     {
-        for ( int tIndex = trash.size() - 1; tIndex >= 0; tIndex-- )
+        for( ArrayList<GameObject> layer : layers)
         {
-            GameObject tObj = trash.get(tIndex);
-
-            for(ArrayList<GameObject> objects : layers)
+            for (Iterator<GameObject> iterator = layer.iterator(); iterator.hasNext(); )
             {
-                int index = objects.indexOf(tObj);
-                if( index >= 0)
+                GameObject go = iterator.next();
+                if (go.getState() == false)
                 {
-                    objects.remove(index);
-                    break;
+                    iterator.remove();
+                }
+
+                if (go instanceof Recyclable)
+                {
+                    ((Recyclable) go).recycle();
+                    getRecyclePool().add(go);
                 }
             }
-
-            trash.remove(tIndex);
-            if(tObj instanceof Recyclable)
-            {
-                ((Recyclable) tObj).recycle();
-                getRecyclePool().add(tObj);
-            }
         }
+
+
+//        for ( int tIndex = trash.size() - 1; tIndex >= 0; tIndex-- )
+//        {
+//            GameObject tObj = trash.get(tIndex);
+//
+//            for(ArrayList<GameObject> objects : layers)
+//            {
+//                int index = objects.indexOf(tObj);
+//                if( index >= 0)
+//                {
+//                    objects.remove(index);
+//                    break;
+//                }
+//            }
+//
+//            trash.remove(tIndex);
+//            if(tObj instanceof Recyclable)
+//            {
+//                ((Recyclable) tObj).recycle();
+//                getRecyclePool().add(tObj);
+//            }
+//        }
     }
 
     public void add(final int index, final GameObject obj)

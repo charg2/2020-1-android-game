@@ -11,16 +11,14 @@ import android.widget.ImageButton;
 import java.util.ArrayList;
 import java.util.Random;
 
+import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameWorld;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
-//import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Ball;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Coin;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.CoinSilver;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ItemSpawner;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
-//import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Joystick;
-//import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Plane;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ScoreObject;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.JumpState;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.JumpButton;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.SlideButton;
 
@@ -31,10 +29,6 @@ public class MainWorld extends GameWorld
 		normal, paused, gameOver
 	}
 
-	public enum LayerType
-	{
-		bg, obstacle, item, player, ui, MAX
-	}
 
 	private static final String TAG = MainWorld.class.getSimpleName();
 	private static final int BALL_COUNT = 10;
@@ -113,6 +107,9 @@ public class MainWorld extends GameWorld
 
 		Coin coin = new Coin(1500 , 850);
 		add(LayerType.item, coin);
+
+		CoinSilver coinSilver = new CoinSilver(1800 , 850);
+		add(LayerType.item, coinSilver);
 
 //		scoreObject = new ScoreObject(800, 100, R.mipmap.number_64x84);
 //		add(LayerType.ui, scoreObject);
