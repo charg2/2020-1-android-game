@@ -6,7 +6,6 @@ import android.content.res.Resources;
 import android.util.Log;
 import android.view.MotionEvent;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
@@ -69,10 +68,6 @@ public class GameScene extends Scene
 		return (GameScene) singleton;
 	}
 
-	public ArrayList<GameObject> objectsAt(LayerType enemy)
-	{
-		return super.objectsAt(enemy.ordinal());
-	}
 
 
 	public void initObjects()
@@ -92,7 +87,7 @@ public class GameScene extends Scene
 
 
 		cookie = Cookie.getInstance();
-		cookie.setPosition( 350, 850);
+		cookie.setPosition( 350, 900);
 		cookie.setScale(3);
 		add(LayerType.player, cookie);
 

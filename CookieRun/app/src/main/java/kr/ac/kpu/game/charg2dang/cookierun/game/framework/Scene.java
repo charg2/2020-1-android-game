@@ -30,7 +30,6 @@ public abstract class Scene
     protected static SceneType currentSceneType = SceneType.main;
     private long frameTimeNanos;
     private long timeDiffNanos;
-    private ArrayList<GameObject> trash = new ArrayList<>();
     protected Rect rect;
     protected ArrayList<ArrayList<GameObject>> layers;
     private CollisionHelper collisionHelper = new CollisionHelper();
@@ -105,8 +104,6 @@ public abstract class Scene
 //        {
         removeTrashObjects();
 //        }
-
-        trash.clear();
     }
 
     public void collide(long frameTimeNanos)
@@ -120,6 +117,7 @@ public abstract class Scene
         ArrayList<GameObject> items     = layers.get(LayerType.item.ordinal());
         ArrayList<GameObject> players   = layers.get(LayerType.player.ordinal());
         ArrayList<GameObject> obstacles = layers.get(LayerType.obstacle.ordinal());
+        ArrayList<GameObject> terrains = layers.get(LayerType.terrain.ordinal());
 
 
         for( GameObject player : players )
@@ -140,6 +138,10 @@ public abstract class Scene
                 collisionHelper.collides((BoxCollidable) player, (BoxCollidable) obstacle);
             }
 
+            for (GameObject terrain : terrains)
+            {
+                collisionHelper.collides((BoxCollidable) player, (BoxCollidable) terrain);
+            }
             return;
         }
     }
@@ -179,18 +181,8 @@ public abstract class Scene
         });
     }
     protected Scene()  { }
-    public void remove(GameObject obj)
-    {
-        trash.add(obj);
-    }
-
     public boolean onTouchEvent(MotionEvent event) {  return false;  }
     protected void initObjects(){};
-
-    public ArrayList<GameObject> objectsAt(int enemy)
-    {
-        return this.layers.get(enemy);
-    }
 
     public void setRect(Rect rect)
     {

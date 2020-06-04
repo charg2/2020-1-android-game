@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
@@ -30,9 +31,9 @@ public class GameView extends View
 	private Paint mainPaint;
 	private Scene scene;
 	private SceneManager sceneManager;
+	private Framework framework;
 	private IndexTimer timer;
 	private boolean paused;
-
 
 	public GameView(Context context)
 	{
@@ -50,7 +51,8 @@ public class GameView extends View
 
 	private void initResource()
 	{
-		sceneManager = SceneManager.getInstance();
+		framework 		= Framework.getInstance();
+		sceneManager 	= SceneManager.getInstance();
 
 		WindowManager wm = (WindowManager) getContext().getSystemService((Service.WINDOW_SERVICE));
 		Point size = new Point();

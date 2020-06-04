@@ -35,9 +35,6 @@ public class CollisionHelper
 		RectF r1 = o1.getBox();
 		RectF r2 = o2.getBox();
 
-
-		Log.d("Collidion", o1.getTag().toString() + ": "+r1.toString() + ", " + o2.getTag().toString() +" : " + r2.toString() );
-
 		if(r1.left > r2.right)
 			return;
 
