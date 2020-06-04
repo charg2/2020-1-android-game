@@ -23,7 +23,7 @@ public class Framework
 	public Framework()
 	{
 		collisionBoxpaint.setColor(Color.RED);
-		collisionBoxpaint.setAlpha(70);
+		collisionBoxpaint.setAlpha(50);
 	}
 
 
