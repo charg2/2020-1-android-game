@@ -21,6 +21,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
+import kr.ac.kpu.game.charg2dang.cookierun.util.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.util.IndexTimer;
 
 public class GameView extends View
@@ -33,6 +34,7 @@ public class GameView extends View
 	private SceneManager sceneManager;
 	private Framework framework;
 	private IndexTimer timer;
+	private GameTimer gameTimer;
 	private boolean paused;
 
 	public GameView(Context context)
@@ -53,6 +55,7 @@ public class GameView extends View
 	{
 		framework 		= Framework.getInstance();
 		sceneManager 	= SceneManager.getInstance();
+		gameTimer 		= GameTimer.getInstance();
 
 		WindowManager wm = (WindowManager) getContext().getSystemService((Service.WINDOW_SERVICE));
 		Point size = new Point();
@@ -83,6 +86,7 @@ public class GameView extends View
 	}
 
 
+
 	private void postFrameCallback()
 	{
 		if (paused == true)
@@ -98,8 +102,10 @@ public class GameView extends View
 				public void doFrame(long frameTimeNanos)
 				{
 
+					gameTimer.upadte(frameTimeNanos);
 					update(frameTimeNanos);
 					collide(frameTimeNanos);
+
 					invalidate();
 					postFrameCallback();
 				}

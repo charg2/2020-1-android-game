@@ -100,10 +100,7 @@ public abstract class Scene
             }
         }
 
-//        if(trash.size() > 0)
-//        {
         removeTrashObjects();
-//        }
     }
 
     public void collide(long frameTimeNanos)

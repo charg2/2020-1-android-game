@@ -8,6 +8,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.game.scenes.GameScene;
 import kr.ac.kpu.game.charg2dang.cookierun.res.sound.soundEffects;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.view.GameView;
@@ -22,18 +23,21 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        UiBridge.setActivity(this);
         GameScene.create();
         super.onCreate(savedInstanceState);
 
+
         doFullScreen();
+
 
         gameView = new GameView(this);
         setContentView(gameView);
 
+
         se = soundEffects.get();
         se.init(this);
         se.loadAll();
-
     }
 
 

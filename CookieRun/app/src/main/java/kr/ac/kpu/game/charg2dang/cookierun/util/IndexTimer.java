@@ -14,12 +14,15 @@ public class IndexTimer
 	{
 		this.count = count;
 		this.fps = framePerSecond;
-		this.time = Scene.get().getCurrentFrameTimeNanos();
+//		this.time = Scene.get().getCurrentFrameTimeNanos();
+		this.time = GameTimer.getInstance().getCurrentNanoTicks();
 	}
 
 	public int getIndex()
 	{
-		long elapsed = Scene.get().getCurrentFrameTimeNanos() - time;
+//		long elapsed = Scene.get().getCurrentFrameTimeNanos() - time;
+		long elapsed = GameTimer.getInstance().getCurrentNanoTicks() - time;
+
 		int index = (int)((elapsed * fps + 500_000_000)/ 1_000_000_000);
 
 		return index % count;
@@ -27,7 +30,9 @@ public class IndexTimer
 
 	public boolean done()
 	{
-		long elapsed = Scene.get().getCurrentFrameTimeNanos() - time;
+//		long elapsed = Scene.get().getCurrentFrameTimeNanos() - time;
+		long elapsed = GameTimer.getInstance().getCurrentNanoTicks() - time;
+
 		int index = (int)((elapsed * fps + 500_000_000)/ 1_000_000_000);
 
 		return index >= count;
