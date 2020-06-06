@@ -14,6 +14,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Coin;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.CoinSilver;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ItemSpawner;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Obstacle;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Terrain;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ScoreObject;
@@ -106,6 +107,8 @@ public class GameScene extends Scene
 //		add(LayerType.bg, new ImageScrollBackground(R.mipmap.bg_city, ImageScrollBackground.Orientation.vertical, -25));
 //		add(LayerType.bg, new ImageScrollBackground(R.mipmap.cloud1, ImageScrollBackground.Orientation.vertical, 100));
 
+
+
 		jumpButton = JumpButton.getInstance();
 		jumpButton.setPosition(250, 1050);
 		jumpButton.setScale(4);
@@ -118,8 +121,12 @@ public class GameScene extends Scene
 		add(LayerType.ui, slideButton);
 
 
-		Terrain terrain = new Terrain(1300, 1200);
+		Obstacle obs = new Obstacle(2000, 850);
+		obs.setScale(1);
+		add(LayerType.obstacle, obs);
 
+
+		Terrain terrain = new Terrain(1300, 1200);
 		add(LayerType.terrain, terrain);
 		startGame();
 	}

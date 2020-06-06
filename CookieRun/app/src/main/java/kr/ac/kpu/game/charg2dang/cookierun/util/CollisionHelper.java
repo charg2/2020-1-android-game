@@ -1,9 +1,11 @@
 package kr.ac.kpu.game.charg2dang.cookierun.util;
 
 import android.graphics.RectF;
+import android.os.Debug;
 import android.util.Log;
 
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
+import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 
 public class CollisionHelper
 {
@@ -34,6 +36,11 @@ public class CollisionHelper
 	{
 		RectF r1 = o1.getBox();
 		RectF r2 = o2.getBox();
+
+		if(r1 == null || r2 == null)
+		{
+			int n = 0;
+		}
 
 		if(r1.left > r2.right)
 			return;
