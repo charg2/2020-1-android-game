@@ -34,7 +34,7 @@ public class GameTimer
 	{
 		prevNanoTick = this.currentNanoTick;
 		this.currentNanoTick = curTickNanos;
-		deltaNanoTick = (this.currentNanoTick - prevNanoTick);
+		deltaNanoTick = (this.currentNanoTick - this.prevNanoTick);
 	}
 
 
@@ -45,7 +45,13 @@ public class GameTimer
 
 	public long getCurrentNanoSeconds()
 	{
-		return currentNanoTick / NANOS_IN_ONE_SECOND;
+		return deltaNanoTick / NANOS_IN_ONE_SECOND;
+	}
+
+
+	public float getCurrentNanoSecondsSngle()
+	{
+		return deltaNanoTick / NANOS_IN_ONE_SECOND_FLOAT;
 	}
 
 

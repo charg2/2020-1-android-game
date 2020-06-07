@@ -20,6 +20,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
 import kr.ac.kpu.game.charg2dang.cookierun.util.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.util.IndexTimer;
@@ -40,6 +41,7 @@ public class GameView extends View
 	public GameView(Context context)
 	{
 		super(context);
+		UiBridge.setView(this);
 
 		initResource();;
 	}

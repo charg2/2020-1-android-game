@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 
 import java.util.Random;
 
+import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
@@ -16,6 +17,8 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.obj.CoinSilver;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ItemSpawner;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Obstacle;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Terrain;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.HorzScrollBackground;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.ImageScrollBackground;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ScoreObject;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.JumpButton;
@@ -107,7 +110,8 @@ public class GameScene extends Scene
 //		add(LayerType.bg, new ImageScrollBackground(R.mipmap.bg_city, ImageScrollBackground.Orientation.vertical, -25));
 //		add(LayerType.bg, new ImageScrollBackground(R.mipmap.cloud1, ImageScrollBackground.Orientation.vertical, 100));
 
-
+		HorzScrollBackground hzBg = new HorzScrollBackground(R.mipmap.terrain_ground2, ImageScrollBackground.Orientation.horizontal, -10);
+		add(LayerType.bg, hzBg);
 
 		jumpButton = JumpButton.getInstance();
 		jumpButton.setPosition(250, 1050);
