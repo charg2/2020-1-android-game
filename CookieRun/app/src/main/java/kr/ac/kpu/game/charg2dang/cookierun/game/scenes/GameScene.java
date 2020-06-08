@@ -110,14 +110,16 @@ public class GameScene extends Scene
 //		add(LayerType.bg, new ImageScrollBackground(R.mipmap.bg_city, ImageScrollBackground.Orientation.vertical, -25));
 //		add(LayerType.bg, new ImageScrollBackground(R.mipmap.cloud1, ImageScrollBackground.Orientation.vertical, 100));
 
-		HorzScrollBackground hzBg = new HorzScrollBackground(R.mipmap.terrain_ground2, ImageScrollBackground.Orientation.horizontal, -10);
+		HorzScrollBackground hzBg = new HorzScrollBackground(R.mipmap.bg_background2, ImageScrollBackground.Orientation.horizontal, -50);
 		add(LayerType.bg, hzBg);
+
+		HorzScrollBackground hzBg2 = new HorzScrollBackground(R.mipmap.bg_foreground2, ImageScrollBackground.Orientation.horizontal, -20);
+		add(LayerType.bg, hzBg2);
 
 		jumpButton = JumpButton.getInstance();
 		jumpButton.setPosition(250, 1050);
 		jumpButton.setScale(4);
 		add(LayerType.ui, jumpButton);
-
 
 		slideButton = SlideButton.getInstance();
 		slideButton.setPosition(2300, 1050);

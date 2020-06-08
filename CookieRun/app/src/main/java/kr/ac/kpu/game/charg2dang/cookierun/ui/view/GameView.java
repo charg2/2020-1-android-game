@@ -22,8 +22,8 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
-import kr.ac.kpu.game.charg2dang.cookierun.util.GameTimer;
-import kr.ac.kpu.game.charg2dang.cookierun.util.IndexTimer;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.IndexTimer;
 
 public class GameView extends View
 {
@@ -69,7 +69,6 @@ public class GameView extends View
 		mainPaint = new Paint();
 		mainPaint.setColor(0xFFFFEEEE);
 
-
 		prepareScene();
 
 		timer = new IndexTimer(FRAME_RATE_SECONDS, 1);
@@ -80,10 +79,12 @@ public class GameView extends View
 	private void prepareScene()
 	{
 		scene = Scene.get();
-		scene.setRect(mainRect);
-		scene.initResources(this);
-		sceneManager.addScene(SceneType.game, scene);
 
+		scene.setRect(mainRect);
+
+		scene.initResources(this);
+
+		sceneManager.addScene(SceneType.game, scene);
 		sceneManager.changeScene(SceneType.game);
 	}
 

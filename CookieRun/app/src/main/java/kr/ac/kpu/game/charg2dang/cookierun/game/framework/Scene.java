@@ -61,7 +61,6 @@ public abstract class Scene
     {
         this.view = view;
 
-
         initLayers();
         initObjects();
     }
@@ -110,7 +109,6 @@ public abstract class Scene
             return;
         }
 
-//        Cookie cookie = Cookie.getInstance();
         ArrayList<GameObject> items     = layers.get(LayerType.item.ordinal());
         ArrayList<GameObject> players   = layers.get(LayerType.player.ordinal());
         ArrayList<GameObject> obstacles = layers.get(LayerType.obstacle.ordinal());

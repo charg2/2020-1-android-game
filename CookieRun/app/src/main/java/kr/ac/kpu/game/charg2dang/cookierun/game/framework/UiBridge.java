@@ -19,6 +19,7 @@ public class UiBridge
 	{
 		public int oneInch;
 		public Point size;
+		public Point fullSize;
 		public Point center;
 	}
 
@@ -72,12 +73,16 @@ public class UiBridge
 		UiBridge.activity = activity;
 		WindowManager wm = activity.getWindowManager();
 		Point size = new Point();
+		Point fullSize = new Point();
 		Display display = wm.getDefaultDisplay();
 		display.getSize(size);
+		display.getSize(fullSize);
 		DisplayMetrics dm = new DisplayMetrics();
 		display.getMetrics(dm);
 		size.y -= getStatusBarHeight();
+		fullSize.x += getNavigationBarHeight();
 		metrics.size = size;
+		metrics.fullSize = fullSize;
 		metrics.center = new Point(size.x / 2, size.y / 2);
 		metrics.oneInch = dm.densityDpi; //400dpi, 120 400 * 120 / 160
 	}
@@ -95,6 +100,18 @@ public class UiBridge
 	{
 		int height = 0;
 		int resourceId = activity.getResources().getIdentifier("status_bar_height", "dimen", "android");
+		if (resourceId > 0)
+		{
+			height = activity.getResources().getDimensionPixelSize(resourceId);
+		}
+
+		return height;
+	}
+
+	public static int getNavigationBarHeight()
+	{
+		int height = 0;
+		int resourceId = activity.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
 		if (resourceId > 0)
 		{
 			height = activity.getResources().getDimensionPixelSize(resourceId);

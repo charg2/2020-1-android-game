@@ -1,7 +1,5 @@
-package kr.ac.kpu.game.charg2dang.cookierun.util;
+package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 
-
-import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 
 public class IndexTimer
 {

@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-import kr.ac.kpu.game.charg2dang.cookierun.util.IndexTimer;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.IndexTimer;
 
 public class FrameAnimationBitmap
 {
