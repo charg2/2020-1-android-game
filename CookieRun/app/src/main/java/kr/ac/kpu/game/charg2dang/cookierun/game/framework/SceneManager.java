@@ -11,7 +11,6 @@ public class SceneManager
 	static final String TAG = SceneManager.class.getSimpleName();
 	private SceneType 			currentSceneType;
 	private Scene 				currentScene;
-//	private ArrayList<Scene> 	scenes = new ArrayList<>();
 	private Scene[]				scenes = new Scene[SceneType.max.ordinal()];
 
 	private SceneManager()

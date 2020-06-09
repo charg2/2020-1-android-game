@@ -11,6 +11,7 @@ import java.util.Random;
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Coin;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.CoinSilver;
@@ -40,9 +41,6 @@ public class GameScene extends Scene
 	private JumpButton  jumpButton;
 	private SlideButton slideButton;
 	private ItemSpawner itemGenerator = new ItemSpawner();
-
-	private ScoreObject scoreObject;
-	private ScoreObject highScoreObject;
 
 	private GameScene.PlayState playState = PlayState.normal;
 
@@ -101,12 +99,11 @@ public class GameScene extends Scene
 		CoinSilver coinSilver = new CoinSilver(1800 , 850);
 		add(LayerType.item, coinSilver);
 
-//		scoreObject = new ScoreObject(800, 100, R.mipmap.number_64x84);
-//		add(LayerType.ui, scoreObject);
-//
+		add(LayerType.ui, ScoreManager.getInstance().getScoreObject());
+		add(LayerType.ui, ScoreManager.getInstance().getHighScoreObject());
 //		highScoreObject = new ScoreObject(800, 100, R.mipmap.number_24x32);
 //		add(LayerType.ui, highScoreObject);
-//
+
 //		add(LayerType.bg, new ImageScrollBackground(R.mipmap.bg_city, ImageScrollBackground.Orientation.vertical, -25));
 //		add(LayerType.bg, new ImageScrollBackground(R.mipmap.cloud1, ImageScrollBackground.Orientation.vertical, 100));
 
@@ -150,7 +147,7 @@ public class GameScene extends Scene
 	public void endGame()
 	{
 		this.playState = PlayState.gameOver;
-		int score = scoreObject.getScore();
+		int score = 0;// scoreObject.getScore();
 		Log.v(TAG, "score" + score);
 		SharedPreferences prefs = view.getContext().getSharedPreferences( PREFS_NAME, Context.MODE_PRIVATE);
 		int highScore = prefs.getInt(PREF_KEY_HIGHSCORE, 0);
@@ -162,10 +159,7 @@ public class GameScene extends Scene
 		}
 	}
 
-	public void addScore(int score)
-	{
-		scoreObject.addScore(score);
-	}
+
 
 	@Override
 	public void update(long frameTimeNanos)
