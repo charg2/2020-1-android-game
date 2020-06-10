@@ -1,11 +1,8 @@
-package kr.ac.kpu.game.charg2dang.cookierun.util;
+package kr.ac.kpu.game.charg2dang.cookierun.game.util;
 
 import android.graphics.RectF;
-import android.os.Debug;
-import android.util.Log;
 
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
-import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 
 public class CollisionHelper
 {

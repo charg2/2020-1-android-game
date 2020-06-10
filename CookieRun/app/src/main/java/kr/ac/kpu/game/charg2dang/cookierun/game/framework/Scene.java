@@ -18,7 +18,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.Recyclable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
-import kr.ac.kpu.game.charg2dang.cookierun.util.CollisionHelper;
+import kr.ac.kpu.game.charg2dang.cookierun.game.util.CollisionHelper;
 
 public abstract class Scene
 {
