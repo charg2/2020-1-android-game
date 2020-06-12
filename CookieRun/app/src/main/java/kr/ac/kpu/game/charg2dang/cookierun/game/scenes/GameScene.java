@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.TextView;
 
 import java.util.Random;
 
@@ -21,9 +22,9 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Terrain;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.HorzScrollBackground;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.ImageScrollBackground;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ScoreObject;
-import kr.ac.kpu.game.charg2dang.cookierun.ui.JumpButton;
-import kr.ac.kpu.game.charg2dang.cookierun.ui.SlideButton;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.map.TextMap;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.JumpButton;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.SlideButton;
 
 public class GameScene extends Scene
 {
@@ -31,6 +32,8 @@ public class GameScene extends Scene
 	{
 		normal, paused, gameOver
 	}
+
+	private TextMap mapGenerator;
 
 	private static final String TAG = GameScene.class.getSimpleName();
 	private static final int BALL_COUNT = 10;
@@ -44,33 +47,16 @@ public class GameScene extends Scene
 
 	private GameScene.PlayState playState = PlayState.normal;
 
-	public static void create()
-	{
-		if(singleton != null)
-		{
-			Log.e(TAG, "Gameworld sublcass ");
-		}
-
-		Scene.singleton = new GameScene();
-	}
-
 	public void add(final LayerType layerType, final GameObject obj)
 	{
 		super.add(layerType.ordinal(), obj);
 	}
-
 
 	@Override
 	protected int getLayerCount()
 	{
 		return LayerType.MAX.ordinal();
 	}
-	public static GameScene get()
-	{
-		return (GameScene) singleton;
-	}
-
-
 
 	public void initObjects()
 	{
@@ -87,7 +73,7 @@ public class GameScene extends Scene
 
 		}
 
-
+//		mapGenerator = new TextMap("stage_01.txt",this);
 		cookie = Cookie.getInstance();
 		cookie.setPosition( 350, 900);
 		cookie.setScale(3);

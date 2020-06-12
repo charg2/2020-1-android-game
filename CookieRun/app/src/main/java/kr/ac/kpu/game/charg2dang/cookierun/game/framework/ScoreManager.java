@@ -1,10 +1,8 @@
 package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 
-import android.graphics.Canvas;
-
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ScoreObject;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.ScoreObject;
 
 public class ScoreManager
 {

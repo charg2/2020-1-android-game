@@ -21,6 +21,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
+import kr.ac.kpu.game.charg2dang.cookierun.game.scenes.GameScene;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.IndexTimer;
@@ -31,7 +32,6 @@ public class GameView extends View
 	private static final int FRAME_RATE_SECONDS = 10;
 	private Rect mainRect;
 	private Paint mainPaint;
-	private Scene scene;
 	private SceneManager sceneManager;
 	private Framework framework;
 	private IndexTimer timer;
@@ -59,10 +59,8 @@ public class GameView extends View
 		sceneManager 	= SceneManager.getInstance();
 		gameTimer 		= GameTimer.getInstance();
 
-		WindowManager wm = (WindowManager) getContext().getSystemService((Service.WINDOW_SERVICE));
 		Point size = new Point();
-		wm.getDefaultDisplay().getSize(size);
-
+		framework.setView(this);
 		mainRect = new Rect(0 ,0, size.x, size.y);
 
 		SharedBitmap.setResources(getResources());
@@ -78,7 +76,7 @@ public class GameView extends View
 
 	private void prepareScene()
 	{
-		scene = Scene.get();
+		Scene scene = new GameScene();
 
 		scene.setRect(mainRect);
 
@@ -147,8 +145,9 @@ public class GameView extends View
 	@Override
 	public boolean onTouchEvent(MotionEvent event)
 	{
-		return scene.onTouchEvent(event);
+		return SceneManager.getInstance().getCurrentScene().onTouchEvent(event);
 	};
+
 	public void pause()
 	{
 		this.paused = true;

@@ -23,7 +23,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.util.CollisionHelper;
 public abstract class Scene
 {
     private static final String TAG = Scene.class.getSimpleName();
-    protected static Scene singleton;
+    protected static    Scene  singleton;
     private RecyclePool recyclePool = new RecyclePool();
     protected View view;
 
@@ -33,17 +33,6 @@ public abstract class Scene
     protected Rect rect;
     protected ArrayList<ArrayList<GameObject>> layers;
     private CollisionHelper collisionHelper = new CollisionHelper();
-
-    public static Scene get()
-    {
-        if(Scene.singleton == null)
-        {
-            Log.e(TAG, "Gameworld subclass not created!!!");
-        }
-
-        return Scene.singleton;
-    }
-
 
     private void initLayers()
     {
@@ -184,6 +173,11 @@ public abstract class Scene
         this.rect = rect;
     }
 
+    public ArrayList<GameObject> getLayer(LayerType lt)
+    {
+        return this.layers.get(lt.ordinal());
+    }
+
     public RecyclePool getRecyclePool()
     {
         return this.recyclePool;
@@ -206,10 +200,12 @@ public abstract class Scene
     {
         return this.rect.bottom;
     }
+
     public Resources getResources()
     {
         return this.view.getResources();
     }
+
     public Context getContext()
     {
         return view.getContext();

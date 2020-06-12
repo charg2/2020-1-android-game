@@ -24,16 +24,14 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         UiBridge.setActivity(this);
-        GameScene.create();
-        super.onCreate(savedInstanceState);
 
+
+        super.onCreate(savedInstanceState);
 
         doFullScreen();
 
-
         gameView = new GameView(this);
         setContentView(gameView);
-
 
         se = soundEffects.get();
         se.init(this);

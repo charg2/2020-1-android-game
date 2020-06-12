@@ -1,6 +1,8 @@
 package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 
 
+import kr.ac.kpu.game.charg2dang.cookierun.game.scenes.GameScene;
+
 public class IndexTimer
 {
 	private static final String TAG = IndexTimer.class.getSimpleName();
@@ -39,6 +41,6 @@ public class IndexTimer
 
 	public void reset()
 	{
-		this.time = Scene.get().getCurrentFrameTimeNanos();
+		this.time = GameTimer.getInstance().getCurrentNanoTicks();
 	}
 }

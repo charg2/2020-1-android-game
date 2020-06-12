@@ -46,6 +46,16 @@ public class SceneManager
 		currentScene.update(timeDiffNano);
 	}
 
+	public Scene getCurrentScene()
+	{
+		return 	currentScene;
+	}
+
+	public Scene getScene(SceneType sceneType)
+	{
+		return 	scenes[sceneType.ordinal()];
+	}
+
 	public void changeScene(SceneType sceneType)
 	{
 		this.currentSceneType = sceneType;
