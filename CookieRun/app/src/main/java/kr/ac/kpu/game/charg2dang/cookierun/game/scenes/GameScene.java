@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.widget.TextView;
 
 import java.util.Random;
 
@@ -75,8 +74,8 @@ public class GameScene extends Scene
 
 //		mapGenerator = new TextMap("stage_01.txt",this);
 		cookie = Cookie.getInstance();
-		cookie.setPosition( 350, 900);
-		cookie.setScale(3);
+		cookie.move( 350, 900);
+		cookie.setScale(2.5f);
 		add(LayerType.player, cookie);
 
 		Coin coin = new Coin(1500 , 850);
@@ -93,10 +92,10 @@ public class GameScene extends Scene
 //		add(LayerType.bg, new ImageScrollBackground(R.mipmap.bg_city, ImageScrollBackground.Orientation.vertical, -25));
 //		add(LayerType.bg, new ImageScrollBackground(R.mipmap.cloud1, ImageScrollBackground.Orientation.vertical, 100));
 
-		HorzScrollBackground hzBg = new HorzScrollBackground(R.mipmap.bg_background2, ImageScrollBackground.Orientation.horizontal, -50);
+		HorzScrollBackground hzBg = new HorzScrollBackground(R.mipmap.bg_background2, ImageScrollBackground.Orientation.horizontal, -500);
 		add(LayerType.bg, hzBg);
 
-		HorzScrollBackground hzBg2 = new HorzScrollBackground(R.mipmap.bg_foreground2, ImageScrollBackground.Orientation.horizontal, -20);
+		HorzScrollBackground hzBg2 = new HorzScrollBackground(R.mipmap.bg_foreground2, ImageScrollBackground.Orientation.horizontal, -200);
 		add(LayerType.bg, hzBg2);
 
 		jumpButton = JumpButton.getInstance();
@@ -110,12 +109,12 @@ public class GameScene extends Scene
 		add(LayerType.ui, slideButton);
 
 
-		Obstacle obs = new Obstacle(2000, 850);
-		obs.setScale(1);
+		Obstacle obs = new Obstacle(2000, 1250);
+		obs.setScale(.9f);
 		add(LayerType.obstacle, obs);
 
 
-		Terrain terrain = new Terrain(1300, 1200);
+		Terrain terrain = new Terrain(1300, 1400);
 		add(LayerType.terrain, terrain);
 		startGame();
 	}
