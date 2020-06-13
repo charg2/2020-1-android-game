@@ -22,6 +22,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.HorzScrollBackground;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.ImageScrollBackground;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.map.TextMap;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.HPBar;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.JumpButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.SlideButton;
 
@@ -85,13 +86,15 @@ public class GameScene extends Scene
 		CoinSilver coinSilver = new CoinSilver(1800 , 850);
 		add(LayerType.item, coinSilver);
 
-		add(LayerType.ui, ScoreManager.getInstance().getScoreObject());
-		add(LayerType.ui, ScoreManager.getInstance().getHighScoreObject());
+		add(LayerType.ui, ScoreManager.getInstance().getScoreObject()); /// 머지;;
+//		add(LayerType.ui, ScoreManager.getInstance().getHighScoreObject());
+
+
+		add(LayerType.ui, HPBar.getInstance());
 
 
 		HorzScrollBackground hzBg = new HorzScrollBackground(R.mipmap.bg_background2, ImageScrollBackground.Orientation.horizontal, -500);
 		add(LayerType.bg, hzBg);
-
 		HorzScrollBackground hzBg2 = new HorzScrollBackground(R.mipmap.bg_foreground2, ImageScrollBackground.Orientation.horizontal, -200);
 		add(LayerType.bg, hzBg2);
 

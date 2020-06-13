@@ -3,6 +3,7 @@ package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 import android.graphics.Canvas;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 
@@ -12,6 +13,7 @@ public class SceneManager
 	private SceneType 			currentSceneType;
 	private Scene 				currentScene;
 	private Scene[]				scenes = new Scene[SceneType.max.ordinal()];
+	// private Stack<Scene> 		sceneStack = new Stack<>();
 
 	private SceneManager()
 	{ }

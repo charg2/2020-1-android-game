@@ -1,20 +1,26 @@
 package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 
+import android.graphics.Canvas;
+
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
+import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.ScoreObject;
 
-public class ScoreManager
+public class ScoreManager implements GameObject
 {
 	static final String TAG = ScoreManager.class.getSimpleName();
 	private SceneType 			currentSceneType;
 	private ScoreObject 		scoreObject;
 	private ScoreObject 		highScoreObject;
 
+	private ScoreObject  		currentScoreObject;
 	private ScoreManager()
 	{
-		scoreObject = new ScoreObject(800, 100, R.mipmap.number_64x84);
-		highScoreObject = new ScoreObject(800, 100, R.mipmap.number_24x32);
+		scoreObject = new ScoreObject(UiBridge.metrics.fullSize.x / 1.2f, UiBridge.metrics.fullSize.y / 7.0f, R.mipmap.number_cookierun2);
+		highScoreObject = new ScoreObject(800, 100, R.mipmap.number_cookierun2);
+
+		currentScoreObject = scoreObject;
 	}
 
 	public ScoreObject getScoreObject()
@@ -38,8 +44,25 @@ public class ScoreManager
 		return inctance;
 	}
 
+
+	@Override
 	public void update(long timeDiffNano)
 	{
+		scoreObject.update(timeDiffNano);
+		highScoreObject.update(timeDiffNano);
+		// 판별식 멀로 그릴지;
+	}
+
+	@Override
+	public void draw(Canvas canvs)
+	{
+		scoreObject.draw(canvs);
+	}
+
+	@Override
+	public boolean getState()
+	{
+		return false;
 	}
 
 	public void addScore(int score)
@@ -48,5 +71,8 @@ public class ScoreManager
 	}
 
 
-	public void collide(long frameTimeNanos)  { }
+	public void collide(long frameTimeNanos)
+	{
+	}
+
 }
