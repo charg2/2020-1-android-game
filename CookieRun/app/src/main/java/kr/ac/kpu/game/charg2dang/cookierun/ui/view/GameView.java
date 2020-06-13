@@ -2,10 +2,13 @@ package kr.ac.kpu.game.charg2dang.cookierun.ui.view;
 
 import android.app.Service;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -55,12 +58,23 @@ public class GameView extends View
 
 	private void initResource()
 	{
+		// init font
+		AssetManager am = this.getContext().getAssets();
+		Paint paint = new Paint( Paint.ANTI_ALIAS_FLAG );
+		paint.setTypeface( Typeface.createFromAsset( am, "font_rix_toy_story.ttf" ) );
+		paint.setTextSize( 200.0f );
+
+
+
 		framework 		= Framework.getInstance();
 		sceneManager 	= SceneManager.getInstance();
 		gameTimer 		= GameTimer.getInstance();
 
 		Point size = new Point();
 		framework.setView(this);
+		framework.setFont(paint);
+		paint.setColor(Color.WHITE);
+
 		mainRect = new Rect(0 ,0, size.x, size.y);
 
 		SharedBitmap.setResources(getResources());

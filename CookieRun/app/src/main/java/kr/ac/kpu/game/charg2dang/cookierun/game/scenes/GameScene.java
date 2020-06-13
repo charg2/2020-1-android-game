@@ -72,7 +72,8 @@ public class GameScene extends Scene
 
 		}
 
-//		mapGenerator = new TextMap("stage_01.txt",this);
+		mapGenerator = new TextMap("stage_01.txt",this);
+		add(LayerType.event, mapGenerator);
 		cookie = Cookie.getInstance();
 		cookie.move( 350, 900);
 		cookie.setScale(2.5f);
@@ -86,11 +87,7 @@ public class GameScene extends Scene
 
 		add(LayerType.ui, ScoreManager.getInstance().getScoreObject());
 		add(LayerType.ui, ScoreManager.getInstance().getHighScoreObject());
-//		highScoreObject = new ScoreObject(800, 100, R.mipmap.number_24x32);
-//		add(LayerType.ui, highScoreObject);
 
-//		add(LayerType.bg, new ImageScrollBackground(R.mipmap.bg_city, ImageScrollBackground.Orientation.vertical, -25));
-//		add(LayerType.bg, new ImageScrollBackground(R.mipmap.cloud1, ImageScrollBackground.Orientation.vertical, 100));
 
 		HorzScrollBackground hzBg = new HorzScrollBackground(R.mipmap.bg_background2, ImageScrollBackground.Orientation.horizontal, -500);
 		add(LayerType.bg, hzBg);
