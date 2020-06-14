@@ -12,7 +12,7 @@ public class GiantComponent
 
 	public boolean canGrow = true;
 
-	boolean tt = true;
+	boolean reversed = true;
 
 	public final float giantTimer = 5.0f;
 	public float giantTime = 0.0f;
@@ -31,6 +31,8 @@ public class GiantComponent
 	public void doAutoGrew()
 	{
 		canGrow = true;
+		giantTime = 0.0f;
+		reversed = true;
 	}
 
 
@@ -41,7 +43,7 @@ public class GiantComponent
 			float deltaTime = GameTimer.getInstance().getCurrentDeltaSecondsSngle();
 			giantTime += deltaTime;
 
-			if (tt) // size up time
+			if (reversed) // size up time
 			{
 				currentScale += (defaultScale * deltaTime);
 				if (currentScale >= maxScale)
@@ -51,7 +53,7 @@ public class GiantComponent
 
 				if (giantTime > 3.9f) // 3.9초가
 				{
-					tt = false;
+					reversed = false;
 				}
 
 			} else // size down time
