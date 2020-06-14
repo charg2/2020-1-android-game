@@ -1,6 +1,5 @@
 package kr.ac.kpu.game.charg2dang.cookierun.ui.view;
 
-import android.app.Service;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Canvas;
@@ -15,7 +14,6 @@ import android.util.Log;
 import android.view.Choreographer;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 
@@ -25,6 +23,8 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.game.scenes.GameScene;
+import kr.ac.kpu.game.charg2dang.cookierun.game.scenes.LoadingScene;
+import kr.ac.kpu.game.charg2dang.cookierun.game.scenes.MainScene;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.IndexTimer;
@@ -65,7 +65,6 @@ public class GameView extends View
 		paint.setTextSize( 200.0f );
 
 
-
 		framework 		= Framework.getInstance();
 		sceneManager 	= SceneManager.getInstance();
 		gameTimer 		= GameTimer.getInstance();
@@ -90,14 +89,26 @@ public class GameView extends View
 
 	private void prepareScene()
 	{
-		Scene scene = new GameScene();
+		Scene loadingScene = new LoadingScene();
+		Scene mainScene = new MainScene();
+		Scene  gameScene = new GameScene();
 
-		scene.setRect(mainRect);
 
-		scene.initResources(this);
+		loadingScene.setRect(mainRect);
+		mainScene.setRect(mainRect);
+		gameScene.setRect(mainRect);
 
-		sceneManager.addScene(SceneType.game, scene);
-		sceneManager.changeScene(SceneType.game);
+		loadingScene.initResources(this);
+		mainScene.initResources(this);
+		gameScene.initResources(this);
+
+
+		sceneManager.addScene(SceneType.loading, loadingScene);
+		sceneManager.addScene(SceneType.main, mainScene);
+		sceneManager.addScene(SceneType.game, gameScene);
+
+
+		sceneManager.changeScene(SceneType.loading);
 	}
 
 

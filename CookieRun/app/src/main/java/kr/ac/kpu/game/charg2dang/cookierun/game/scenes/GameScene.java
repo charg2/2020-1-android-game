@@ -60,19 +60,6 @@ public class GameScene extends Scene
 
 	public void initObjects()
 	{
-		Resources res = view.getResources();
-
-		Random rand = new Random();
-		for (int i = 0; i < BALL_COUNT; ++i)
-		{
-			float x = rand.nextFloat() * 1000;
-			float y = rand.nextFloat() * 1000;
-
-			float dy = (float) (rand.nextFloat() * 50.0f - 25.0f);
-			float dx = (float) (rand.nextFloat() * 50.0f - 25.0f);
-
-		}
-
 		mapGenerator = new TextMap("stage_01.txt",this);
 		add(LayerType.event, mapGenerator);
 		cookie = Cookie.getInstance();

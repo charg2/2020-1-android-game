@@ -10,13 +10,14 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 public class SceneManager
 {
 	static final String TAG = SceneManager.class.getSimpleName();
-	private SceneType 			currentSceneType;
+	private SceneType 			currentSceneType = SceneType.main;
 	private Scene 				currentScene;
 	private Scene[]				scenes = new Scene[SceneType.max.ordinal()];
 	// private Stack<Scene> 		sceneStack = new Stack<>();
 
 	private SceneManager()
-	{ }
+	{
+	}
 
 
 	static SceneManager inctance;
@@ -25,7 +26,6 @@ public class SceneManager
 	{
 		scenes[sceneType.ordinal()] = scene;
 	}
-
 
 	public static SceneManager getInstance()
 	{

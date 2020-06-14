@@ -27,7 +27,7 @@ public abstract class Scene
     private RecyclePool recyclePool = new RecyclePool();
     protected View view;
 
-    protected static SceneType currentSceneType = SceneType.main;
+    protected static SceneType currentSceneType = SceneType.max;
     private long frameTimeNanos;
     private long timeDiffNanos;
     protected Rect rect;
