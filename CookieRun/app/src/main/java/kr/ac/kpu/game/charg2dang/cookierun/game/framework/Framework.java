@@ -16,6 +16,7 @@ public class Framework
 	private static Framework  inst;
 	private Paint collisionBoxpaint = new Paint();
 	private View view;
+	private static float commonVelocity = -800;
 	public Resources getResources()
 	{
 		return this.view.getResources();
@@ -44,8 +45,6 @@ public class Framework
 	{
 		collisionBoxpaint.setColor(Color.RED);
 		collisionBoxpaint.setAlpha(70);
-
-
 	}
 
 	public void setFont(Paint fontPaint)
@@ -53,6 +52,10 @@ public class Framework
 		cookieFontPaint = fontPaint;
 	}
 
+	public static float getCommonVelocity()
+	{
+		return commonVelocity;
+	}
 
 
 	public boolean isDebugMode()

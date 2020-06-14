@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity
     {
         UiBridge.setActivity(this);
 
-
         super.onCreate(savedInstanceState);
 
         doFullScreen();

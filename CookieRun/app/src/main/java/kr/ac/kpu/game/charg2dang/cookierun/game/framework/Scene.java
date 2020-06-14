@@ -117,15 +117,19 @@ public abstract class Scene
                 collisionHelper.collides((BoxCollidable) player, (BoxCollidable) item);
             }
 
-            for (GameObject obstacle : obstacles)
+            if(((Cookie)player).isGiantMode() == false )
             {
-                collisionHelper.collides((BoxCollidable) player, (BoxCollidable) obstacle);
+                for (GameObject obstacle : obstacles)
+                {
+                    collisionHelper.collides((BoxCollidable) player, (BoxCollidable) obstacle);
+                }
             }
 
             for (GameObject terrain : terrains)
             {
                 collisionHelper.collides((BoxCollidable) player, (BoxCollidable) terrain);
             }
+
             return;
         }
     }

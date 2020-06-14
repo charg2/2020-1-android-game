@@ -36,6 +36,7 @@ public class MainScene extends Scene
 	{
 		super.update(frameTimeNanos);
 
+
 		loadingTime += GameTimer.getInstance().getCurrentDeltaSecondsSngle();
 		if( loadingTime >= loadingTimer )
 		{
