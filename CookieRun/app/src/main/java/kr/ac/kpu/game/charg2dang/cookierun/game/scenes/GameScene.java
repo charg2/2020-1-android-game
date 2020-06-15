@@ -2,25 +2,18 @@ package kr.ac.kpu.game.charg2dang.cookierun.game.scenes;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.graphics.RectF;
 import android.util.Log;
 import android.view.MotionEvent;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
-import kr.ac.kpu.game.charg2dang.cookierun.game.framework.RecyclePool;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
-import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Coin;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.CoinSilver;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ItemSpawner;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item.Coin;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item.CoinSilver;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item.ItemSpawner;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Obstacle;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Terrain;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.HorzScrollBackground;
@@ -30,6 +23,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.obj.map.TextMap;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.HPBar;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.JumpButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.PauseButton;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.ResumeButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.SlideButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.util.CollisionHelper;
 
@@ -37,6 +31,7 @@ public class GameScene extends Scene
 {
 	private CollisionHelper collisionHelper = new CollisionHelper();
 	private PauseButton pauseButton;
+	private ResumeButton resumeButton;
 
 	private  enum PlayState
 	{
@@ -99,6 +94,8 @@ public class GameScene extends Scene
 		pauseButton.setPosition(UiBridge.metrics.fullSize.x / 1.2f, 100);
 		pauseButton.setScale(4);
 		add(LayerType.ui, pauseButton);
+
+		resumeButton = ResumeButton.getInstance();
 
 		jumpButton = JumpButton.getInstance();
 		jumpButton.setPosition(250, 1050);
@@ -168,23 +165,11 @@ public class GameScene extends Scene
 	{
 		jumpButton.onTouchEvent(event);
 		slideButton.onTouchEvent(event);
-		pauseButton.onTouchEvent(event);
-//		int action = event.getAction();
-//		if(action == MotionEvent.ACTION_DOWN)
-//		{
-//			if(playState == PlayState.gameOver)
-//			{
-//				startGame();
-//				return false;
-//			}
-//			doAction();
-//
-////			plane.head(event.getX(), event.getY());
-//		}
-//		else if(action == MotionEvent.ACTION_MOVE)
-//		{
-////			plane.head(event.getX(), event.getY());
-//		}
+
+		if(paused == false)
+			pauseButton.onTouchEvent(event);
+		else
+			resumeButton.onTouchEvent(event);
 
 		return true;
 	}
@@ -192,7 +177,16 @@ public class GameScene extends Scene
 
 
 	@Override
-	protected void onResume()  { }
+	protected void onResume()
+	{
+		resumeButton.setState(false);
+	}
 	@Override
-	protected void onPause()  { }
+	protected void onPause()
+	{
+		resumeButton.setPosition(UiBridge.metrics.center.x - resumeButton.getWidth() / 2,  UiBridge.metrics.center.y - resumeButton.getHeight() / 2 );
+		resumeButton.setState(true);
+
+		add(LayerType.ui, resumeButton);
+	}
 }

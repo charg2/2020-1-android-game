@@ -4,13 +4,9 @@ import android.view.MotionEvent;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
-import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
-import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
-import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.StaticBackground;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.JumpButton;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.StaticBackground;
 
 public class MainScene extends Scene
 {

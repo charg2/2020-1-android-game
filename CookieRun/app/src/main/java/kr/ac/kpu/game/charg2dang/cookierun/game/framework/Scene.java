@@ -11,29 +11,31 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.Recyclable;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.StaticBackground;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 import kr.ac.kpu.game.charg2dang.cookierun.game.util.CollisionHelper;
 
 public abstract class Scene
 {
-    private static final    String TAG = Scene.class.getSimpleName();
-    protected static        Scene  singleton;
-    protected               RecyclePool recyclePool = new RecyclePool();
-    protected               View view;
+    private static final    String              TAG = Scene.class.getSimpleName();
+    private static final    StaticBackground    pauseBg = new StaticBackground(R.mipmap.ui_pause_bg);
+    protected static        Scene               instance;
+    protected               RecyclePool         recyclePool = new RecyclePool();
+    protected               View                view;
+    protected               boolean             paused = false;
 
-    protected               boolean paused = false;
-
-    protected static        SceneType currentSceneType = SceneType.max;
-    private                 long frameTimeNanos;
-    private                 long timeDiffNanos;
-    protected               Rect rect;
-    protected               ArrayList<ArrayList<GameObject>> layers;
-    private                 CollisionHelper collisionHelper = new CollisionHelper();
+    protected static        SceneType                           currentSceneType = SceneType.max;
+    private                 long                                frameTimeNanos;
+    private                 long                                timeDiffNanos;
+    protected               Rect                                rect;
+    protected               ArrayList<ArrayList<GameObject>>    layers;
+    private                 CollisionHelper                     collisionHelper = new CollisionHelper();
 
     private void initLayers()
     {
@@ -63,6 +65,11 @@ public abstract class Scene
             {
                 o.draw(canvas);
             }
+        }
+
+        if(paused == true)
+        {
+            pauseBg.draw(canvas);
         }
     }
 
@@ -107,7 +114,7 @@ public abstract class Scene
         ArrayList<GameObject> items     = layers.get(LayerType.item.ordinal());
         ArrayList<GameObject> players   = layers.get(LayerType.player.ordinal());
         ArrayList<GameObject> obstacles = layers.get(LayerType.obstacle.ordinal());
-        ArrayList<GameObject> terrains = layers.get(LayerType.terrain.ordinal());
+        ArrayList<GameObject> terrains  = layers.get(LayerType.terrain.ordinal());
 
         for( GameObject player : players )
         {
@@ -194,24 +201,12 @@ public abstract class Scene
     {
         return this.recyclePool;
     }
-    public long getCurrentFrameTimeNanos() { return frameTimeNanos; }
+
     abstract protected int getLayerCount();
-    public int getLeft()
-    {
-        return this.rect.left;
-    }
-    public int getRight()
-    {
-        return this.rect.right;
-    }
-    public int getTop()
-    {
-        return this.rect.top;
-    }
-    public int getBottom()
-    {
-        return this.rect.bottom;
-    }
+    public int getLeft()  {  return this.rect.left; }
+    public int getRight()  { return this.rect.right; }
+    public int getTop()  {  return this.rect.top; }
+    public int getBottom()  { return this.rect.bottom;  }
 
     public Resources getResources()
     {
@@ -222,15 +217,11 @@ public abstract class Scene
     {
         return view.getContext();
     }
+
     public long getTimeDiffNanos()
     {
         return timeDiffNanos;
     }
-    public float getTimeDiffInSecond()
-    {
-        return (float)(timeDiffNanos / 1_000_000_000.0);
-    }
-
 
     public void pause()
     {
@@ -238,7 +229,6 @@ public abstract class Scene
 
         onPause();
     }
-
 
     public void resume()
     {
