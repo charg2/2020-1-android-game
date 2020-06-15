@@ -24,7 +24,6 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.util.CollisionHelper;
 public abstract class Scene
 {
     private static final    String              TAG = Scene.class.getSimpleName();
-    private static final    StaticBackground    pauseBg = new StaticBackground(R.mipmap.ui_pause_bg);
     protected static        Scene               instance;
     protected               RecyclePool         recyclePool = new RecyclePool();
     protected               View                view;
@@ -65,11 +64,6 @@ public abstract class Scene
             {
                 o.draw(canvas);
             }
-        }
-
-        if(paused == true)
-        {
-            pauseBg.draw(canvas);
         }
     }
 

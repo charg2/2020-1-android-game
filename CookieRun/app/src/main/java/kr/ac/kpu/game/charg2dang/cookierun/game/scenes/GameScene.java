@@ -18,6 +18,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Obstacle;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Terrain;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.HorzScrollBackground;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.ImageScrollBackground;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.StaticBackground;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.map.TextMap;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.HPBar;
@@ -32,6 +33,7 @@ public class GameScene extends Scene
 	private CollisionHelper collisionHelper = new CollisionHelper();
 	private PauseButton pauseButton;
 	private ResumeButton resumeButton;
+	private static final StaticBackground pauseBg = new StaticBackground(R.mipmap.ui_pause_bg);
 
 	private  enum PlayState
 	{
@@ -180,13 +182,16 @@ public class GameScene extends Scene
 	protected void onResume()
 	{
 		resumeButton.setState(false);
+		pauseBg.setState(false);
 	}
 	@Override
 	protected void onPause()
 	{
-		resumeButton.setPosition(UiBridge.metrics.center.x - resumeButton.getWidth() / 2,  UiBridge.metrics.center.y - resumeButton.getHeight() / 2 );
-		resumeButton.setState(true);
+		pauseBg.setState(true);
+		add(LayerType.ui, pauseBg);
 
+		resumeButton.setPosition(UiBridge.metrics.center.x - resumeButton.getWidth() / 3,  UiBridge.metrics.center.y - resumeButton.getHeight() / 2 );
+		resumeButton.setState(true);
 		add(LayerType.ui, resumeButton);
 	}
 }
