@@ -21,18 +21,22 @@ public class RecyclePool
 		list.add(obj);
 	}
 
-	public Object get(Class clazz)
-	{
+	public Object get(Class clazz) {
 		ArrayList<Object> list = map.get(clazz);
-		if(list == null)
+		Object obj = null;
+		if (list != null)
 		{
-			return null;
+			int count = list.size();
+			if (count > 0)
+			{
+				obj = list.remove(0);
+			}
 		}
-		if(list.size() == 0)
+		if (obj != null)
 		{
-			return null;
+			return obj;
 		}
 
-		return list.remove(0);
+		return null;
 	}
 }

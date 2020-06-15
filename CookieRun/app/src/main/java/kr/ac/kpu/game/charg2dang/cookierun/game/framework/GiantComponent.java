@@ -10,7 +10,7 @@ public class GiantComponent
 	public float currentScale;
 	public final float maxScale;
 
-	public boolean canGrow = true;
+	public boolean canGrow = false;
 
 	boolean reversed = true;
 

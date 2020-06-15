@@ -6,7 +6,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.ColliderTag;
 
 public interface BoxCollidable
 {
-	public RectF getBox();
+	public RectF getColliderBox();
 
 	void onCollision(BoxCollidable o1);
 	public ColliderTag getTag();

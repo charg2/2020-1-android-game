@@ -12,6 +12,7 @@ public abstract class FSM
 	public FSM(Cookie cookie)
 	{
 		this.cookie = cookie;
+
 	}
 
 	abstract public void update(long timeDiffNanos);

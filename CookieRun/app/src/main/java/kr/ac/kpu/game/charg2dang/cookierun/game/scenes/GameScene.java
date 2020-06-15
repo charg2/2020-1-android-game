@@ -3,15 +3,19 @@ package kr.ac.kpu.game.charg2dang.cookierun.game.scenes;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.RectF;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.RecyclePool;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
+import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Coin;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.CoinSilver;
@@ -25,9 +29,12 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.obj.map.TextMap;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.HPBar;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.JumpButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.SlideButton;
+import kr.ac.kpu.game.charg2dang.cookierun.game.util.CollisionHelper;
 
 public class GameScene extends Scene
 {
+	private CollisionHelper collisionHelper = new CollisionHelper();
+
 	private  enum PlayState
 	{
 		normal, paused, gameOver
@@ -60,8 +67,6 @@ public class GameScene extends Scene
 
 	public void initObjects()
 	{
-		mapGenerator = new TextMap("stage_01.txt",this);
-		add(LayerType.event, mapGenerator);
 		cookie = Cookie.getInstance();
 		cookie.move( 350, 900);
 		cookie.setScale(2.5f);
@@ -100,6 +105,8 @@ public class GameScene extends Scene
 		obs.setScale(.9f);
 		add(LayerType.obstacle, obs);
 
+		mapGenerator = new TextMap("stage_01.txt",this);
+		add(LayerType.event, mapGenerator);
 
 		Terrain terrain = new Terrain(1300, 1400);
 		add(LayerType.terrain, terrain);

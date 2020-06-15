@@ -16,34 +16,20 @@ public class MainScene extends Scene
 {
 	private static final String TAG = MainScene.class.getSimpleName();
 	private StaticBackground bg;
-	private float loadingTimer = 2.0f;
-	private float loadingTime = .0f;
+
 	public void initObjects()
 	{
-		bg = new StaticBackground(R.mipmap.bg_loading);
+		bg = new StaticBackground(R.mipmap.bg_foreground);
 		add(LayerType.bg, bg);
 
 
-		jumpButton = JumpButton.getInstance();
-		add(LayerType.ui, jumpButton);
 	}
-
-	private JumpButton jumpButton;
 
 
 	@Override
 	public void update(long frameTimeNanos)
 	{
 		super.update(frameTimeNanos);
-
-
-		loadingTime += GameTimer.getInstance().getCurrentDeltaSecondsSngle();
-		if( loadingTime >= loadingTimer )
-		{
-			SceneManager.getInstance().changeScene(SceneType.game);
-//			Scene.currentSceneType = SceneType.game;
-			loadingTime = 0;
-		}
 
 	}
 

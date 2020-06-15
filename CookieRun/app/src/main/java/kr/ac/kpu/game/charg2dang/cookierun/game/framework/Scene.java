@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -24,7 +23,7 @@ public abstract class Scene
 {
     private static final String TAG = Scene.class.getSimpleName();
     protected static    Scene  singleton;
-    private RecyclePool recyclePool = new RecyclePool();
+    protected RecyclePool recyclePool = new RecyclePool();
     protected View view;
 
     protected static SceneType currentSceneType = SceneType.max;
@@ -91,6 +90,8 @@ public abstract class Scene
         removeTrashObjects();
     }
 
+
+
     public void collide(long frameTimeNanos)
     {
         if (layers.size() == 0)
@@ -103,10 +104,9 @@ public abstract class Scene
         ArrayList<GameObject> obstacles = layers.get(LayerType.obstacle.ordinal());
         ArrayList<GameObject> terrains = layers.get(LayerType.terrain.ordinal());
 
-
         for( GameObject player : players )
         {
-            RectF box = ((Cookie)player).getBox();
+            RectF box = ((Cookie)player).getColliderBox();
             if(box == null)
             {
                 return;
@@ -117,6 +117,7 @@ public abstract class Scene
                 collisionHelper.collides((BoxCollidable) player, (BoxCollidable) item);
             }
 
+
             if(((Cookie)player).isGiantMode() == false )
             {
                 for (GameObject obstacle : obstacles)
@@ -124,6 +125,7 @@ public abstract class Scene
                     collisionHelper.collides((BoxCollidable) player, (BoxCollidable) obstacle);
                 }
             }
+
 
             for (GameObject terrain : terrains)
             {
@@ -145,12 +147,12 @@ public abstract class Scene
                 if (go.getState() == false)
                 {
                     iterator.remove();
-                }
 
-                if (go instanceof Recyclable)
-                {
-                    ((Recyclable) go).recycle();
-                    getRecyclePool().add(go);
+                    if (go instanceof Recyclable)
+                    {
+                        ((Recyclable) go).recycle();
+                        getRecyclePool().add(go);
+                    }
                 }
             }
         }
@@ -168,6 +170,7 @@ public abstract class Scene
             }
         });
     }
+
     protected Scene()  { }
     public boolean onTouchEvent(MotionEvent event) {  return false;  }
     protected void initObjects(){};

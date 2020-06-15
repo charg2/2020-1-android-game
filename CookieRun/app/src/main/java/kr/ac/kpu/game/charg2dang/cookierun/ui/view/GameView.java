@@ -89,10 +89,9 @@ public class GameView extends View
 
 	private void prepareScene()
 	{
-		Scene loadingScene = new LoadingScene();
-		Scene mainScene = new MainScene();
-		Scene  gameScene = new GameScene();
-
+		Scene loadingScene 	= new LoadingScene();
+		Scene mainScene 	= new MainScene();
+		Scene gameScene 	= new GameScene();
 
 		loadingScene.setRect(mainRect);
 		mainScene.setRect(mainRect);
@@ -106,7 +105,6 @@ public class GameView extends View
 		sceneManager.addScene(SceneType.loading, loadingScene);
 		sceneManager.addScene(SceneType.main, mainScene);
 		sceneManager.addScene(SceneType.game, gameScene);
-
 
 		sceneManager.changeScene(SceneType.loading);
 	}
