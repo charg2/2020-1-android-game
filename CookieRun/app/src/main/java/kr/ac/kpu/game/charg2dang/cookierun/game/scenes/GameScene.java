@@ -15,6 +15,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.RecyclePool;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Coin;
@@ -28,12 +29,14 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.map.TextMap;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.HPBar;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.JumpButton;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.PauseButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.SlideButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.util.CollisionHelper;
 
 public class GameScene extends Scene
 {
 	private CollisionHelper collisionHelper = new CollisionHelper();
+	private PauseButton pauseButton;
 
 	private  enum PlayState
 	{
@@ -65,6 +68,7 @@ public class GameScene extends Scene
 		return LayerType.MAX.ordinal();
 	}
 
+
 	public void initObjects()
 	{
 		cookie = Cookie.getInstance();
@@ -89,6 +93,12 @@ public class GameScene extends Scene
 		add(LayerType.bg, hzBg);
 		HorzScrollBackground hzBg2 = new HorzScrollBackground(R.mipmap.bg_foreground2, ImageScrollBackground.Orientation.horizontal, -200);
 		add(LayerType.bg, hzBg2);
+
+
+		pauseButton = PauseButton.getInstance();
+		pauseButton.setPosition(UiBridge.metrics.fullSize.x / 1.2f, 100);
+		pauseButton.setScale(4);
+		add(LayerType.ui, pauseButton);
 
 		jumpButton = JumpButton.getInstance();
 		jumpButton.setPosition(250, 1050);
@@ -158,6 +168,7 @@ public class GameScene extends Scene
 	{
 		jumpButton.onTouchEvent(event);
 		slideButton.onTouchEvent(event);
+		pauseButton.onTouchEvent(event);
 //		int action = event.getAction();
 //		if(action == MotionEvent.ACTION_DOWN)
 //		{
@@ -178,4 +189,10 @@ public class GameScene extends Scene
 		return true;
 	}
 
+
+
+	@Override
+	protected void onResume()  { }
+	@Override
+	protected void onPause()  { }
 }

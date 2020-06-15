@@ -15,7 +15,6 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.StaticBackground;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.JumpButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.ScoreObject;
 
 public class ResultScene extends Scene
@@ -61,4 +60,11 @@ public class ResultScene extends Scene
 	{
 		return false;
 	}
+
+	@Override
+	protected void onResume()  {}
+
+	@Override
+	protected void onPause() { }
+
 }

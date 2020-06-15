@@ -21,17 +21,19 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.util.CollisionHelper;
 
 public abstract class Scene
 {
-    private static final String TAG = Scene.class.getSimpleName();
-    protected static    Scene  singleton;
-    protected RecyclePool recyclePool = new RecyclePool();
-    protected View view;
+    private static final    String TAG = Scene.class.getSimpleName();
+    protected static        Scene  singleton;
+    protected               RecyclePool recyclePool = new RecyclePool();
+    protected               View view;
 
-    protected static SceneType currentSceneType = SceneType.max;
-    private long frameTimeNanos;
-    private long timeDiffNanos;
-    protected Rect rect;
-    protected ArrayList<ArrayList<GameObject>> layers;
-    private CollisionHelper collisionHelper = new CollisionHelper();
+    protected               boolean paused = false;
+
+    protected static        SceneType currentSceneType = SceneType.max;
+    private                 long frameTimeNanos;
+    private                 long timeDiffNanos;
+    protected               Rect rect;
+    protected               ArrayList<ArrayList<GameObject>> layers;
+    private                 CollisionHelper collisionHelper = new CollisionHelper();
 
     private void initLayers()
     {
@@ -72,22 +74,25 @@ public abstract class Scene
 
     public void update(long frameTimeNanos)
     {
-        this.timeDiffNanos = frameTimeNanos - this.frameTimeNanos;
-        this.frameTimeNanos = frameTimeNanos;
-        if (rect == null)
+        if(paused == false)
         {
-            return;
-        }
-
-        for(ArrayList<GameObject> objects : layers)
-        {
-            for (GameObject o : objects)
+            this.timeDiffNanos = frameTimeNanos - this.frameTimeNanos;
+            this.frameTimeNanos = frameTimeNanos;
+            if (rect == null)
             {
-                o.update(timeDiffNanos);
+                return;
             }
-        }
 
-        removeTrashObjects();
+            for (ArrayList<GameObject> objects : layers)
+            {
+                for (GameObject o : objects)
+                {
+                    o.update(timeDiffNanos);
+                }
+            }
+
+            removeTrashObjects();
+        }
     }
 
 
@@ -229,11 +234,22 @@ public abstract class Scene
 
     public void pause()
     {
+        paused = true;
+
+        onPause();
     }
+
 
     public void resume()
     {
+        paused = false;
+
+        onResume();
     }
+
+    protected abstract void onResume();
+    protected abstract void onPause();
+
 
 
     public void setCurrentSceneType(SceneType currentSceneType)

@@ -25,6 +25,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.game.scenes.GameScene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.scenes.LoadingScene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.scenes.MainScene;
+import kr.ac.kpu.game.charg2dang.cookierun.game.scenes.ResultScene;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.IndexTimer;
@@ -92,19 +93,23 @@ public class GameView extends View
 		Scene loadingScene 	= new LoadingScene();
 		Scene mainScene 	= new MainScene();
 		Scene gameScene 	= new GameScene();
+		Scene resultScene 	= new ResultScene();
 
 		loadingScene.setRect(mainRect);
 		mainScene.setRect(mainRect);
 		gameScene.setRect(mainRect);
+		resultScene.setRect(mainRect);
 
 		loadingScene.initResources(this);
 		mainScene.initResources(this);
 		gameScene.initResources(this);
-
+		resultScene.initResources(this);
 
 		sceneManager.addScene(SceneType.loading, loadingScene);
 		sceneManager.addScene(SceneType.main, mainScene);
 		sceneManager.addScene(SceneType.game, gameScene);
+		sceneManager.addScene(SceneType.result, resultScene);
+
 
 		sceneManager.changeScene(SceneType.loading);
 	}

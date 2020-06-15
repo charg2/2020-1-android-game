@@ -40,6 +40,12 @@ public class MainScene extends Scene
 		return LayerType.MAX.ordinal();
 	}
 
+	@Override
+	protected void onResume()  {}
+
+	@Override
+	protected void onPause() { }
+
 	public void add(final LayerType layerType, final GameObject obj)
 	{
 		super.add(layerType.ordinal(), obj);
