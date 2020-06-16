@@ -231,10 +231,13 @@ public abstract class Scene
         onResume();
     }
 
+    public void reset()
+    {
+
+    }
+
     protected abstract void onResume();
     protected abstract void onPause();
-
-
 
     public void setCurrentSceneType(SceneType currentSceneType)
     {

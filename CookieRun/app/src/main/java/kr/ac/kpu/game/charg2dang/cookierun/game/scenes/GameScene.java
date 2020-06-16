@@ -26,13 +26,15 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.JumpButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.PauseButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.ResumeButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.SlideButton;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.StopButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.util.CollisionHelper;
 
 public class GameScene extends Scene
 {
 	private CollisionHelper collisionHelper = new CollisionHelper();
-	private PauseButton pauseButton;
-	private ResumeButton resumeButton;
+	private PauseButton 	pauseButton;
+	private ResumeButton 	resumeButton;
+	private StopButton 		stopButton;
 	private static final StaticBackground pauseBg = new StaticBackground(R.mipmap.ui_pause_bg);
 
 	private  enum PlayState
@@ -73,24 +75,15 @@ public class GameScene extends Scene
 		cookie.setScale(2.5f);
 		add(LayerType.player, cookie);
 
-		Coin coin = new Coin(1500 , 850);
-		add(LayerType.item, coin);
-
-		CoinSilver coinSilver = new CoinSilver(1800 , 850);
-		add(LayerType.item, coinSilver);
-
 		add(LayerType.ui, ScoreManager.getInstance().getScoreObject()); /// 머지;;
 //		add(LayerType.ui, ScoreManager.getInstance().getHighScoreObject());
 
-
 		add(LayerType.ui, HPBar.getInstance());
-
 
 		HorzScrollBackground hzBg = new HorzScrollBackground(R.mipmap.bg_background2, ImageScrollBackground.Orientation.horizontal, -500);
 		add(LayerType.bg, hzBg);
 		HorzScrollBackground hzBg2 = new HorzScrollBackground(R.mipmap.bg_foreground2, ImageScrollBackground.Orientation.horizontal, -200);
 		add(LayerType.bg, hzBg2);
-
 
 		pauseButton = PauseButton.getInstance();
 		pauseButton.setPosition(UiBridge.metrics.fullSize.x / 1.2f, 100);
@@ -98,6 +91,7 @@ public class GameScene extends Scene
 		add(LayerType.ui, pauseButton);
 
 		resumeButton = ResumeButton.getInstance();
+		stopButton = StopButton.getInstance();
 
 		jumpButton = JumpButton.getInstance();
 		jumpButton.setPosition(250, 1050);
@@ -108,11 +102,6 @@ public class GameScene extends Scene
 		slideButton.setPosition(2300, 1050);
 		slideButton.setScale(4);
 		add(LayerType.ui, slideButton);
-
-
-		Obstacle obs = new Obstacle(2000, 1250);
-		obs.setScale(.9f);
-		add(LayerType.obstacle, obs);
 
 		mapGenerator = new TextMap("stage_01.txt",this);
 		add(LayerType.event, mapGenerator);
@@ -171,17 +160,28 @@ public class GameScene extends Scene
 		if(paused == false)
 			pauseButton.onTouchEvent(event);
 		else
+		{
 			resumeButton.onTouchEvent(event);
-
+			stopButton.onTouchEvent(event);
+		}
 		return true;
 	}
 
 
+	public void reset()
+	{
+		onResume();
+
+		HPBar.getInstance().reset();
+
+		mapGenerator = new TextMap("stage_01.txt",this);
+	}
 
 	@Override
 	protected void onResume()
 	{
 		resumeButton.setState(false);
+		stopButton.setState(false);
 		pauseBg.setState(false);
 	}
 	@Override
@@ -190,8 +190,12 @@ public class GameScene extends Scene
 		pauseBg.setState(true);
 		add(LayerType.ui, pauseBg);
 
-		resumeButton.setPosition(UiBridge.metrics.center.x - resumeButton.getWidth() / 3,  UiBridge.metrics.center.y - resumeButton.getHeight() / 2 );
+		resumeButton.setPosition(UiBridge.metrics.center.x - resumeButton.getWidth(),  UiBridge.metrics.fullSize.y / 4  );
 		resumeButton.setState(true);
 		add(LayerType.ui, resumeButton);
+
+		stopButton.setPosition(UiBridge.metrics.center.x - stopButton.getWidth(),  UiBridge.metrics.fullSize.y / 2  );
+		stopButton.setState(true);
+		add(LayerType.ui, stopButton);
 	}
 }

@@ -9,8 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
-import kr.ac.kpu.game.charg2dang.cookierun.game.scenes.GameScene;
-import kr.ac.kpu.game.charg2dang.cookierun.res.sound.soundEffects;
+import kr.ac.kpu.game.charg2dang.cookierun.res.sound.SoundEffects;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.view.GameView;
 
 public class MainActivity extends AppCompatActivity
@@ -18,7 +17,7 @@ public class MainActivity extends AppCompatActivity
     private static final long GAMEVIEW_UPDATE_INTERVAL_MSEC = 30;
     private static final String TAG = MainActivity.class.getSimpleName();
     private GameView gameView;
-    private soundEffects se;
+    private SoundEffects se;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity
         gameView = new GameView(this);
         setContentView(gameView);
 
-        se = soundEffects.get();
+        se = SoundEffects.get();
         se.init(this);
         se.loadAll();
     }

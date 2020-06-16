@@ -10,20 +10,20 @@ import java.util.HashMap;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 
-public class soundEffects
+public class SoundEffects
 {
-	private static soundEffects singleton;
+	private static SoundEffects singleton;
 	private Context context;
 	private SoundPool soundPool;
 
-	public static soundEffects get()
+	public static SoundEffects get()
 	{
-		if(soundEffects.singleton == null)
+		if(SoundEffects.singleton == null)
 		{
-			soundEffects.singleton = new soundEffects();
+			SoundEffects.singleton = new SoundEffects();
 		}
 
-		return soundEffects.singleton;
+		return SoundEffects.singleton;
 	}
 
 
