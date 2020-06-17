@@ -7,7 +7,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.ScoreObject;
 
-public class ScoreManager implements GameObject
+public class ScoreManager extends GameObject
 {
 	static final String TAG = ScoreManager.class.getSimpleName();
 	private SceneType 			currentSceneType;
@@ -58,21 +58,8 @@ public class ScoreManager implements GameObject
 	{
 		scoreObject.draw(canvs);
 	}
-
-	@Override
-	public boolean getState()
-	{
-		return false;
-	}
-
 	public void addScore(int score)
 	{
 		scoreObject.addScore(score);
 	}
-
-
-	public void collide(long frameTimeNanos)
-	{
-	}
-
 }

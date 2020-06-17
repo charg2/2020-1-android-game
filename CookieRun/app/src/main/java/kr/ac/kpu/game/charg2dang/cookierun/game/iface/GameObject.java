@@ -2,10 +2,30 @@ package kr.ac.kpu.game.charg2dang.cookierun.game.iface;
 
 import android.graphics.Canvas;
 
-public interface GameObject
+public class GameObject
 {
-	public void update(long timeDiffNanos);
-    public void draw(Canvas canvs);
+	protected boolean state = true;
+	protected float x, y;
 
-	public boolean getState();
+	public void update(long timeDiffNanos)
+	{}
+
+    public void draw(Canvas canvas)
+	{}
+
+	public boolean getState()
+	{
+		return state;
+	}
+
+	public void setState(boolean newState)
+	{
+		this.state = newState;
+	}
+
+	public void move(float dx, float dy)
+	{
+		x += dx;
+		y += dy;
+	}
 }

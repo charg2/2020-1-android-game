@@ -132,6 +132,7 @@ public class GameView extends View
 				{
 
 					gameTimer.upadte(frameTimeNanos);
+
 					update(frameTimeNanos);
 					collide(frameTimeNanos);
 

@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -32,7 +33,7 @@ public abstract class Scene
     protected static        SceneType                           currentSceneType = SceneType.max;
     private                 long                                frameTimeNanos;
     private                 long                                timeDiffNanos;
-    protected               Rect                                rect;
+    protected static        Rect                                rect;
     protected               ArrayList<ArrayList<GameObject>>    layers;
     private                 CollisionHelper                     collisionHelper = new CollisionHelper();
 
@@ -181,9 +182,9 @@ public abstract class Scene
     public boolean onTouchEvent(MotionEvent event) {  return false;  }
     protected void initObjects(){};
 
-    public void setRect(Rect rect)
+    public static void setRect(Rect rect)
     {
-        this.rect = rect;
+        Scene.rect  = rect;
     }
 
     public ArrayList<GameObject> getLayer(LayerType lt)
