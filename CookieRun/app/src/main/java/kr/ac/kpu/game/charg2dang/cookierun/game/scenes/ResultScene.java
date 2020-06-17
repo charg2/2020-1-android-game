@@ -16,6 +16,8 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.StaticBackground;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.MainButton;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.RankingButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.ScoreObject;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.activity.HighscoreActivity;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.activity.MainActivity;
@@ -29,6 +31,8 @@ public class ResultScene extends Scene
 	private boolean trigger = false;
 	private  float	timer = 1.0f;
 	private float time;
+	private RankingButton rankingButton;
+	private MainButton mainButton;
 
 	public void initObjects()
 	{
@@ -39,10 +43,20 @@ public class ResultScene extends Scene
 		add(LayerType.ui, text);
 
 		scoreObject = ScoreManager.getInstance().getResultScore();
-
 		add(LayerType.ui, scoreObject);
 
 		scoreObject.move(0, 800);
+
+		rankingButton = RankingButton.getInstance();
+		add(LayerType.ui, rankingButton);
+
+		mainButton = MainButton.getInstance();
+		mainButton.setPosition(0, 0);
+		add(LayerType.ui, mainButton);
+
+		// needed button
+		// go to main
+		// go to ranking
 	}
 
 
