@@ -1,5 +1,6 @@
 package kr.ac.kpu.game.charg2dang.cookierun.game.scenes;
 
+import android.graphics.Bitmap;
 import android.service.notification.NotificationListenerService;
 import android.view.MotionEvent;
 
@@ -8,10 +9,12 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.obj.BitmapObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.StaticBackground;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.GameStartButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.RankingButton;
+import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.activity.HighscoreActivity;
 
 public class MainScene extends Scene
@@ -20,17 +23,26 @@ public class MainScene extends Scene
 	private StaticBackground bg;
 	private GameStartButton gameStartButton;
 	private RankingButton rankingButton;
+	private static BitmapObject bitmap;
 
 	public void initObjects()
 	{
 		bg = new StaticBackground(R.mipmap.bg_main_lobby);
 		add(LayerType.bg, bg);
 
+		if(bitmap == null)
+		{
+			bitmap = new BitmapObject(UiBridge.metrics.center.x, UiBridge.metrics.center.y, 500, 500, R.mipmap.ui_lobby_cookie);
+
+		}
+		add(LayerType.bg, bitmap);
+
 		gameStartButton = GameStartButton.getInstance();
-		gameStartButton.setPosition(UiBridge.metrics.center.x, UiBridge.metrics.center.y);
+		gameStartButton.setPosition(UiBridge.metrics.fullSize.x / 1.5f, UiBridge.metrics.center.y);
 		add(LayerType.ui, gameStartButton);
 
 		rankingButton = RankingButton.getInstance();
+		rankingButton.setPosition(UiBridge.metrics.fullSize.x / 11f, UiBridge.metrics.center.y);
 		add(LayerType.ui, rankingButton);
 	}
 
