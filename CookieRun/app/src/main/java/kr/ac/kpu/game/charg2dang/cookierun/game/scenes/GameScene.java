@@ -7,14 +7,12 @@ import android.view.MotionEvent;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
+import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item.Coin;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item.CoinSilver;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item.ItemSpawner;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Obstacle;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Terrain;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.HorzScrollBackground;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.ImageScrollBackground;
@@ -24,6 +22,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.obj.map.TextMap;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.HPBar;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.JumpButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.PauseButton;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.PauseText;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.ResumeButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.SlideButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.StopButton;
@@ -36,6 +35,7 @@ public class GameScene extends Scene
 	private ResumeButton 	resumeButton;
 	private StopButton 		stopButton;
 	private static final StaticBackground pauseBg = new StaticBackground(R.mipmap.ui_pause_bg);
+	private PauseText 		pauseText;
 
 	private  enum PlayState
 	{
@@ -49,7 +49,7 @@ public class GameScene extends Scene
 	public static final String PREF_KEY_HIGHSCORE = "highscore";
 	public static String PREFS_NAME = "Prefs";
 
-	private Cookie cookie;
+	private Cookie 		cookie;
 	private JumpButton  jumpButton;
 	private SlideButton slideButton;
 	private ItemSpawner itemGenerator = new ItemSpawner();
@@ -85,6 +85,10 @@ public class GameScene extends Scene
 		HorzScrollBackground hzBg2 = new HorzScrollBackground(R.mipmap.bg_foreground2, ImageScrollBackground.Orientation.horizontal, -200);
 		add(LayerType.bg, hzBg2);
 
+
+
+
+
 		pauseButton = PauseButton.getInstance();
 		pauseButton.setPosition(UiBridge.metrics.fullSize.x / 1.2f, 100);
 		pauseButton.setScale(4);
@@ -92,6 +96,7 @@ public class GameScene extends Scene
 
 		resumeButton = ResumeButton.getInstance();
 		stopButton = StopButton.getInstance();
+		pauseText = pauseText.getInstance();
 
 		jumpButton = JumpButton.getInstance();
 		jumpButton.setPosition(250, 1050);
@@ -125,7 +130,7 @@ public class GameScene extends Scene
 	{
 		this.playState = PlayState.gameOver;
 		int score = 0;// scoreObject.getScore();
-		Log.v(TAG, "score" + score);
+
 		SharedPreferences prefs = view.getContext().getSharedPreferences( PREFS_NAME, Context.MODE_PRIVATE);
 		int highScore = prefs.getInt(PREF_KEY_HIGHSCORE, 0);
 		if (score > highScore)	// score가 high_screo 보다 높으면 바꿔서 저장.
@@ -180,22 +185,63 @@ public class GameScene extends Scene
 	@Override
 	protected void onResume()
 	{
-		resumeButton.setState(false);
-		stopButton.setState(false);
 		pauseBg.setState(false);
+		switch (currentPauseReason)
+		{
+			case Stop:
+				pauseText.setState(false);
+				resumeButton.setState(false);
+				stopButton.setState(false);
+
+				break;
+
+			case CookieDeath:
+				break;
+		}
+
 	}
+
 	@Override
-	protected void onPause()
+	protected void onPause(PauseReason reason)
 	{
+		// common
 		pauseBg.setState(true);
 		add(LayerType.ui, pauseBg);
 
-		resumeButton.setPosition(UiBridge.metrics.center.x - resumeButton.getWidth(),  UiBridge.metrics.fullSize.y / 4  );
-		resumeButton.setState(true);
-		add(LayerType.ui, resumeButton);
+		switch (reason)
+		{
+			case Stop:
+			{
+				pauseText.setPosition(UiBridge.metrics.center.x - pauseText.getWidth(),  UiBridge.metrics.fullSize.y / 6.0f  );
+				pauseText.setState(true);
+				add(LayerType.ui, pauseText);
 
-		stopButton.setPosition(UiBridge.metrics.center.x - stopButton.getWidth(),  UiBridge.metrics.fullSize.y / 2  );
-		stopButton.setState(true);
-		add(LayerType.ui, stopButton);
+				resumeButton.setPosition(UiBridge.metrics.center.x - resumeButton.getWidth(),  UiBridge.metrics.fullSize.y / 3.5f  );
+				resumeButton.setState(true);
+				add(LayerType.ui, resumeButton);
+
+				stopButton.setPosition(UiBridge.metrics.center.x - stopButton.getWidth(),  UiBridge.metrics.fullSize.y / 1.8f  );
+				stopButton.setState(true);
+				add(LayerType.ui, stopButton);
+
+				break;
+			}
+
+
+			case CookieDeath:
+			{
+
+				break;
+			}
+
+			default:
+				Log.d(TAG, "Undefined behaviour..");
+				break;
+		}
+
+
+
 	}
+
+
 }

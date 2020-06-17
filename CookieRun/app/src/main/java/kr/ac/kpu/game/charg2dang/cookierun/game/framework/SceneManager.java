@@ -14,7 +14,7 @@ public class SceneManager
 	private Scene 				currentScene;
 	private Scene[]				scenes = new Scene[SceneType.max.ordinal()];
 	// private Stack<Scene> 		sceneStack = new Stack<>();
-
+	private boolean				resetFlag = false;
 	private SceneManager()
 	{
 	}
@@ -40,9 +40,12 @@ public class SceneManager
 	{
 		if(currentSceneType != currentScene.getCurrentSceneType())
 		{
-//			currentScene = scenes.get(currentSceneType.ordinal());
 			currentScene = scenes[currentSceneType.ordinal()];
 			currentScene.setCurrentSceneType(currentSceneType);
+			if( resetFlag == true )
+			{
+				currentScene.reset();
+			}
 		}
 
 		currentScene.update(timeDiffNano);
@@ -58,9 +61,10 @@ public class SceneManager
 		return 	scenes[sceneType.ordinal()];
 	}
 
-	public void changeScene(SceneType sceneType)
+	public void changeScene(SceneType sceneType, boolean neededReset)
 	{
 		this.currentSceneType = sceneType;
+		resetFlag = neededReset;
 	}
 
 	public void draw(Canvas canvas)

@@ -66,13 +66,12 @@ public class GameView extends View
 		paint.setTextSize( 200.0f );
 
 
-		framework 		= Framework.getInstance();
 		sceneManager 	= SceneManager.getInstance();
 		gameTimer 		= GameTimer.getInstance();
 
 		Point size = new Point();
-		framework.setView(this);
-		framework.setFont(paint);
+		Framework.getInstance().setView(this);
+		Framework.getInstance().setFont(paint);
 		paint.setColor(Color.WHITE);
 
 		mainRect = new Rect(0 ,0, size.x, size.y);
@@ -111,7 +110,7 @@ public class GameView extends View
 		sceneManager.addScene(SceneType.result, resultScene);
 
 
-		sceneManager.changeScene(SceneType.loading);
+		sceneManager.changeScene(SceneType.loading, false);
 	}
 
 

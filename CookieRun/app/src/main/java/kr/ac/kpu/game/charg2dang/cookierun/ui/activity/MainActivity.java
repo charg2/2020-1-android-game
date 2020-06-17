@@ -8,6 +8,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.res.sound.SoundEffects;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.view.GameView;
@@ -28,6 +29,9 @@ public class MainActivity extends AppCompatActivity
 
         doFullScreen();
 
+        Log.d(TAG, "main");
+
+        Framework.setMainActiviey(this);
         gameView = new GameView(this);
         setContentView(gameView);
 

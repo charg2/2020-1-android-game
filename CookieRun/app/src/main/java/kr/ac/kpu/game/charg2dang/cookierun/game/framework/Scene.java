@@ -5,20 +5,18 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
+import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.Recyclable;
-import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.StaticBackground;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 import kr.ac.kpu.game.charg2dang.cookierun.game.util.CollisionHelper;
 
@@ -36,6 +34,8 @@ public abstract class Scene
     protected static        Rect                                rect;
     protected               ArrayList<ArrayList<GameObject>>    layers;
     private                 CollisionHelper                     collisionHelper = new CollisionHelper();
+
+    protected PauseReason currentPauseReason;
 
     private void initLayers()
     {
@@ -218,11 +218,12 @@ public abstract class Scene
         return timeDiffNanos;
     }
 
-    public void pause()
+    public void pause(PauseReason reason)
     {
         paused = true;
+        currentPauseReason = reason;
 
-        onPause();
+        onPause(reason);
     }
 
     public void resume()
@@ -238,7 +239,7 @@ public abstract class Scene
     }
 
     protected abstract void onResume();
-    protected abstract void onPause();
+    protected abstract void onPause(PauseReason reason);
 
     public void setCurrentSceneType(SceneType currentSceneType)
     {

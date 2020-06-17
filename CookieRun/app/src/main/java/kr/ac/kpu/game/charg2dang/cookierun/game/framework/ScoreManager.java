@@ -13,19 +13,24 @@ public class ScoreManager extends GameObject
 	private SceneType 			currentSceneType;
 	private ScoreObject 		scoreObject;
 	private ScoreObject 		highScoreObject;
-
 	private ScoreObject  		currentScoreObject;
+	private ScoreObject  		resultScore;
 	private ScoreManager()
 	{
 		scoreObject = new ScoreObject(UiBridge.metrics.fullSize.x / 1.2f, UiBridge.metrics.fullSize.y / 7.0f, R.mipmap.number_cookierun2);
 		highScoreObject = new ScoreObject(800, 100, R.mipmap.number_cookierun2);
-
+		resultScore = new ScoreObject(UiBridge.metrics.fullSize.x / 2, UiBridge.metrics.fullSize.y / 6.0f, R.mipmap.number_cookierun1);;
 		currentScoreObject = scoreObject;
 	}
 
 	public ScoreObject getScoreObject()
 	{
 		return scoreObject;
+	}
+
+	public ScoreObject getResultScore()
+	{
+		return resultScore;
 	}
 
 	public ScoreObject getHighScoreObject()
@@ -61,5 +66,13 @@ public class ScoreManager extends GameObject
 	public void addScore(int score)
 	{
 		scoreObject.addScore(score);
+		resultScore.addScore(score);
 	}
+
+	public void reset()
+	{
+		scoreObject.reset();
+		resultScore.reset();
+	}
+
 }

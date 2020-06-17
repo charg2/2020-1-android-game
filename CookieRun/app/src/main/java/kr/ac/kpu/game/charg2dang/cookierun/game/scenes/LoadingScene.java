@@ -6,6 +6,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
+import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
@@ -40,7 +41,7 @@ public class LoadingScene extends Scene
 		loadingTime += GameTimer.getInstance().getCurrentDeltaSecondsSngle();
 		if( loadingTime >= loadingTimer )
 		{
-			SceneManager.getInstance().changeScene(SceneType.game);
+			SceneManager.getInstance().changeScene(SceneType.game, false);
 //			Scene.currentSceneType = SceneType.game;
 			loadingTime = 0;
 		}
@@ -58,7 +59,7 @@ public class LoadingScene extends Scene
 	protected void onResume()  { }
 
 	@Override
-	protected void onPause()  {}
+	protected void onPause(PauseReason reason)  {}
 
 	public void add(final LayerType layerType, final GameObject obj)
 	{

@@ -1,5 +1,6 @@
 package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 
+import android.app.Activity;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -8,9 +9,11 @@ import android.graphics.Typeface;
 import android.view.View;
 
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.FrameAnimationBitmap;
+import kr.ac.kpu.game.charg2dang.cookierun.ui.activity.HighscoreActivity;
 
 public class Framework
 {
+	private static HighscoreActivity hightscoreActiviey;
 	private final String TAG = Framework.class.getSimpleName();
 	private  boolean isDebuMode = true;
 	private static Framework  inst;
@@ -21,7 +24,7 @@ public class Framework
 	{
 		return this.view.getResources();
 	}
-
+	public static Activity	main;
 
 	private Paint cookieFontPaint;
 	private Typeface typeface;
@@ -57,6 +60,8 @@ public class Framework
 		return commonVelocity;
 	}
 
+	public static void setMainActiviey(Activity main){ Framework.main = main; }
+	public static Activity getMainActiviey(){ return Framework.main;}
 
 	public boolean isDebugMode()
 	{
@@ -72,4 +77,11 @@ public class Framework
 	{
 		return cookieFontPaint;
 	}
+
+	public static void setHightscoreActiviey(HighscoreActivity highscoreActivity)
+	{
+		Framework.hightscoreActiviey = highscoreActivity;
+	}
+
+	public static Activity getHightscoreActiviey(){ return Framework.hightscoreActiviey;}
 }

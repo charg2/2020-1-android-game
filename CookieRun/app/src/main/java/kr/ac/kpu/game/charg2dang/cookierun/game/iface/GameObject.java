@@ -1,6 +1,9 @@
 package kr.ac.kpu.game.charg2dang.cookierun.game.iface;
 
 import android.graphics.Canvas;
+import android.graphics.RectF;
+
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
 
 public class GameObject
 {
@@ -28,4 +31,13 @@ public class GameObject
 		x += dx;
 		y += dy;
 	}
+
+	protected void drawDebug(Canvas canvas, RectF box)
+	{
+		if( Framework.getInstance().isDebugMode() == true)
+		{
+			canvas.drawRect(box, Framework.getInstance().getDebugPaint());
+		}
+	}
+
 }

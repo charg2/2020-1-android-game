@@ -4,6 +4,7 @@ import android.view.MotionEvent;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
+import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.StaticBackground;
@@ -17,8 +18,6 @@ public class MainScene extends Scene
 	{
 		bg = new StaticBackground(R.mipmap.bg_foreground);
 		add(LayerType.bg, bg);
-
-
 	}
 
 
@@ -40,7 +39,7 @@ public class MainScene extends Scene
 	protected void onResume()  {}
 
 	@Override
-	protected void onPause() { }
+	protected void onPause(PauseReason reason) { }
 
 	public void add(final LayerType layerType, final GameObject obj)
 	{
