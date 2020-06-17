@@ -3,14 +3,14 @@ package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 
 public class HitTrigger
 {
-	private long hitTimer;
-	private final long hitRecoveryTime;
+	private float hitTimer;
+	private final float hitRecoveryTime;
 	private  boolean isHitted;
 
-	public HitTrigger(long recoveryTime)
+	public HitTrigger(float recoveryTime)
 	{
 		hitRecoveryTime = recoveryTime;
-		hitTimer = 0;
+		hitTimer = 0.f;
 		isHitted = false;
 	}
 
@@ -22,7 +22,7 @@ public class HitTrigger
 		}
 		else
 		{
-			hitTimer += diffNanoTime;
+			hitTimer += GameTimer.getInstance().getCurrentDeltaSecondsSngle();
 			if(hitTimer >= hitRecoveryTime)
 			{
 				isHitted = false;

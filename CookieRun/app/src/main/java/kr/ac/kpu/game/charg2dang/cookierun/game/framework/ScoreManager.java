@@ -19,7 +19,7 @@ public class ScoreManager extends GameObject
 	{
 		scoreObject = new ScoreObject(UiBridge.metrics.fullSize.x / 1.2f, UiBridge.metrics.fullSize.y / 7.0f, R.mipmap.number_cookierun2);
 		highScoreObject = new ScoreObject(800, 100, R.mipmap.number_cookierun2);
-		resultScore = new ScoreObject(UiBridge.metrics.fullSize.x / 2, UiBridge.metrics.fullSize.y / 6.0f, R.mipmap.number_cookierun1);;
+		resultScore = new ScoreObject(UiBridge.metrics.fullSize.x / 2, UiBridge.metrics.fullSize.y / 2.0f, R.mipmap.number_cookierun1);;
 		currentScoreObject = scoreObject;
 	}
 

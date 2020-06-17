@@ -42,7 +42,7 @@ public class ResultScene extends Scene
 
 		add(LayerType.ui, scoreObject);
 
-		scoreObject.move(0, 200);
+		scoreObject.move(0, 800);
 	}
 
 

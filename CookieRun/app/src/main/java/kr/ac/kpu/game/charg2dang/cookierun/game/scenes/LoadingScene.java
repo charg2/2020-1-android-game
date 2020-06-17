@@ -24,10 +24,6 @@ public class LoadingScene extends Scene
 	{
 		bg = new StaticBackground(R.mipmap.bg_loading);
 		add(LayerType.bg, bg);
-
-
-		jumpButton = JumpButton.getInstance();
-		add(LayerType.ui, jumpButton);
 	}
 
 	private JumpButton jumpButton;
@@ -41,7 +37,7 @@ public class LoadingScene extends Scene
 		loadingTime += GameTimer.getInstance().getCurrentDeltaSecondsSngle();
 		if( loadingTime >= loadingTimer )
 		{
-			SceneManager.getInstance().changeScene(SceneType.game, false);
+			SceneManager.getInstance().changeScene(SceneType.main, false);
 //			Scene.currentSceneType = SceneType.game;
 			loadingTime = 0;
 		}

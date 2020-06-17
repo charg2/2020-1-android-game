@@ -85,10 +85,6 @@ public class GameScene extends Scene
 		HorzScrollBackground hzBg2 = new HorzScrollBackground(R.mipmap.bg_foreground2, ImageScrollBackground.Orientation.horizontal, -200);
 		add(LayerType.bg, hzBg2);
 
-
-
-
-
 		pauseButton = PauseButton.getInstance();
 		pauseButton.setPosition(UiBridge.metrics.fullSize.x / 1.2f, 100);
 		pauseButton.setScale(4);
@@ -175,8 +171,6 @@ public class GameScene extends Scene
 
 	public void reset()
 	{
-		onResume();
-
 		HPBar.getInstance().reset();
 
 		mapGenerator = new TextMap("stage_01.txt",this);
