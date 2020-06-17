@@ -172,7 +172,8 @@ public class GameScene extends Scene
 	public void reset()
 	{
 		HPBar.getInstance().reset();
-
+		cookie.reset();
+		resume();
 		mapGenerator = new TextMap("stage_01.txt",this);
 	}
 
@@ -191,6 +192,11 @@ public class GameScene extends Scene
 
 			case CookieDeath:
 				break;
+
+
+			default:
+				break;
+
 		}
 
 	}

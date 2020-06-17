@@ -65,22 +65,23 @@ public class ResultScene extends Scene
 	{
 		super.update(frameTimeNanos);
 
-		if(false) // 조건 맞으면
-			SceneManager.getInstance().changeScene(SceneType.game, true);
+//
+//		if(false) // 조건 맞으면
+//			SceneManager.getInstance().changeScene(SceneType.game, true);
 
 
-		time += GameTimer.getInstance().getCurrentDeltaSecondsSngle();
-		if(time >= timer)
-		{
-			if (trigger == false)
-			{
-				trigger =true;
-
-				Intent intent = new Intent(Framework.getMainActiviey(), HighscoreActivity.class);
-				intent.putExtra( "score", scoreObject.getScore());
-				Framework.getMainActiviey().startActivity(intent);
-			}
-		}
+//		time += GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+//		if(time >= timer)
+//		{
+//			if (trigger == false)
+//			{
+//				trigger =true;
+//
+//				Intent intent = new Intent(Framework.getMainActiviey(), HighscoreActivity.class);
+//				intent.putExtra( "score", scoreObject.getScore());
+//				Framework.getMainActiviey().startActivity(intent);
+//			}
+//		}
 	}
 
 
@@ -98,7 +99,11 @@ public class ResultScene extends Scene
 
 	public boolean onTouchEvent(MotionEvent event)
 	{
-		return false;
+		mainButton.onTouchEvent(event);
+		rankingButton.onTouchEvent(event);
+
+
+		return true;
 	}
 
 

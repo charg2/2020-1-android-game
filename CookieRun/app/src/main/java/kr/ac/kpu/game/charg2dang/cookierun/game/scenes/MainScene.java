@@ -76,6 +76,7 @@ public class MainScene extends Scene
 	{
 		gameStartButton.onTouchEvent(event);
 		rankingButton.onTouchEvent(event);
+
 		return true;
 	}
 }

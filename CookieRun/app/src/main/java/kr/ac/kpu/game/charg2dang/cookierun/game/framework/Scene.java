@@ -35,7 +35,7 @@ public abstract class Scene
     protected               ArrayList<ArrayList<GameObject>>    layers;
     private                 CollisionHelper                     collisionHelper = new CollisionHelper();
 
-    protected PauseReason currentPauseReason;
+    protected PauseReason currentPauseReason = PauseReason.None;
 
     private void initLayers()
     {
