@@ -25,6 +25,7 @@ public class Framework
 		return this.view.getResources();
 	}
 	public static Activity	main;
+	private long frameCounter = 0L;
 
 	private Paint cookieFontPaint;
 	private Typeface typeface;
@@ -82,6 +83,17 @@ public class Framework
 	{
 		Framework.hightscoreActiviey = highscoreActivity;
 	}
+	
+	public void increaseFrameCount()
+	{
+		frameCounter += 1;
+	}
+	
+	public long getFrameCounter()
+	{
+		return frameCounter;
+	}
+	
 
 	public static Activity getHightscoreActiviey(){ return Framework.hightscoreActiviey;}
 }

@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -28,12 +29,12 @@ public abstract class Scene
     protected               View                view;
     protected               boolean             paused = false;
 
-    protected static        SceneType                           currentSceneType = SceneType.max;
+    protected static        SceneType                           currentSceneType        = SceneType.max;
     private                 long                                frameTimeNanos;
     private                 long                                timeDiffNanos;
     protected static        Rect                                rect;
     protected               ArrayList<ArrayList<GameObject>>    layers;
-    private                 CollisionHelper                     collisionHelper = new CollisionHelper();
+    private                 CollisionHelper                     collisionHelper         = new CollisionHelper();
 
     protected PauseReason currentPauseReason = PauseReason.None;
 

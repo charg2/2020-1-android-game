@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.CookieState;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.FSM;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.FrameAnimationBitmap;
 
 public class DamageState extends FSM
@@ -19,8 +20,8 @@ public class DamageState extends FSM
 	private static final FrameAnimationBitmap fab = new FrameAnimationBitmap( R.mipmap.cookie_damage_brave, FRMAE_PER_SECOND, RUN_FRAME_COUNT);
 	private static int halfHegith;
 	private static int halfWidth;
-	private long recoveryTime = 0;
-	private long recoveryTimer = 250_000_000L;
+	private float recoveryTime = 0;
+	private float recoveryTimer = 0.3f;
 	private static RectF box;
 
 	public DamageState(Cookie cookie)
@@ -57,10 +58,11 @@ public class DamageState extends FSM
 	@Override
 	public void update(long timeDiffNanos)
 	{
-		recoveryTime += timeDiffNanos;
+		recoveryTime += GameTimer.getInstance().getCurrentDeltaSecondsSngle();
 		if(recoveryTime >= recoveryTimer)
 		{
 			cookie.pushState(new RunState(cookie));
+			recoveryTime = 0.0f;
 		}
 		cookie.setColliderBox(box);
 		updateForColliderBox();

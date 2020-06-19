@@ -10,6 +10,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.FSM;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.FrameAnimationBitmap;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
 
@@ -19,8 +20,8 @@ public class DeathState extends FSM
 	private static final int RUN_FRAME_COUNT = 5;
 	private static final String TAG = DeathState.class.getSimpleName();
 
-	private static FrameAnimationBitmap fab;// = new FrameAnimationBitmap( R.mipmap.cookie_death_brave, FRMAE_PER_SECOND, RUN_FRAME_COUNT);
-	private static  SharedBitmap bitmap;// = SharedBitmap.load(R.mipmap.cookie_death__);
+	private static FrameAnimationBitmap fab;
+	private static  SharedBitmap bitmap;
 
 	private float menuTime;
 	private final float menuTimer = 0.2f;
@@ -48,13 +49,6 @@ public class DeathState extends FSM
 	@Override
 	public void update(long timeDiffNanos)
 	{
-		Log.d(TAG, "update");
-
-		if(cookie.isGround() == false)
-		{
-			// 계속 떨어짐.
-		}
-
 		if(fab.done() == true)
 		{
 			// show end game ui
@@ -64,7 +58,10 @@ public class DeathState extends FSM
 			if(this.menuTimer <= menuTime)
 			{
 				Log.d(TAG, "resultScene1");
+				SceneManager.getInstance().getCurrentScene().resume();
 				SceneManager.getInstance().changeScene(SceneType.result, true);
+
+				menuTime = 0.0f;
 			}
 
 		}
@@ -76,6 +73,8 @@ public class DeathState extends FSM
 			{
 				Log.d(TAG, "resultScene2");
 				SceneManager.getInstance().changeScene(SceneType.result, true);
+				SceneManager.getInstance().getCurrentScene().resume();
+				menuTime = 0.0f;
 			}
 
 		}
@@ -99,7 +98,9 @@ public class DeathState extends FSM
 
 	@Override
 	public void exit()
-	{ }
+	{
+		SceneManager.getInstance().getCurrentScene().resume();
+	}
 
 	private static Point size;
 	private static Point halfSize;

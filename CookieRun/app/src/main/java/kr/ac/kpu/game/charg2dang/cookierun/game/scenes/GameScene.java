@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import java.util.ArrayList;
+
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
@@ -155,11 +157,12 @@ public class GameScene extends Scene
 
 	public boolean onTouchEvent(MotionEvent event)
 	{
-		jumpButton.onTouchEvent(event);
-		slideButton.onTouchEvent(event);
-
 		if(paused == false)
+		{
 			pauseButton.onTouchEvent(event);
+			jumpButton.onTouchEvent(event);
+			slideButton.onTouchEvent(event);
+		}
 		else
 		{
 			resumeButton.onTouchEvent(event);
@@ -174,12 +177,16 @@ public class GameScene extends Scene
 		HPBar.getInstance().reset();
 		cookie.reset();
 		resume();
+		ScoreManager.getInstance().reset();
 		mapGenerator = new TextMap("stage_01.txt",this);
 	}
 
 	@Override
 	protected void onResume()
 	{
+//		clearUI();
+//		setGameUI();
+
 		pauseBg.setState(false);
 		switch (currentPauseReason)
 		{
@@ -191,6 +198,8 @@ public class GameScene extends Scene
 				break;
 
 			case CookieDeath:
+				setGameUI();
+
 				break;
 
 
@@ -204,25 +213,26 @@ public class GameScene extends Scene
 	@Override
 	protected void onPause(PauseReason reason)
 	{
+		 clearUI();
 		// common
-		pauseBg.setState(true);
-		add(LayerType.ui, pauseBg);
+//		pauseBg.setState(true);
+//		add(LayerType.ui, pauseBg);
 
 		switch (reason)
 		{
 			case Stop:
 			{
-				pauseText.setPosition(UiBridge.metrics.center.x - pauseText.getWidth(),  UiBridge.metrics.fullSize.y / 6.0f  );
-				pauseText.setState(true);
-				add(LayerType.ui, pauseText);
-
-				resumeButton.setPosition(UiBridge.metrics.center.x - resumeButton.getWidth(),  UiBridge.metrics.fullSize.y / 3.5f  );
-				resumeButton.setState(true);
-				add(LayerType.ui, resumeButton);
-
-				stopButton.setPosition(UiBridge.metrics.center.x - stopButton.getWidth(),  UiBridge.metrics.fullSize.y / 1.8f  );
-				stopButton.setState(true);
-				add(LayerType.ui, stopButton);
+//				pauseText.setPosition(UiBridge.metrics.center.x - pauseText.getWidth(),  UiBridge.metrics.fullSize.y / 6.0f  );
+//				pauseText.setState(true);
+//				add(LayerType.ui, pauseText);
+//
+//				resumeButton.setPosition(UiBridge.metrics.center.x - resumeButton.getWidth(),  UiBridge.metrics.fullSize.y / 3.5f  );
+//				resumeButton.setState(true);
+//				add(LayerType.ui, resumeButton);
+//
+//				stopButton.setPosition(UiBridge.metrics.center.x - stopButton.getWidth(),  UiBridge.metrics.fullSize.y / 1.8f  );
+//				stopButton.setState(true);
+//				add(LayerType.ui, stopButton);
 
 				break;
 			}
@@ -230,7 +240,6 @@ public class GameScene extends Scene
 
 			case CookieDeath:
 			{
-
 				break;
 			}
 
@@ -238,10 +247,42 @@ public class GameScene extends Scene
 				Log.d(TAG, "Undefined behaviour..");
 				break;
 		}
-
-
-
 	}
+
+	public void clearUI()
+	{
+		layers.get(LayerType.ui.ordinal()).clear();
+	}
+
+	public void setGameUI()
+	{
+		layers.get(LayerType.ui.ordinal()).clear();
+
+		add(LayerType.ui, ScoreManager.getInstance().getScoreObject()); /// 머지;;
+//		add(LayerType.ui, ScoreManager.getInstance().getHighScoreObject());
+
+		add(LayerType.ui, HPBar.getInstance());
+
+
+		pauseButton = PauseButton.getInstance();
+		pauseButton.setPosition(UiBridge.metrics.fullSize.x / 1.2f, 100);
+		pauseButton.setScale(4);
+		pauseButton.setState(true);
+		add(LayerType.ui, pauseButton);
+
+		jumpButton = JumpButton.getInstance();
+		jumpButton.setPosition(250, 1050);
+		jumpButton.setScale(4);
+		jumpButton.setState(true);
+		add(LayerType.ui, jumpButton);
+
+		slideButton = SlideButton.getInstance();
+		slideButton.setPosition(2300, 1050);
+		slideButton.setScale(4);
+		stopButton.setState(true);
+		add(LayerType.ui, slideButton);
+	}
+
 
 
 }

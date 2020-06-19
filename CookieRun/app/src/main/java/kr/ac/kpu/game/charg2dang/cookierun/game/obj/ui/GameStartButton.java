@@ -80,8 +80,6 @@ public class GameStartButton extends GameObject
 	@Override
 	public void draw(Canvas canvas)
 	{
-
-
 		canvas.save();
 		canvas.scale(scale, scale, x, y);
 
@@ -96,18 +94,14 @@ public class GameStartButton extends GameObject
 	{
 		return state;
 	}
-
 	public boolean isPressed()
 	{
 		return down;
 	}
-
 	public float getHeight()
 	{
 		return this.resume.getHeight();
 	}
-
-
 	public float getWidth()
 	{
 		return this.resume.getWidth();

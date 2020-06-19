@@ -137,6 +137,9 @@ public class GameView extends View
 
 					invalidate();
 					postFrameCallback();
+
+					//
+					Framework.getInstance().increaseFrameCount();
 				}
 			});
 		}
