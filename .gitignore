@@ -56,8 +56,8 @@ gen-external-apklibs
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
 
-# NDK
-obj/
+# # NDK
+# obj/
 
 # IntelliJ IDEA
 *.iml
