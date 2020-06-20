@@ -5,15 +5,14 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.MotionEvent;
 
-import java.util.ArrayList;
-
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.BGMManger;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
-import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item.ItemSpawner;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Terrain;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.HorzScrollBackground;
@@ -112,6 +111,8 @@ public class GameScene extends Scene
 		add(LayerType.terrain, terrain);
 
 		startGame();
+
+		BGMManger.getInstance();
 
 	}
 

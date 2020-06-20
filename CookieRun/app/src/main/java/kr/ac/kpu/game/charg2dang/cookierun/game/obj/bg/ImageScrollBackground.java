@@ -5,7 +5,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
-import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 

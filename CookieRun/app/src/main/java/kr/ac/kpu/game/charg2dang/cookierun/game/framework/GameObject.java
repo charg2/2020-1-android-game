@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.charg2dang.cookierun.game.iface;
+package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;

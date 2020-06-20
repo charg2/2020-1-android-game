@@ -7,7 +7,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.ColliderTag;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
-import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
 
 public class BitmapObject extends GameObject implements BoxCollidable

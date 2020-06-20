@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -16,7 +15,6 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
-import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.Recyclable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 import kr.ac.kpu.game.charg2dang.cookierun.game.util.CollisionHelper;

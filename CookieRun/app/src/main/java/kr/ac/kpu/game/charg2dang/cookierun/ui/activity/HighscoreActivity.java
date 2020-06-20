@@ -124,6 +124,7 @@ public class HighscoreActivity extends AppCompatActivity
 
 
 			TextView tv = view.findViewById(R.id.scoreItemTextView);
+			TextView score_tv = view.findViewById(R.id.score);
 			ImageView imgView = view.findViewById(R.id.scroeRankingImageView);
 
 			imgView.setImageResource(HighscoreActivity.rankImgs[position]);
@@ -132,7 +133,9 @@ public class HighscoreActivity extends AppCompatActivity
 			DateFormat format = new SimpleDateFormat("YYYY-MM-dd h:mm a");
 			format.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
 			String datestr = format.format(s.date);
-			tv.setText( "rank :" + (position + 1) + "\ndate : " + datestr + "\nscore :" + s.score );
+			tv.setText( "rank :" + (position + 1) + "\ndate : " + datestr );
+			score_tv.setText("" + s.score);
+
 			return view;
 		}
 

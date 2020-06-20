@@ -13,11 +13,10 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GiantComponent;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.NerfComponent;
-import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.HitTrigger;
-import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Terrain;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.HPBar;
 

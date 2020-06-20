@@ -14,7 +14,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
-import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item.Coin;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item.CoinSilver;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item.GiantPosition;

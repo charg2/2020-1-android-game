@@ -1,7 +1,5 @@
 package kr.ac.kpu.game.charg2dang.cookierun.game.scenes;
 
-import android.graphics.Bitmap;
-import android.service.notification.NotificationListenerService;
 import android.view.MotionEvent;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
@@ -10,12 +8,10 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.obj.BitmapObject;
-import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.StaticBackground;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.GameStartButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.RankingButton;
-import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
-import kr.ac.kpu.game.charg2dang.cookierun.ui.activity.HighscoreActivity;
 
 public class MainScene extends Scene
 {

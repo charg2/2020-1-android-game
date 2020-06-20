@@ -2,7 +2,7 @@
 //
 //import java.util.ArrayList;
 //
-//import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
+//import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
 //
 //public class Layer
 //{

@@ -1,15 +1,19 @@
-package kr.ac.kpu.game.charg2dang.cookierun.game.framework.obj;
+package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 
 import android.media.MediaPlayer;
 
-import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
+import kr.ac.kpu.game.charg2dang.cookierun.R;
 
 // media player
 public class BGMManger
 {
 	private final String TAG = BGMManger.class.getSimpleName();
+	private int	currentBGM = 0;
+
 
 	MediaPlayer mediaPlayer;
+
+
 	private static BGMManger insance;
 	public static BGMManger getInstance()
 	{
@@ -24,7 +28,12 @@ public class BGMManger
 
 	private BGMManger()
 	{
-//		mediaPlayer = MediaPlayer.create();
+		mediaPlayer = MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_game);
+		mediaPlayer.start();
+	}
+
+	public void play(int bgmID)
+	{
 
 	}
 

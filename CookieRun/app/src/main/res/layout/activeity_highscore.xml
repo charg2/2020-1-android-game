@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.activity.HighscoreActivity"
-    android:background="@mipmap/bg_background2"
+    android:background="@mipmap/bg_score"
     >
     <ListView
             android:focusableInTouchMode="true"
@@ -14,7 +14,10 @@
             android:choiceMode="singleChoice"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="30dp"
+        android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
             android:layout_weight="1"
         />
 

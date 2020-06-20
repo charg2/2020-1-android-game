@@ -8,9 +8,7 @@ import java.util.Date;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
-import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.ScoreObject;
-import kr.ac.kpu.game.charg2dang.cookierun.ui.activity.HighscoreActivity;
 
 public class ScoreManager extends GameObject
 {

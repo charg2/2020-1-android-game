@@ -11,7 +11,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.RecyclePool;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
-import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.Recyclable;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.FrameAnimationBitmap;
 import kr.ac.kpu.game.charg2dang.cookierun.res.sound.SoundEffects;

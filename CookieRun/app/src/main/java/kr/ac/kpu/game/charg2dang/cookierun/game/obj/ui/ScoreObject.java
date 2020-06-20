@@ -5,14 +5,11 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
-import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
-import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
 
 public class ScoreObject extends GameObject
 {

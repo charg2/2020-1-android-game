@@ -12,7 +12,7 @@
 //import kr.ac.kpu.game.charg2dang.cookierun.R;
 //import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 //import kr.ac.kpu.game.charg2dang.cookierun.game.world.MainWorld;
-//import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
+//import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
 //import kr.ac.kpu.game.charg2dang.cookierun.game.util.CollisionHelper;
 //
 //public class Plane implements GameObject, BoxCollidable

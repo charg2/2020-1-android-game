@@ -1,26 +1,19 @@
 package kr.ac.kpu.game.charg2dang.cookierun.game.scenes;
 
-import android.content.Intent;
 import android.view.MotionEvent;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
-import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
-import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
-import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.obj.BitmapObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
-import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
-import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.StaticBackground;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.MainButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.RankingButton;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.ScoreObject;
-import kr.ac.kpu.game.charg2dang.cookierun.ui.activity.HighscoreActivity;
-import kr.ac.kpu.game.charg2dang.cookierun.ui.activity.MainActivity;
 
 public class ResultScene extends Scene
 {
