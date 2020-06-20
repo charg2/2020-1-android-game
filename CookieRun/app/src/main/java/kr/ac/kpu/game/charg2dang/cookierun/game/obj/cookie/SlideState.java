@@ -12,6 +12,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.FSM;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.FrameAnimationBitmap;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.SlideButton;
+import kr.ac.kpu.game.charg2dang.cookierun.res.sound.SoundEffects;
 
 
 // 충돌박스 진입시 한번 수정
@@ -49,6 +50,8 @@ public class SlideState extends FSM
 		cookie.setColliderBox(box);
 
 		updateColliderBox( cookie.getScale() );
+
+		SoundEffects.get().play(R.raw.se_slide);
 	}
 	public void updateColliderBox(float scale)
 	{

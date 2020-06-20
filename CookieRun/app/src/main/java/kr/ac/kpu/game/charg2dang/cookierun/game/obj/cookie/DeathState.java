@@ -10,6 +10,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.FSM;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.FrameAnimationBitmap;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
 
@@ -40,6 +41,8 @@ public class DeathState extends FSM
 		{
 			fab.reset();
 		}
+
+		ScoreManager.getInstance().save();
 
 		xOffset = -100.f;
 		menuTime = 0.f;

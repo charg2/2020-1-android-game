@@ -10,6 +10,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
+import kr.ac.kpu.game.charg2dang.cookierun.res.sound.SoundEffects;
 
 public class MainButton extends GameObject
 {
@@ -118,6 +119,7 @@ public class MainButton extends GameObject
 					{
 						if(down == false)
 						{
+							SoundEffects.get().play(R.raw.se_bt_on);
 							SceneManager.getInstance().changeScene(SceneType.main, false);
 						}
 						down = true;

@@ -15,6 +15,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.Recyclable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
+import kr.ac.kpu.game.charg2dang.cookierun.res.sound.SoundEffects;
 
 public class GiantPosition extends  GameObject implements  BoxCollidable, Recyclable
 {
@@ -71,6 +72,8 @@ public class GiantPosition extends  GameObject implements  BoxCollidable, Recycl
 	{
 		((Cookie)o1).turnOnGiantMode();
 		state = false;
+
+		SoundEffects.get().play(R.raw.se_powerup);
 	}
 
 

@@ -15,6 +15,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.Recyclable;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
+import kr.ac.kpu.game.charg2dang.cookierun.res.sound.SoundEffects;
 
 public class Jelly extends GameObject implements BoxCollidable, Recyclable
 {
@@ -70,6 +71,9 @@ public class Jelly extends GameObject implements BoxCollidable, Recyclable
 	public void onCollision(BoxCollidable o1)
 	{
 		ScoreManager.getInstance().addScore(7);
+
+		SoundEffects.get().play(R.raw.se_jelly);
+
 		state = false;
 	}
 

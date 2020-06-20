@@ -71,12 +71,15 @@ public class Obstacle extends BitmapObject implements  Recyclable
 	{
 		Cookie cookie = (Cookie)o1;
 
-		cookie.decreaseHP(10.f, true);
+		if ( cookie.isGiantMode() == true )
+		{
+			this.state = false;
+		}
+		else
+		{
+			cookie.decreaseHP(10.f, true);
+		}
 
-//		if ( cookie.isGiantMode() == true )
-//		{
-//			this.state = true;
-//		}
 	}
 
 

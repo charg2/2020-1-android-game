@@ -126,13 +126,13 @@ public abstract class Scene
             }
 
 
-            if(((Cookie)player).isGiantMode() == false )
-            {
+//            if(((Cookie)player).isGiantMode() == false )
+//            {
                 for (GameObject obstacle : obstacles)
                 {
                     collisionHelper.collides((BoxCollidable) player, (BoxCollidable) obstacle);
                 }
-            }
+//            }
 
 
             for (GameObject terrain : terrains)

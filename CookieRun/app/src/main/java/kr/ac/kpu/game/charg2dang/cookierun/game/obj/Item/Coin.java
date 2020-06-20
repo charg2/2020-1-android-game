@@ -14,6 +14,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.Recyclable;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.FrameAnimationBitmap;
+import kr.ac.kpu.game.charg2dang.cookierun.res.sound.SoundEffects;
 
 
 public class Coin extends  GameObject implements  BoxCollidable, Recyclable
@@ -85,6 +86,9 @@ public class Coin extends  GameObject implements  BoxCollidable, Recyclable
 	{
 		ScoreManager.getInstance().addScore(20);
 		state = false;
+
+		SoundEffects.get().play(R.raw.se_coin);
+
 	}
 
 	@Override

@@ -75,4 +75,7 @@ public class ScoreManager extends GameObject
 		resultScore.reset();
 	}
 
+	public void save()
+	{
+	}
 }

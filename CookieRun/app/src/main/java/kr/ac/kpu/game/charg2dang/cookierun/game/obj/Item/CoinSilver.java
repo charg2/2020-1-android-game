@@ -14,6 +14,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.FrameAnimationBitmap;
+import kr.ac.kpu.game.charg2dang.cookierun.res.sound.SoundEffects;
 
 public class CoinSilver extends GameObject implements  BoxCollidable//, Recyclable
 {
@@ -66,6 +67,7 @@ public class CoinSilver extends GameObject implements  BoxCollidable//, Recyclab
 	{
 		ScoreManager.getInstance().addScore(20);
 		state = false;
+		SoundEffects.get().play(R.raw.se_coin);
 	}
 
 	@Override

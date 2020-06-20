@@ -10,6 +10,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.scenes.GameScene;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
+import kr.ac.kpu.game.charg2dang.cookierun.res.sound.SoundEffects;
 
 public class PauseButton extends GameObject
 {
@@ -111,6 +112,7 @@ public class PauseButton extends GameObject
 					{
 						if (down == false)
 						{
+							SoundEffects.get().play(R.raw.se_bt_on);
 							GameScene currentScene = (GameScene) SceneManager.getInstance().getCurrentScene();
 							currentScene.pause(PauseReason.Stop);
 						}

@@ -43,10 +43,11 @@ public class SoundEffects
 	}
 
 	private  static final int[] SOUND_IDS =
-			{R.raw.bgm_game, R.raw.bgm_lobby, R.raw.bgm_main
-					, R.raw.se_bt_off, R.raw.se_bt_on		// btn
+			{
+					  R.raw.se_bt_off, R.raw.se_bt_on		// btn
 					, R.raw.se_coin, R.raw.se_hpup, R.raw.se_jelly, R.raw.se_powerup //
-					, R.raw.se_jump, R.raw.se_slide, R.raw.se_score, R.raw.se_title };
+					, R.raw.se_jump, R.raw.se_slide, R.raw.se_score, R.raw.se_title
+			};
 
 
 

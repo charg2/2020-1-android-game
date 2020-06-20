@@ -76,4 +76,9 @@ public class SceneManager
 	{
 		currentScene.collide(frameTimeNanos);
 	}
+
+	public void save()
+	{
+
+	}
 }

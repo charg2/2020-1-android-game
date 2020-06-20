@@ -10,6 +10,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
+import kr.ac.kpu.game.charg2dang.cookierun.res.sound.SoundEffects;
 
 public class StopButton extends GameObject
 {
@@ -128,6 +129,7 @@ public class StopButton extends GameObject
 						{
 							SceneManager.getInstance().getCurrentScene().reset();
 							SceneManager.getInstance().changeScene(SceneType.main, true);
+							SoundEffects.get().play(R.raw.se_bt_on);
 						}
 						down = true;
 					}
