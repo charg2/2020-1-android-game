@@ -1,6 +1,10 @@
 package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 
 import android.media.MediaPlayer;
+import android.util.Log;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 
@@ -8,11 +12,8 @@ import kr.ac.kpu.game.charg2dang.cookierun.R;
 public class BGMManger
 {
 	private final String TAG = BGMManger.class.getSimpleName();
-	private int	currentBGM = 0;
-
-
-	MediaPlayer mediaPlayer;
-
+	private HashMap<Integer, MediaPlayer> bgms = new HashMap<>();
+	private Integer currentBGM = 0;
 
 	private static BGMManger insance;
 	public static BGMManger getInstance()
@@ -28,12 +29,26 @@ public class BGMManger
 
 	private BGMManger()
 	{
-		mediaPlayer = MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_game);
-		mediaPlayer.start();
+		bgms.put(R.raw.bgm_game, MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_game));
+		bgms.put(R.raw.bgm_game2, MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_game2));
+		bgms.put(R.raw.bgm_game3, MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_game3));
+		bgms.put(R.raw.bgm_lobby, MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_lobby));
+		bgms.put(R.raw.bgm_lobby2, MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_lobby2));
+		bgms.put(R.raw.bgm_main, MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_main));
 	}
 
 	public void play(int bgmID)
 	{
+		MediaPlayer bgm = bgms.get(bgmID);
+		if(bgm != null)
+		{
+			bgm.start();
+		}
+		else
+		{
+			Log.d("BGMManger", "INVALID BGM ID");
+			throw new RuntimeException();
+		}
 
 	}
 
