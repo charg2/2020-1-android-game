@@ -48,7 +48,7 @@ public class Jelly extends GameObject implements BoxCollidable, Recyclable
 	@Override
 	public void update(long timeDiffNanos)
 	{
-		this.x += velocity * GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+		this.x += velocity * GameTimer.getInstance().getDeltaSecondsSingle();
 
 		updateForColliderBox();
 

@@ -34,7 +34,7 @@ public class ImageScrollBackground extends GameObject
     public void update(long timeDiffNanos)
     {
         if (speed == 0) return;
-        float amount = speed * GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+        float amount = speed * GameTimer.getInstance().getDeltaSecondsSingle();
         if (horizontal) {
             scrollX += amount;
         } else {

@@ -58,7 +58,7 @@ public class DamageState extends FSM
 	@Override
 	public void update(long timeDiffNanos)
 	{
-		recoveryTime += GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+		recoveryTime += GameTimer.getInstance().getDeltaSecondsSingle();
 		if(recoveryTime >= recoveryTimer)
 		{
 			cookie.pushState(new RunState(cookie));

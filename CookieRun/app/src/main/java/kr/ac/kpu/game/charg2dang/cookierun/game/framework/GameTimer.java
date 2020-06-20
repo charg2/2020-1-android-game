@@ -47,7 +47,7 @@ public class GameTimer
 	}
 
 
-	public float getCurrentDeltaSecondsSngle()
+	public float getDeltaSecondsSingle()
 	{
 		return deltaNanoTick / NANOS_IN_ONE_SECOND_FLOAT;
 	}

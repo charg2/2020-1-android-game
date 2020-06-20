@@ -62,7 +62,7 @@ public class DoubleJumpState extends FSM
 			cookie.pushState(new RunState(cookie));
 		}
 
-		float timeDiffSeconds = GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+		float timeDiffSeconds = GameTimer.getInstance().getDeltaSecondsSingle();
 		speed += 9.8f * timeDiffSeconds * cookie.getMass();
 		if(speed > 0)
 		{

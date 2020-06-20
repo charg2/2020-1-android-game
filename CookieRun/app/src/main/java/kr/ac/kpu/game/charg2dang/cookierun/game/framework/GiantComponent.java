@@ -40,7 +40,7 @@ public class GiantComponent
 	{
 		if( canGrow == true ) // 커질수 있을때만.
 		{
-			float deltaTime = GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+			float deltaTime = GameTimer.getInstance().getDeltaSecondsSingle();
 			giantTime += deltaTime;
 
 			if (reversed) // size up time

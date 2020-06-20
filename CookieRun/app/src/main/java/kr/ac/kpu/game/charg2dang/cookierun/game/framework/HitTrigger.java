@@ -22,7 +22,7 @@ public class HitTrigger
 		}
 		else
 		{
-			hitTimer += GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+			hitTimer += GameTimer.getInstance().getDeltaSecondsSingle();
 			if(hitTimer >= hitRecoveryTime)
 			{
 				isHitted = false;

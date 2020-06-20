@@ -10,7 +10,6 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.FSM;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
-import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.FrameAnimationBitmap;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
 
@@ -54,7 +53,7 @@ public class DeathState extends FSM
 			// show end game ui
 			SceneManager.getInstance().getCurrentScene().pause(PauseReason.CookieDeath);
 
-			menuTime += GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+			menuTime += GameTimer.getInstance().getDeltaSecondsSingle();
 			if(this.menuTimer <= menuTime)
 			{
 				Log.d(TAG, "resultScene1");
@@ -68,7 +67,7 @@ public class DeathState extends FSM
 		else
 		{
 		//	xOffset += Framework.getInstance().getCommonVelocity() * GameTimer.getInstance().getCurrentDeltaSecondsSngle();
-			menuTime += GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+			menuTime += GameTimer.getInstance().getDeltaSecondsSingle();
 			if(this.menuTimer <= menuTime)
 			{
 				Log.d(TAG, "resultScene2");

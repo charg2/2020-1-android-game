@@ -73,7 +73,7 @@ public class GameScene extends Scene
 	public void initObjects()
 	{
 		cookie = Cookie.getInstance();
-		cookie.move( 350, 900);
+		cookie.setPosition( 350, 900);
 		cookie.setScale(2.5f);
 		add(LayerType.player, cookie);
 
@@ -111,12 +111,16 @@ public class GameScene extends Scene
 
 		Terrain terrain = new Terrain(1300, 1400);
 		add(LayerType.terrain, terrain);
+
 		startGame();
+
 	}
 
 	private void startGame()
 	{
 		playState = PlayState.normal;
+
+		cookie.move(0, -50.f);
 //		scoreObject.reset();
 
 //		SharedPreferences prefs = view.getContext().getSharedPreferences( PREFS_NAME, Context.MODE_PRIVATE);
@@ -184,55 +188,44 @@ public class GameScene extends Scene
 	@Override
 	protected void onResume()
 	{
-//		clearUI();
-//		setGameUI();
-
-		pauseBg.setState(false);
-		switch (currentPauseReason)
-		{
-			case Stop:
-				pauseText.setState(false);
-				resumeButton.setState(false);
-				stopButton.setState(false);
-
-				break;
-
-			case CookieDeath:
-				setGameUI();
-
-				break;
-
-
-			default:
-				break;
-
-		}
+		clearUI();
+		setGameUI();
+		cookie.setPosition(350, 900);
+//		pauseBg.setState(false);
+//		switch (currentPauseReason)
+//		{
+//			case Stop:
+//				pauseText.setState(false);
+//				resumeButton.setState(false);
+//				stopButton.setState(false);
+//
+//				break;
+//
+//			case CookieDeath:
+//				setGameUI();
+//
+//				break;
+//
+//
+//			default:
+//				break;
+//
+//		}
 
 	}
 
 	@Override
 	protected void onPause(PauseReason reason)
 	{
-		 clearUI();
-		// common
-//		pauseBg.setState(true);
-//		add(LayerType.ui, pauseBg);
+
 
 		switch (reason)
 		{
 			case Stop:
 			{
-//				pauseText.setPosition(UiBridge.metrics.center.x - pauseText.getWidth(),  UiBridge.metrics.fullSize.y / 6.0f  );
-//				pauseText.setState(true);
-//				add(LayerType.ui, pauseText);
-//
-//				resumeButton.setPosition(UiBridge.metrics.center.x - resumeButton.getWidth(),  UiBridge.metrics.fullSize.y / 3.5f  );
-//				resumeButton.setState(true);
-//				add(LayerType.ui, resumeButton);
-//
-//				stopButton.setPosition(UiBridge.metrics.center.x - stopButton.getWidth(),  UiBridge.metrics.fullSize.y / 1.8f  );
-//				stopButton.setState(true);
-//				add(LayerType.ui, stopButton);
+				clearUI();
+
+				setPauseUI();
 
 				break;
 			}
@@ -240,6 +233,7 @@ public class GameScene extends Scene
 
 			case CookieDeath:
 			{
+				clearUI();
 				break;
 			}
 
@@ -249,12 +243,12 @@ public class GameScene extends Scene
 		}
 	}
 
-	public void clearUI()
+	private void clearUI()
 	{
 		layers.get(LayerType.ui.ordinal()).clear();
 	}
 
-	public void setGameUI()
+	private void setGameUI()
 	{
 		layers.get(LayerType.ui.ordinal()).clear();
 
@@ -283,6 +277,26 @@ public class GameScene extends Scene
 		add(LayerType.ui, slideButton);
 	}
 
+
+	private void setPauseUI()
+	{
+
+		pauseBg.setState(true);
+		add(LayerType.ui, pauseBg);
+
+		pauseText.setPosition(UiBridge.metrics.center.x - pauseText.getWidth(),  UiBridge.metrics.fullSize.y / 6.0f  );
+		pauseText.setState(true);
+		add(LayerType.ui, pauseText);
+
+		resumeButton.setPosition(UiBridge.metrics.center.x - resumeButton.getWidth(),  UiBridge.metrics.fullSize.y / 3.5f  );
+		resumeButton.setState(true);
+		add(LayerType.ui, resumeButton);
+
+		stopButton.setPosition(UiBridge.metrics.center.x - stopButton.getWidth(),  UiBridge.metrics.fullSize.y / 1.8f  );
+		stopButton.setState(true);
+		add(LayerType.ui, stopButton);
+
+	}
 
 
 }

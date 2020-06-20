@@ -82,7 +82,7 @@ public class CoinSilver extends GameObject implements  BoxCollidable//, Recyclab
 			this.state = false;
 		}
 
-		this.x += velocity * GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+		this.x += velocity * GameTimer.getInstance().getDeltaSecondsSingle();
 //		String str = "x : " + x + ", : "  +  velocity * ( timeDiffNanos / 10_000_000.0d ) ;
 //		Log.d("Coin", str);
 		updateForColliderBox();

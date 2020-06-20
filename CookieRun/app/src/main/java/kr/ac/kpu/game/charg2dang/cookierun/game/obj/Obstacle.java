@@ -1,7 +1,6 @@
 package kr.ac.kpu.game.charg2dang.cookierun.game.obj;
 
 import android.graphics.RectF;
-import android.util.Log;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.ColliderTag;
@@ -48,7 +47,7 @@ public class Obstacle extends BitmapObject implements  Recyclable
 	@Override
 	public void update(long timeDiffNanos)
 	{
-		this.x += velocity * GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+		this.x += velocity * GameTimer.getInstance().getDeltaSecondsSingle();
 
 		super.update(timeDiffNanos);
 		updateForNewColliderBox();
@@ -71,7 +70,13 @@ public class Obstacle extends BitmapObject implements  Recyclable
 	public void onCollision(BoxCollidable o1)
 	{
 		Cookie cookie = (Cookie)o1;
-		cookie.decreaseHP(10.f);
+
+		cookie.decreaseHP(10.f, true);
+
+//		if ( cookie.isGiantMode() == true )
+//		{
+//			this.state = true;
+//		}
 	}
 
 

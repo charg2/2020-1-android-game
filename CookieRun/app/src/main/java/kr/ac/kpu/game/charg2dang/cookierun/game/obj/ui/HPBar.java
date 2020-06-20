@@ -113,9 +113,9 @@ public class HPBar extends GameObject
 		mainSrcRect.top = 0;
 		mainSrcRect.bottom = bg.getHeight();
 
-		bgDstRect.left 	= ( UiBridge.metrics.fullSize.x / 7 )  -  ( bgSrcRect.right / 2 );
+		bgDstRect.left 		= ( UiBridge.metrics.fullSize.x / 7 )  -  ( bgSrcRect.right / 2 );
 		bgDstRect.right 	= ( UiBridge.metrics.fullSize.x / 7 )  +  ( bgSrcRect.right / 2 );
-		bgDstRect.top 	= ( UiBridge.metrics.fullSize.y / 20 )  -  ( bgSrcRect.bottom / 2 );
+		bgDstRect.top 		= ( UiBridge.metrics.fullSize.y / 20 )  -  ( bgSrcRect.bottom / 2 );
 		bgDstRect.bottom 	= ( UiBridge.metrics.fullSize.y / 20 )  +  ( bgSrcRect.bottom / 2 );
 
 		mainDstRect.left 	= ( UiBridge.metrics.fullSize.x / 7 )  -  ( bgSrcRect.right / 2 );

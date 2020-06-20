@@ -34,7 +34,7 @@ public class LoadingScene extends Scene
 	{
 		super.update(frameTimeNanos);
 
-		loadingTime += GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+		loadingTime += GameTimer.getInstance().getDeltaSecondsSingle();
 		if( loadingTime >= loadingTimer )
 		{
 			SceneManager.getInstance().changeScene(SceneType.main, false);

@@ -3,7 +3,6 @@ package kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.RectF;
-import android.util.Log;
 
 import java.util.Stack;
 
@@ -13,6 +12,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.FSM;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GiantComponent;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.NerfComponent;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.HitTrigger;
@@ -34,7 +34,6 @@ public class Cookie extends  GameObject implements BoxCollidable
     public final int jumpCount = 2;
 
 
-
     // ui
     private HPBar hpBar;
     private final float maxHP = 40.f;
@@ -44,6 +43,7 @@ public class Cookie extends  GameObject implements BoxCollidable
     // component
     private HitTrigger      hitTrigger      = new HitTrigger(1.0f);
     private GiantComponent  giantComponent  = new GiantComponent(this);
+    private NerfComponent   nerfComponent   = new NerfComponent(this);
     private CookieState     cookieState     = CookieState.run;
     private FSM             stateMachine    = new RunState(this);
     private Stack<FSM>      stateStack      = new Stack<>();
@@ -87,7 +87,7 @@ public class Cookie extends  GameObject implements BoxCollidable
         // 충돌 처리 단계에서 발발닥이 땅에 있는것이 아니라면 중력 작용.
         if(isGround == false)
         {
-            grivitySpeed += GameTimer.getInstance().getCurrentDeltaSecondsSngle() * gravitiAcceleration * mass;
+            grivitySpeed += GameTimer.getInstance().getDeltaSecondsSingle() * gravitiAcceleration * mass;
 
             y += grivitySpeed;
         }
@@ -111,6 +111,7 @@ public class Cookie extends  GameObject implements BoxCollidable
     {
         hitTrigger.update(timeDiffNanos);
         giantComponent.update(timeDiffNanos);
+        nerfComponent.update(timeDiffNanos);
     }
 
     public void updateForStateMachine(long timeDiffNanos)
@@ -172,22 +173,30 @@ public class Cookie extends  GameObject implements BoxCollidable
 
     }
 
-    public void decreaseHP(float damage)
-    {
-        if( hitTrigger.canHitted() == true )
-        {
-            hitTrigger.hit();
 
-            this.currentHP -= damage;
-            if(this.currentHP <= 0)  // 체력이 0 이하면
+    public void decreaseHP(float damage, boolean isOverraped)
+    {
+        if(isOverraped == true)
+        {
+            if( hitTrigger.canHitted() == true )
             {
-                this.currentHP = 0.0f;
-                this.pushState(new DeathState(this));
-            }
-            else
-            {
+                hitTrigger.hit();
+
+                this.currentHP -= damage;
+
                 this.pushState(new DamageState(this));
             }
+        }
+        else
+        {
+            this.currentHP -= damage;
+        }
+
+
+        if(this.currentHP <= 1.0f)  // 체력이 0 이하면
+        {
+            this.currentHP = 0.0f;
+            this.pushState(new DeathState(this));
         }
     }
 
@@ -211,6 +220,12 @@ public class Cookie extends  GameObject implements BoxCollidable
     public float getScale()  {  return this.scale;  }
     public float getX()  {  return this.x;  }
     public float getY()  {  return this.y;  }
+    public void setPosition(float x, float y )
+    {
+        this.x = x;
+        this.y = y;
+    }
+
     public void setScale(float scale)
     {
         this.scale = scale;

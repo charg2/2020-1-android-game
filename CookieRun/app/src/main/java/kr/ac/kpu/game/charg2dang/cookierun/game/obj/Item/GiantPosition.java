@@ -49,7 +49,7 @@ public class GiantPosition extends  GameObject implements  BoxCollidable, Recycl
 	@Override
 	public void update(long timeDiffNanos)
 	{
-		this.x += velocity * GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+		this.x += velocity * GameTimer.getInstance().getDeltaSecondsSingle();
 		updateForColliderBox();
 
 		if(box.right <= 0)

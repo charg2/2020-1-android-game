@@ -6,7 +6,6 @@ import android.graphics.RectF;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.ColliderTag;
-import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
@@ -70,7 +69,7 @@ public class Terrain extends GameObject implements  BoxCollidable
 		if (speed == 0)
 			return;
 
-		float amount = speed * GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+		float amount = speed * GameTimer.getInstance().getDeltaSecondsSingle();
 
 		scrollX += amount;
 	}

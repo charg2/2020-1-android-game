@@ -3,7 +3,6 @@ package kr.ac.kpu.game.charg2dang.cookierun.game.obj.map;
 
 import android.content.res.AssetManager;
 import android.graphics.Canvas;
-import android.graphics.Point;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -139,7 +138,7 @@ public class TextMap extends GameObject
 
 			case 'x':
 			{
-				Obstacle obs = Obstacle.get(x, y, blockWidth * 10, blockHeight * 2);
+				Obstacle obs = Obstacle.get(x, y, blockWidth * 7, blockHeight * 2);
 				obstacleLayer.add(obs);
 				break;
 			}
@@ -164,7 +163,7 @@ public class TextMap extends GameObject
 	@Override
 	public void update(long timeDiffNanos)
 	{
-		float delta = GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+		float delta = GameTimer.getInstance().getDeltaSecondsSingle();
 
 		currentX += delta * Framework.getInstance().getCommonVelocity();
 
