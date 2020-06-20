@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 
 public class UiBridge
 {
+	private static final String TAG = UiBridge.class.getSimpleName();
 	private static View view;
 	private static Resources resources;
 	public static Metrics metrics = new Metrics();
@@ -83,6 +85,8 @@ public class UiBridge
 		fullSize.x += getNavigationBarHeight();
 		metrics.size = size;
 		metrics.fullSize = fullSize;
+
+		Log.d(TAG, " fullsize : " + fullSize);
 		metrics.center = new Point(size.x / 2, size.y / 2);
 		metrics.oneInch = dm.densityDpi; //400dpi, 120 400 * 120 / 160
 	}

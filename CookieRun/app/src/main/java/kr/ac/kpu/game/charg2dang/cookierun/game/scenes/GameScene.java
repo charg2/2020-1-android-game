@@ -88,8 +88,8 @@ public class GameScene extends Scene
 		add(LayerType.bg, hzBg2);
 
 		pauseButton = PauseButton.getInstance();
-		pauseButton.setPosition(UiBridge.metrics.fullSize.x / 1.2f, 100);
-		pauseButton.setScale(4);
+		pauseButton.setPosition(UiBridge.metrics.fullSize.x / 1.2f, UiBridge.metrics.fullSize.y / 25.f);
+		pauseButton.setScale(1.5f);
 		add(LayerType.ui, pauseButton);
 
 		resumeButton = ResumeButton.getInstance();
@@ -259,20 +259,20 @@ public class GameScene extends Scene
 
 
 		pauseButton = PauseButton.getInstance();
-		pauseButton.setPosition(UiBridge.metrics.fullSize.x / 1.2f, 100);
-		pauseButton.setScale(4);
+		pauseButton.setPosition(UiBridge.metrics.fullSize.x / 1.2f, UiBridge.metrics.fullSize.y / 25.f);
+		pauseButton.setScale(1.5f);
 		pauseButton.setState(true);
 		add(LayerType.ui, pauseButton);
 
 		jumpButton = JumpButton.getInstance();
-		jumpButton.setPosition(250, 1050);
-		jumpButton.setScale(4);
+		jumpButton.setPosition( UiBridge.metrics.fullSize.x / 12.0f, UiBridge.metrics.fullSize.y / 1.4f);
+		jumpButton.setScale(3.f);
 		jumpButton.setState(true);
 		add(LayerType.ui, jumpButton);
 
 		slideButton = SlideButton.getInstance();
-		slideButton.setPosition(2300, 1050);
-		slideButton.setScale(4);
+		slideButton.setPosition(UiBridge.metrics.fullSize.x / 1.4f, UiBridge.metrics.fullSize.y / 1.4f);//2300, 1050);
+		slideButton.setScale(3.f);
 		stopButton.setState(true);
 		add(LayerType.ui, slideButton);
 	}
@@ -280,7 +280,6 @@ public class GameScene extends Scene
 
 	private void setPauseUI()
 	{
-
 		pauseBg.setState(true);
 		add(LayerType.ui, pauseBg);
 

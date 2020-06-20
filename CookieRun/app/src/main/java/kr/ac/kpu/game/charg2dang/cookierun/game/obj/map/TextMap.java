@@ -131,7 +131,7 @@ public class TextMap extends GameObject
 
 			case '4':
 			{
-				GiantPosition item =  GiantPosition.get(x, y);
+				GiantPosition item = GiantPosition.get(x, y);
 				itemLayer.add(item);
 				break;
 			}

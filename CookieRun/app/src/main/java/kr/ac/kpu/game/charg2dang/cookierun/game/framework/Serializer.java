@@ -31,14 +31,23 @@ public class Serializer
 
 	private static String convertJson(ArrayList<HighscoreItem> items)
 	{
+		int limit = 20;
+
 		StringBuilder sb = new StringBuilder();
 		sb.append("[");
 		String comma = "";
+
 		for( HighscoreItem item : items)
 		{
 			sb.append(comma);
 			sb.append(item.toJsonString());
 			comma = ",";
+
+			limit -= 1;
+			if(limit == 0)
+			{
+				break;
+			}
 		}
 
 

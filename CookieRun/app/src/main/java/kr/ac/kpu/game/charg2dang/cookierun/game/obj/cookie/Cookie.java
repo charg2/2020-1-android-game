@@ -28,7 +28,7 @@ public class Cookie extends  GameObject implements BoxCollidable
     private float mass = 5.0f;
 
     private final float gravitiAcceleration = 9.8f;
-    private float scale = 2.5f;
+    private float scale = 1.4f;
     private boolean isGround = false;
     public final int jumpCount = 2;
 
