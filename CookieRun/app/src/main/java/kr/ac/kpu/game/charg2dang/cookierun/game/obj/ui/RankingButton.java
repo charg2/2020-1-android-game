@@ -21,7 +21,7 @@ public class RankingButton extends GameObject
 	private final 			SharedBitmap 	resume;
 	private 				float 			x, y;
 	private 				boolean 		down = false;
-	private 				float 			scale = 2;
+	private 				float 			scale = 1.5f;
 	private 				RectF 			box;
 
 	private static RankingButton instance;

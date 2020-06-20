@@ -32,8 +32,7 @@ public class HighscoreActivity extends AppCompatActivity
 {
 	private static final String TAG = HighscoreActivity.class.getSimpleName();
 	private ListView listView;
-	private ArrayList<HighscoreItem> scores  = new ArrayList<>();
-
+	private ArrayList<HighscoreItem> scores;//  =  new ArrayList<>();// ScoreManger.getInstance().getScores();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -73,6 +72,18 @@ public class HighscoreActivity extends AppCompatActivity
 
 	}
 
+
+
+	@Override
+	protected void onStart()  // 액티비티 전환시 sharedPrefer..의 JSON String을 읽어서 items로 만들고 화면에 뿌림.
+	{
+		super.onStart();
+
+		// 액티비지 전환 후 score manage에서 관리하는 score를 읽어서 ArrayList<>로 만들어 옴.
+		scores = Serializer.load(this);
+
+		listView.setAdapter(adapter); // 리스트 뷰 갱신.
+	}
 
 	private void doFullScreen()
 	{
@@ -206,10 +217,11 @@ public class HighscoreActivity extends AppCompatActivity
 	};
 
 
-	public void addHighscore(String name, int score)
-	{
-		scores.add(new HighscoreItem(name, new Date(), score));
-		Serializer.save(this, scores);
-		listView.setAdapter(adapter);
-	}
+//	public void addHighscore(String name, int score)
+//	{
+//		scores.add(new HighscoreItem(name, new Date(), score));
+//		Serializer.save(this, scores);
+//		listView.setAdapter(adapter);
+//	}
+
 }

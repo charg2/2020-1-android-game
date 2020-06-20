@@ -73,7 +73,10 @@ public class GiantPosition extends  GameObject implements  BoxCollidable, Recycl
 		((Cookie)o1).turnOnGiantMode();
 		state = false;
 
-		SoundEffects.get().play(R.raw.se_powerup);
+		if(((Cookie)o1).isGiantMode() == false)
+		{
+			SoundEffects.get().play(R.raw.se_powerup);
+		}
 	}
 
 

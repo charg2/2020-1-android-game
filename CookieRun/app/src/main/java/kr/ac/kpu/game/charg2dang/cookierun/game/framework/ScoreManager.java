@@ -1,11 +1,16 @@
 package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 
 import android.graphics.Canvas;
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.ScoreObject;
+import kr.ac.kpu.game.charg2dang.cookierun.ui.activity.HighscoreActivity;
 
 public class ScoreManager extends GameObject
 {
@@ -15,8 +20,13 @@ public class ScoreManager extends GameObject
 	private ScoreObject 		highScoreObject;
 	private ScoreObject  		currentScoreObject;
 	private ScoreObject  		resultScore;
+	private ArrayList<HighscoreItem> scores;//  = new ArrayList<>();
+
 	private ScoreManager()
 	{
+		// 기존 데이터가 있으면 읽어옴.
+		scores = Serializer.load(Framework.getInstance().getContext());
+
 		scoreObject = new ScoreObject(UiBridge.metrics.fullSize.x / 1.2f, UiBridge.metrics.fullSize.y / 7.0f, R.mipmap.number_cookierun2);
 		highScoreObject = new ScoreObject(800, 100, R.mipmap.number_cookierun2);
 		resultScore = new ScoreObject(UiBridge.metrics.fullSize.x / 2, UiBridge.metrics.fullSize.y / 2.0f, R.mipmap.number_cookierun1);;
@@ -75,7 +85,18 @@ public class ScoreManager extends GameObject
 		resultScore.reset();
 	}
 
+
+	public ArrayList<HighscoreItem> getScores()
+	{
+		return scores;
+	}
+
 	public void save()
 	{
+		Log.d(TAG, "ScoreManager::save()" );
+
+		scores.add(new HighscoreItem("", new Date(), scoreObject.getScore()));
+
+		Serializer.save(Framework.getInstance().getContext(), scores);
 	}
 }

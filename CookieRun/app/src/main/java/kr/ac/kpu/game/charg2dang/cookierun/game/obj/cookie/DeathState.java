@@ -5,6 +5,7 @@ import android.graphics.Point;
 import android.util.Log;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
+import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.CookieState;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.FSM;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
@@ -43,7 +44,7 @@ public class DeathState extends FSM
 		}
 
 		ScoreManager.getInstance().save();
-
+		cookie.setFSMState(CookieState.death);
 		xOffset = -100.f;
 		menuTime = 0.f;
 	}
@@ -95,6 +96,7 @@ public class DeathState extends FSM
 		{
 			bitmap.draw(canvas, cookie.getX() , cookie.getY());
 		}
+
 		canvas.restore();
 	}
 

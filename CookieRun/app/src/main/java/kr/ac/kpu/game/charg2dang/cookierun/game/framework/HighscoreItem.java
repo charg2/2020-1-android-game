@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import java.util.Date;
 
-public class HighscoreItem
+public class HighscoreItem implements Comparable<HighscoreItem>
 {
 	public String name;
 	public Date date;
@@ -32,5 +32,23 @@ public class HighscoreItem
 	public String toJsonString()
 	{
 		return "{\"name\":\"" + name + "\", \"date\":" + date.getTime() + ",\"score\":" + score + "}";
+	}
+
+	@Override
+	public int compareTo(HighscoreItem o)
+	{
+		if(this.score > o.score)
+		{
+			return -1;
+		}
+		else if(this.score == o.score)
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+
 	}
 }

@@ -13,6 +13,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GiantComponent;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.NerfComponent;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.HitTrigger;
@@ -20,8 +21,6 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.iface.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Terrain;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.HPBar;
 
-// any -> damage
-// run 에서 이동 가능한 스테이트 jump, slide
 public class Cookie extends  GameObject implements BoxCollidable
 {
     private static final String TAG = Cookie.class.getSimpleName();
@@ -32,7 +31,6 @@ public class Cookie extends  GameObject implements BoxCollidable
     private float scale = 2.5f;
     private boolean isGround = false;
     public final int jumpCount = 2;
-
 
     // ui
     private HPBar hpBar;
@@ -50,7 +48,6 @@ public class Cookie extends  GameObject implements BoxCollidable
 
 
     private float grivitySpeed;
-
     private static Cookie instance;
 
     private RectF colliderBox;//= new RectF();
@@ -99,12 +96,6 @@ public class Cookie extends  GameObject implements BoxCollidable
         // 매회 땅바닥과충돌 체크했는지 확이한기 위해서../.
         isGround = false;
 
-//        currentHP -= 0.0002;
-//		if(currentHP < 0)
-//		{
-//			currentHP = 0.0f;
-//		}
-
     }
 
     public void updateForComponent(long timeDiffNanos)
@@ -134,20 +125,16 @@ public class Cookie extends  GameObject implements BoxCollidable
     {
         stateMachine.draw(canvas);
     }
-
-
     @Override
     public ColliderTag getTag()
     {
         return ColliderTag.Player;
     }
-
     @Override
     public RectF getColliderBox()
     {
         return this.colliderBox;
     }
-
     @Override
     public void onCollision(BoxCollidable o1)
     {
@@ -196,7 +183,11 @@ public class Cookie extends  GameObject implements BoxCollidable
         if(this.currentHP <= 1.0f)  // 체력이 0 이하면
         {
             this.currentHP = 0.0f;
-            this.pushState(new DeathState(this));
+            if(CookieState.death != cookieState) // 한번만..
+            {
+                cookieState = CookieState.death;
+                this.pushState(new DeathState(this));
+            }
         }
     }
 
@@ -220,38 +211,15 @@ public class Cookie extends  GameObject implements BoxCollidable
     public float getScale()  {  return this.scale;  }
     public float getX()  {  return this.x;  }
     public float getY()  {  return this.y;  }
-    public void setPosition(float x, float y )
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    public void setScale(float scale)
-    {
-        this.scale = scale;
-    }
+    public void setPosition(float x, float y )  {  this.x = x; this.y = y;  }
+    public void setScale(float scale)  { this.scale = scale; }
     public void move(float x, float y) { this.x = this.x + x; this.y = this.y + y;  }
     public void setGround(boolean value)  {  this.isGround = value;  }
     public void turnOnGiantMode(){ this.giantComponent.doAutoGrew(); }
-
-
     public void setColliderBoxForObstacle(RectF colliderBox) { this.colliderBox = colliderBox; }
     public void setColliderBox(RectF colliderBox) { this.colliderBox = colliderBox; }
-
-    public final float getMaxHP()
-    {
-        return maxHP;
-    }
-
-    public float getCurrentHP()
-    {
-        return currentHP;
-    }
-
-    public RectF getItemBox()
-    {
-        return itemBox;
-    }
+    public final float getMaxHP() { return maxHP; }
+    public float getCurrentHP() { return currentHP; }
 
     public void reset()
     {
@@ -259,4 +227,6 @@ public class Cookie extends  GameObject implements BoxCollidable
 
         pushState(new RunState(this));
     }
+
+    public CookieState getFSMState() {  return cookieState; }
 }

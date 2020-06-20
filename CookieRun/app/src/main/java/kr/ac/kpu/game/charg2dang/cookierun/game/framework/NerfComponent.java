@@ -2,6 +2,7 @@ package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 
 import android.util.Log;
 
+import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.CookieState;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 
 public class NerfComponent
@@ -22,7 +23,10 @@ public class NerfComponent
 		if(nerfTime > nerfTimer)
 		{
 			nerfTime = 0.f;
-			cookie.decreaseHP(1.0f, false);
+			if(cookie.getFSMState() != CookieState.death)
+			{
+				cookie.decreaseHP(1.0f, false);
+			}
 		}
 	}
 }

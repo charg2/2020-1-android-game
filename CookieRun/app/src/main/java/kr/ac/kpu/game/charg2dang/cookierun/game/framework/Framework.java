@@ -1,14 +1,13 @@
 package kr.ac.kpu.game.charg2dang.cookierun.game.framework;
 
 import android.app.Activity;
-import android.content.res.AssetManager;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.View;
 
-import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.FrameAnimationBitmap;
 import kr.ac.kpu.game.charg2dang.cookierun.ui.activity.HighscoreActivity;
 
 public class Framework
@@ -26,6 +25,7 @@ public class Framework
 	}
 	public static Activity	main;
 	private long frameCounter = 0L;
+	private Context context;
 
 	private Paint cookieFontPaint;
 	private Typeface typeface;
@@ -43,6 +43,8 @@ public class Framework
 	public void setView(View view)
 	{
 		this.view = view;
+		this.context = view.getContext();
+
 	}
 
 	public Framework()
@@ -73,6 +75,12 @@ public class Framework
 	{
 		return collisionBoxpaint;
 	}
+
+	public Context getContext()
+	{
+		return context;
+	}
+
 
 	public Paint getFontPaint()
 	{

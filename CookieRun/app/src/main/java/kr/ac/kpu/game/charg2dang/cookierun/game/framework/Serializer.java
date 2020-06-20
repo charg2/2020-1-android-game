@@ -9,22 +9,24 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Serializer
 {
-	public static final String PREFS_NAME = "Highscore";
-	public static final String PREFS_KEY = "scores";
+	public static final String PREFS_NAME = "Highscore199";
+	public static final String PREFS_KEY = "scores199";
 	private static final String TAG = Serializer.class.getSimpleName() ;
 
 	public static void save(Context context, ArrayList<HighscoreItem> items)
 	{
 		SharedPreferences perfs = context.getSharedPreferences( PREFS_NAME , Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = perfs.edit();
+
+		Collections.sort(items);
+
 		String jsonString = convertJson(items);
-		Log.d(TAG, "JSON=" + jsonString);
 		editor.putString(PREFS_KEY, jsonString);
 		editor.commit();
-
 	}
 
 	private static String convertJson(ArrayList<HighscoreItem> items)
@@ -54,6 +56,7 @@ public class Serializer
 		{
 			JSONArray jsonArray = new JSONArray(jsonString);
 			int count = jsonArray.length();
+
 			for (int i = 0; i < count; i++)
 			{
 				JSONObject s = jsonArray.getJSONObject(i);
@@ -66,6 +69,8 @@ public class Serializer
 		{
 			e.printStackTrace();
 		};
+
+
 
 		return items;
 	}
