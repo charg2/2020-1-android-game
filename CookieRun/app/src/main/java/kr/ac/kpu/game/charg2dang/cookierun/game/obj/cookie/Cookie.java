@@ -25,10 +25,10 @@ public class Cookie extends  GameObject implements BoxCollidable
 {
     private static final String TAG = Cookie.class.getSimpleName();
     private static int halfSize;
-    private float mass = 5.0f;
+    private float mass = 7.5f;
 
     private final float gravitiAcceleration = 9.8f;
-    private float scale = 1.4f;
+    private float scale = 1.8f;
     private boolean isGround = false;
     public final int jumpCount = 2;
 

@@ -19,7 +19,6 @@ public class Terrain extends GameObject implements  BoxCollidable
 	private static int halfHeightSize;
 	private static SharedBitmap bitamp ;
 
-
 	private int speed = -1500;
 	private float scrollX;
 	private Rect srcRect = new Rect();
@@ -40,7 +39,7 @@ public class Terrain extends GameObject implements  BoxCollidable
 			halfHeightSize = bitamp.getHeight() / 2;
 		}
 
-		scale = 4.0f;
+		scale = 3.0f;
     	box = new RectF();
 
         this.x = x;

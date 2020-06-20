@@ -34,6 +34,17 @@ public class HighscoreActivity extends AppCompatActivity
 	private ListView listView;
 	private ArrayList<HighscoreItem> scores;//  =  new ArrayList<>();// ScoreManger.getInstance().getScores();
 
+	static final int[] rankImgs =
+			{
+					R.mipmap.cookie_illust_blaze_powder, R.mipmap.cookie_illust_blaze_rod, R.mipmap.cookie_illust_blocks_disc,
+					R.mipmap.cookie_illust_book_normal, R.mipmap.cookie_illust_brick, R.mipmap.cookie_illust_carrot_golden,
+					R.mipmap.cookie_illust_clay_ball, R.mipmap.cookie_illust_chrip_disc, R.mipmap.cookie_illust_cat_disc,
+					R.mipmap.cookie_illust_dye_powder_cyan, R.mipmap.cookie_illust_dye_powder_brown, R.mipmap.cookie_illust_dye_powder_black,
+					R.mipmap.cookie_illust_dye_powder_lime, R.mipmap.cookie_illust_dye_powder_green, R.mipmap.cookie_illust_dye_powder_gray,
+					R.mipmap.cookie_illust_lead, R.mipmap.cookie_illust_iron_ingot, R.mipmap.cookie_illust_far_disc,
+					R.mipmap.cookie_illust_dye_powder_pink, R.mipmap.cookie_illust_dye_powder_silver, R.mipmap.cookie_illust_melon_speckled
+			};
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -49,18 +60,6 @@ public class HighscoreActivity extends AppCompatActivity
 		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
 		doFullScreen();
-
-		Log.d(TAG, "high high");
-//		scores.add(new HighscoreItem("Babo", new Date(), 340));
-//		scores.add(new HighscoreItem("Babo", new Date(), 340));
-//		scores.add(new HighscoreItem("Babo", new Date(), 340));
-//		scores.add(new HighscoreItem("Babo", new Date(), 340));
-//		scores.add(new HighscoreItem("Babo", new Date(), 340));
-//		scores.add(new HighscoreItem("Babo", new Date(), 340));
-//		scores.add(new HighscoreItem("Babo", new Date(), 340));
-//		scores.add(new HighscoreItem("Babo", new Date(), 340));
-//		scores.add(new HighscoreItem("Babo", new Date(), 340));
-//		scores.add(new HighscoreItem("Babo", new Date(), 340));
 	}
 
 	@Override
@@ -127,28 +126,13 @@ public class HighscoreActivity extends AppCompatActivity
 			TextView tv = view.findViewById(R.id.scoreItemTextView);
 			ImageView imgView = view.findViewById(R.id.scroeRankingImageView);
 
-			switch (position)
-			{
-//				case 0:
-//					imgView.setImageResource(R.mipmap.gold);
-//					break;
-//				case 1:
-//					imgView.setImageResource(R.mipmap.silver);
-//					break;
-//				case 2:
-//					imgView.setImageResource(R.mipmap.copper);
-//					break;
-				default:
-					imgView.setImageResource(R.mipmap.ic_launcher_round);
-					break;
-			}
-
+			imgView.setImageResource(HighscoreActivity.rankImgs[position]);
 
 			HighscoreItem s = scores.get(position);
 			DateFormat format = new SimpleDateFormat("YYYY-MM-dd h:mm a");
 			format.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
 			String datestr = format.format(s.date);
-			tv.setText( "name :" +s.name + "\ndate : " + datestr + "\nscore :" + s.score );
+			tv.setText( "rank :" + (position + 1) + "\ndate : " + datestr + "\nscore :" + s.score );
 			return view;
 		}
 

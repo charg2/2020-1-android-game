@@ -74,7 +74,6 @@ public class GameScene extends Scene
 	{
 		cookie = Cookie.getInstance();
 		cookie.setPosition( 350, 900);
-		cookie.setScale(2.5f);
 		add(LayerType.player, cookie);
 
 		add(LayerType.ui, ScoreManager.getInstance().getScoreObject()); /// 머지;;
@@ -109,7 +108,7 @@ public class GameScene extends Scene
 		mapGenerator = new TextMap("stage_01.txt",this);
 		add(LayerType.event, mapGenerator);
 
-		Terrain terrain = new Terrain(1300, 1400);
+		Terrain terrain = new Terrain(UiBridge.metrics.center.x, UiBridge.metrics.fullSize.y);
 		add(LayerType.terrain, terrain);
 
 		startGame();
@@ -259,13 +258,13 @@ public class GameScene extends Scene
 
 
 		pauseButton = PauseButton.getInstance();
-		pauseButton.setPosition(UiBridge.metrics.fullSize.x / 1.2f, UiBridge.metrics.fullSize.y / 25.f);
+		pauseButton.setPosition(UiBridge.metrics.fullSize.x / 1.1f, UiBridge.metrics.fullSize.y / 25.f);
 		pauseButton.setScale(1.5f);
 		pauseButton.setState(true);
 		add(LayerType.ui, pauseButton);
 
 		jumpButton = JumpButton.getInstance();
-		jumpButton.setPosition( UiBridge.metrics.fullSize.x / 12.0f, UiBridge.metrics.fullSize.y / 1.4f);
+		jumpButton.setPosition( UiBridge.metrics.fullSize.x / 14.0f, UiBridge.metrics.fullSize.y / 1.4f);
 		jumpButton.setScale(3.f);
 		jumpButton.setState(true);
 		add(LayerType.ui, jumpButton);
