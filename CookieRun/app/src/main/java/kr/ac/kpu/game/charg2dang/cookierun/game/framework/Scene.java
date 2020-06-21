@@ -123,7 +123,6 @@ public abstract class Scene
                 collisionHelper.collides((BoxCollidable) player, (BoxCollidable) item);
             }
 
-
 //            if(((Cookie)player).isGiantMode() == false )
 //            {
                 for (GameObject obstacle : obstacles)
@@ -234,9 +233,10 @@ public abstract class Scene
 
     public void reset()
     {
-
+        onReset();
     }
 
+    protected abstract void onReset();
     protected abstract void onResume();
     protected abstract void onPause(PauseReason reason);
 

@@ -21,6 +21,7 @@ public class MainButton extends GameObject
 	private 				boolean 		down = false;
 	private 				float 			scale = 2;
 	private 				RectF 			box;
+	private 				boolean			once;
 
 	private static MainButton instance;
 	public static MainButton getInstance()
@@ -120,7 +121,7 @@ public class MainButton extends GameObject
 						if(down == false)
 						{
 							SoundEffects.get().play(R.raw.se_bt_on);
-							SceneManager.getInstance().changeScene(SceneType.main, false);
+							SceneManager.getInstance().changeScene(SceneType.main, true);
 						}
 						down = true;
 					}

@@ -26,7 +26,7 @@ public class CoinSilver extends GameObject implements  BoxCollidable//, Recyclab
 	private static float halfHegith;
 	private static float halfWidth;
 	private float 		x, y;
-	private 				float 			scale = 3.0f;
+	private 				float 			scale = 2.0f;
 	RectF box;
 	private static final String TAG = CoinSilver.class.getSimpleName();
 

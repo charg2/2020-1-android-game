@@ -33,7 +33,7 @@ public class Cookie extends  GameObject implements BoxCollidable
 
     // ui
     private HPBar hpBar;
-    private final float maxHP = 40.f;
+    private final float maxHP = 100.f;
     private float currentHP = maxHP;
 
 

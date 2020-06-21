@@ -9,6 +9,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.FSM;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.FrameAnimationBitmap;
+import kr.ac.kpu.game.charg2dang.cookierun.res.sound.SoundEffects;
 
 public class DoubleJumpState extends FSM
 {
@@ -39,6 +40,9 @@ public class DoubleJumpState extends FSM
 
 		calcBox();
 		cookie.setColliderBox(box);
+
+		SoundEffects.get().play(R.raw.se_jump2);
+
 	}
 
 	public void calcBox()

@@ -13,7 +13,7 @@ public class BGMManger
 {
 	private final String TAG = BGMManger.class.getSimpleName();
 	private HashMap<Integer, MediaPlayer> bgms = new HashMap<>();
-	private Integer currentBGM = 0;
+	private MediaPlayer currentMediaPlayer;
 
 	private static BGMManger insance;
 	public static BGMManger getInstance()
@@ -26,7 +26,6 @@ public class BGMManger
 		return insance;
 	}
 
-
 	private BGMManger()
 	{
 		bgms.put(R.raw.bgm_game, MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_game));
@@ -36,22 +35,33 @@ public class BGMManger
 		bgms.put(R.raw.bgm_lobby2, MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_lobby2));
 		bgms.put(R.raw.bgm_main, MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_main));
 
-		bgms.get(R.raw.bgm_lobby2).start();
-		bgms.get(R.raw.bgm_main).start();;
+//		bgms.get(R.raw.bgm_lobby2).start();
+//		MediaPlayer m =  bgms.get(R.raw.bgm_main);
+//		m.start();
+//		m.stop();
+//
+
+
 	}
+
 
 	public void play(int bgmID)
 	{
-		MediaPlayer bgm = bgms.get(bgmID);
-		if(bgm != null)
+		if(currentMediaPlayer != null)
 		{
-			bgm.start();
+			currentMediaPlayer.pause();
 		}
-		else
-		{
-			Log.d("BGMManger", "INVALID BGM ID");
-			throw new RuntimeException();
-		}
+
+			currentMediaPlayer = bgms.get(bgmID);
+			if (currentMediaPlayer != null)
+			{
+				currentMediaPlayer.start();
+			}
+			else
+			{
+				Log.d("BGMManger", "INVALID BGM ID");
+				throw new RuntimeException();
+			}
 
 	}
 

@@ -84,6 +84,11 @@ public class ResultScene extends Scene
 		return LayerType.MAX.ordinal();
 	}
 
+	@Override
+	protected void onReset()
+	{
+	}
+
 
 	public void add(final LayerType layerType, final GameObject obj)
 	{

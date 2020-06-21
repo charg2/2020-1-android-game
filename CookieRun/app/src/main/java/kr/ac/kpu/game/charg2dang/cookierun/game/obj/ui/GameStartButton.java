@@ -7,8 +7,10 @@ import android.view.MotionEvent;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
+import kr.ac.kpu.game.charg2dang.cookierun.game.scenes.GameScene;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
 
 public class GameStartButton extends GameObject
@@ -122,6 +124,8 @@ public class GameStartButton extends GameObject
 						if(down == false)
 						{
 							SceneManager.getInstance().changeScene(SceneType.game, true);
+//							Scene scene = SceneManager.getInstance().getScene(SceneType.game);
+//							scene.reset();
 						}
 						down = true;
 					}

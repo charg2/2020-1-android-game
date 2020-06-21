@@ -30,8 +30,8 @@ public class JumpState extends FSM
 	// 사운드도 관리 해도 될듯.
 	private static RectF box;
 	private boolean onceButtonUped = false;
-	private final long jumpTimer = 500_000_000L;
-	private long jumpTime = 0;
+	private final float jumpTimer = .41f;
+	private float jumpTime = 0;
 	private static float halfHegith, halfWidth;
 	private float delta;
 	private static Point size;
@@ -72,7 +72,7 @@ public class JumpState extends FSM
 	@Override
 	public void update(long timeDiffNanos)
 	{
-		jumpTime += timeDiffNanos;
+		jumpTime += GameTimer.getInstance().getDeltaSecondsSingle();
 		if(jumpTime >= jumpTimer)
 		{
 			jumpTime = 0; // 이거 왜 껏더라?

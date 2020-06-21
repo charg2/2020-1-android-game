@@ -1,5 +1,6 @@
 package kr.ac.kpu.game.charg2dang.cookierun.game.obj;
 
+import android.graphics.Canvas;
 import android.graphics.RectF;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
@@ -22,7 +23,7 @@ public class Obstacle extends BitmapObject implements  Recyclable
 	private static  		float 			halfHegith;
 	private 				RectF 			box;
 	private static 			SharedBitmap 	bitamp;
-	private 				float 			scale			= 2;
+	private 				float 			scale			= 1;
 	private static final  	float  			velocity 		= Framework.getCommonVelocity();
 
 	public Obstacle(float x, float y, int width, int height)
@@ -51,10 +52,6 @@ public class Obstacle extends BitmapObject implements  Recyclable
 
 		super.update(timeDiffNanos);
 		updateForNewColliderBox();
-//		if(box.right <= 0)
-//////		{
-//////			this.state = false;
-//////		}
 	}
 
 	public void updateForNewColliderBox()
@@ -83,19 +80,20 @@ public class Obstacle extends BitmapObject implements  Recyclable
 	}
 
 
-//	@Override
-//    public void draw(Canvas canvas)
-//	{
+	@Override
+    public void draw(Canvas canvas)
+	{
+		super.draw(canvas);
 //		canvas.save();
 //		canvas.scale(scale, scale, x, y);
 //		bitamp.draw(canvas, (x - halfWidth), (y - halfHegith));
 //		canvas.restore();
-//
-//		if( Framework.getInstance().isDebugMode() == true)
-//		{
-//			canvas.drawRect(box, Framework.getInstance().getDebugPaint());
-//		}
-//	}
+
+		if( Framework.getInstance().isDebugMode() == true)
+		{
+			canvas.drawRect(box, Framework.getInstance().getDebugPaint());
+		}
+	}
 
 
 	public static Obstacle get(float x, float y , int width, int height)//, int typeIndex)

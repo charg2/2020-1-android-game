@@ -52,6 +52,12 @@ public class LoadingScene extends Scene
 	}
 
 	@Override
+	protected void onReset()
+	{
+
+	}
+
+	@Override
 	protected void onResume()  { }
 
 	@Override

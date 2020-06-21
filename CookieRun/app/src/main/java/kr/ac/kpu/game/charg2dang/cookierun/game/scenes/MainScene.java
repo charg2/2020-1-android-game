@@ -5,12 +5,15 @@ import android.view.MotionEvent;
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.BGMManger;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Scene;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.obj.BitmapObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.bg.StaticBackground;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.GameStartButton;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.HPBar;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.ui.RankingButton;
 
 public class MainScene extends Scene
@@ -40,6 +43,9 @@ public class MainScene extends Scene
 		rankingButton = RankingButton.getInstance();
 		rankingButton.setPosition(UiBridge.metrics.fullSize.x / 11f, UiBridge.metrics.center.y);
 		add(LayerType.ui, rankingButton);
+
+
+		reset();
 	}
 
 
@@ -47,9 +53,13 @@ public class MainScene extends Scene
 	public void update(long frameTimeNanos)
 	{
 		super.update(frameTimeNanos);
-
 	}
 
+	@Override
+	protected void onReset()
+	{
+		BGMManger.getInstance().play(R.raw.bgm_lobby);
+	}
 
 	@Override
 	protected int getLayerCount()

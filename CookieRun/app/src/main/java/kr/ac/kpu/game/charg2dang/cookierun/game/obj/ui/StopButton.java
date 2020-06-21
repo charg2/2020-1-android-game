@@ -6,6 +6,7 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 
 import kr.ac.kpu.game.charg2dang.cookierun.R;
+import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
@@ -127,7 +128,7 @@ public class StopButton extends GameObject
 					{
 						if(down == false)
 						{
-							SceneManager.getInstance().getCurrentScene().reset();
+//							SceneManager.getInstance().getCurrentScene().pause(PauseReason.CookieDeath);
 							SceneManager.getInstance().changeScene(SceneType.main, true);
 							SoundEffects.get().play(R.raw.se_bt_on);
 						}

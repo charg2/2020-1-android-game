@@ -3,6 +3,8 @@ package kr.ac.kpu.game.charg2dang.cookierun.game.obj.map;
 
 import android.content.res.AssetManager;
 import android.graphics.Canvas;
+import android.os.Debug;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -18,6 +20,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item.Coin;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item.CoinSilver;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item.GiantPosition;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item.HPPosition;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item.Jelly;
 import kr.ac.kpu.game.charg2dang.cookierun.game.obj.Obstacle;
 
@@ -34,9 +37,7 @@ public class TextMap extends GameObject
 	private int mapIndex;
 	private int columns, rows;
 	ArrayList<String> lines;
-	private double timeElapsed;
-	private float spwanTimer = 0.1f;
-	private float elapsedTime ;
+
 
 	public TextMap(String assetFilename, Scene gameScene)
 	{
@@ -79,10 +80,7 @@ public class TextMap extends GameObject
 		mapIndex = 0;
 
 		currentX = 0;
-//		while (currentX <= createAtX)
-//		{
-//			createColumn();
-//		}
+
 	}
 
 	private void createColumn()
@@ -116,7 +114,7 @@ public class TextMap extends GameObject
 			case '2':
 			{
 				Jelly item = Jelly.get(x, y);
-				item.setScale(5);
+				item.setScale(3);
 				itemLayer.add(item);
 				break;
 			}
@@ -132,6 +130,13 @@ public class TextMap extends GameObject
 			case '4':
 			{
 				GiantPosition item = GiantPosition.get(x, y);
+				itemLayer.add(item);
+				break;
+			}
+
+			case '5':
+			{
+				HPPosition item = HPPosition.get(x, y);
 				itemLayer.add(item);
 				break;
 			}
@@ -160,27 +165,21 @@ public class TextMap extends GameObject
 	}
 
 
+
 	@Override
 	public void update(long timeDiffNanos)
 	{
 		float delta = GameTimer.getInstance().getDeltaSecondsSingle();
-
 		currentX += delta * Framework.getInstance().getCommonVelocity();
-
-		if (currentX < createAtX) {
+		if (currentX < createAtX)
+		{
 			createColumn();
 		}
-
-//		update2(1);
 	}
+
 	@Override
 	public void draw(Canvas canvs)
 	{
 		return;
-	}
-	@Override
-	public boolean getState()
-	{
-		return true;
 	}
 }

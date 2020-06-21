@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import java.util.ArrayList;
+
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.LayerType;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.PauseReason;
@@ -43,8 +45,6 @@ public class GameScene extends Scene
 		normal, paused, gameOver
 	}
 
-	private TextMap mapGenerator;
-
 	private static final String TAG = GameScene.class.getSimpleName();
 	private static final int BALL_COUNT = 10;
 	public static final String PREF_KEY_HIGHSCORE = "highscore";
@@ -53,7 +53,7 @@ public class GameScene extends Scene
 	private Cookie 		cookie;
 	private JumpButton  jumpButton;
 	private SlideButton slideButton;
-	private ItemSpawner itemGenerator = new ItemSpawner();
+//	private ItemSpawner itemGenerator = new ItemSpawner();
 
 	private GameScene.PlayState playState = PlayState.normal;
 
@@ -104,8 +104,7 @@ public class GameScene extends Scene
 		slideButton.setScale(4);
 		add(LayerType.ui, slideButton);
 
-		mapGenerator = new TextMap("stage_01.txt",this);
-		add(LayerType.event, mapGenerator);
+		resetTextMap();
 
 		Terrain terrain = new Terrain(UiBridge.metrics.center.x, UiBridge.metrics.fullSize.y);
 		add(LayerType.terrain, terrain);
@@ -144,19 +143,19 @@ public class GameScene extends Scene
 	}
 
 
-
-	@Override
-	public void update(long frameTimeNanos)
-	{
-		super.update(frameTimeNanos);
-
-		if( playState != PlayState.normal )
-		{
-			return;
-		}
-
-		itemGenerator.update();
-	}
+//
+//	@Override
+//	public void update(long frameTimeNanos)
+//	{
+//		super.update(frameTimeNanos);
+//
+//		if( playState != PlayState.normal )
+//		{
+//			return;
+//		}
+//
+//		itemGenerator.update();
+//	}
 
 
 	public boolean onTouchEvent(MotionEvent event)
@@ -176,13 +175,18 @@ public class GameScene extends Scene
 	}
 
 
-	public void reset()
+	@Override
+	protected void onReset()
 	{
+		Log.d("GameScene", "tt");
 		HPBar.getInstance().reset();
 		cookie.reset();
 		resume();
 		ScoreManager.getInstance().reset();
-		mapGenerator = new TextMap("stage_01.txt",this);
+		resetTextMap();
+//		mapGenerator = new TextMap("stage_01.txt",this);
+
+		BGMManger.getInstance().play(R.raw.bgm_game2);
 	}
 
 	@Override
@@ -192,33 +196,26 @@ public class GameScene extends Scene
 		setGameUI();
 		cookie.setPosition(350, 900);
 //		pauseBg.setState(false);
-//		switch (currentPauseReason)
-//		{
-//			case Stop:
-//				pauseText.setState(false);
-//				resumeButton.setState(false);
-//				stopButton.setState(false);
-//
-//				break;
-//
-//			case CookieDeath:
-//				setGameUI();
-//
-//				break;
-//
-//
-//			default:
-//				break;
-//
-//		}
+		switch (currentPauseReason)
+		{
+			case Stop:
+				break;
+
+			case CookieDeath:
+				resetTextMap();
+				break;
+
+
+			default:
+				break;
+
+		}
 
 	}
 
 	@Override
 	protected void onPause(PauseReason reason)
 	{
-
-
 		switch (reason)
 		{
 			case Stop:
@@ -295,6 +292,32 @@ public class GameScene extends Scene
 		stopButton.setState(true);
 		add(LayerType.ui, stopButton);
 
+	}
+
+	private  void resetTextMap()
+	{
+		ArrayList<GameObject> obss = layers.get(LayerType.obstacle.ordinal());
+		ArrayList<GameObject> itms = layers.get(LayerType.item.ordinal());
+		ArrayList<GameObject> events = layers.get(LayerType.event.ordinal());
+
+		for (GameObject o  :obss)
+		{
+			o.setState(false);
+		}
+
+		for (GameObject o  :itms)
+		{
+			o.setState(false);
+		}
+
+		for (GameObject o  :events)
+		{
+			o.setState(false);
+		}
+
+		TextMap mapGenerator = new TextMap("stage_01.txt",this);
+
+		add(LayerType.event, mapGenerator);
 	}
 
 

@@ -79,10 +79,6 @@ public class GiantPosition extends  GameObject implements  BoxCollidable, Recycl
 		}
 	}
 
-
-
-
-
 	@Override
 	public void draw(Canvas canvas)
 	{
@@ -90,7 +86,6 @@ public class GiantPosition extends  GameObject implements  BoxCollidable, Recycl
 		canvas.scale(scale, scale , x, y);
 		bitamp.draw(canvas, (x - halfWidth), (y - halfHegith));
 		canvas.restore();
-
 
 		drawDebug(canvas, box);
 	}

@@ -46,7 +46,7 @@ public class SoundEffects
 			{
 					  R.raw.se_bt_off, R.raw.se_bt_on		// btn
 					, R.raw.se_coin, R.raw.se_hpup, R.raw.se_jelly, R.raw.se_powerup //
-					, R.raw.se_jump, R.raw.se_slide, R.raw.se_score, R.raw.se_title
+					, R.raw.se_jump, R.raw.se_jump2, R.raw.se_slide, R.raw.se_score, R.raw.se_title
 			};
 
 
