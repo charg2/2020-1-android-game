@@ -13,8 +13,8 @@ import java.util.Collections;
 
 public class Serializer
 {
-	public static final String PREFS_NAME = "Highscore199";
-	public static final String PREFS_KEY = "scores199";
+	public static final String PREFS_NAME = "Highscore940925";
+	public static final String PREFS_KEY = "scores940925";
 	private static final String TAG = Serializer.class.getSimpleName() ;
 
 	public static void save(Context context, ArrayList<HighscoreItem> items)
