@@ -72,8 +72,6 @@ public class Coin extends  GameObject implements  BoxCollidable, Recyclable
 			item.y = y;
 			item.state = true;
 			item.updateForColliderBox();
-
-			Log.d("Coin", "zz");
 		}
 
 		return item;

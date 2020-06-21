@@ -43,8 +43,8 @@ public class DeathState extends FSM
 			fab.reset();
 		}
 
-		ScoreManager.getInstance().save();
 		cookie.setFSMState(CookieState.death);
+
 		xOffset = -100.f;
 		menuTime = 0.f;
 	}

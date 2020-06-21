@@ -134,6 +134,8 @@ public class GameView extends View
 					update(frameTimeNanos);
 					collide(frameTimeNanos);
 
+					updateAfterCollide();
+
 					invalidate();
 					postFrameCallback();
 
@@ -161,6 +163,11 @@ public class GameView extends View
 	public void update(long frameTimeNanos)
 	{
 		sceneManager.update(frameTimeNanos);
+	}
+
+	public void updateAfterCollide()
+	{
+		sceneManager.updateAfterCollide();
 
 		frameCheckCounter++;
 		if(timer.done())

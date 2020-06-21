@@ -3,6 +3,7 @@ package kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.util.Log;
 
 import java.util.Stack;
 
@@ -13,6 +14,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.Framework;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameTimer;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GiantComponent;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.NerfComponent;
+import kr.ac.kpu.game.charg2dang.cookierun.game.framework.ScoreManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.UiBridge;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.HitTrigger;
@@ -94,8 +96,22 @@ public class Cookie extends  GameObject implements BoxCollidable
 
         // 매회 땅바닥과충돌 체크했는지 확이한기 위해서../.
         isGround = false;
-
     }
+
+    @Override
+    public void updateAfterCollide()
+    {
+        if(currentHP <= 0.0f)
+        {
+            if(CookieState.death != cookieState) // 한번만..
+            {
+                this.pushState(new DeathState(this));
+
+                ScoreManager.getInstance().save();
+            }
+        }
+    }
+
 
     public void updateForComponent(long timeDiffNanos)
     {
@@ -140,12 +156,11 @@ public class Cookie extends  GameObject implements BoxCollidable
         ColliderTag tag = o1.getTag();
         switch (tag)
         {
-            case Coin:  case Item:
-                break;
-
-            case Obstacle:
-                break;
-
+//            case Coin:  case Item:
+//                break;
+//
+//            case Obstacle:
+//                break;
             case Terrain:
             {
                 this.isGround = true;
@@ -178,15 +193,15 @@ public class Cookie extends  GameObject implements BoxCollidable
             this.currentHP -= damage;
         }
 
-        if(this.currentHP <= 1.0f)  // 체력이 0 이하면
-        {
-            this.currentHP = 0.0f;
-            if(CookieState.death != cookieState) // 한번만..
-            {
-                cookieState = CookieState.death;
-                this.pushState(new DeathState(this));
-            }
-        }
+//        if(this.currentHP <= 1.0f)  // 체력이 0 이하면
+//        {
+//            this.currentHP = 0.0f;
+////            if(CookieState.death != cookieState) // 한번만..
+//////            {
+//////                cookieState = CookieState.death;
+//////                this.pushState(new DeathState(this));
+//////            }
+//        }
     }
 
 

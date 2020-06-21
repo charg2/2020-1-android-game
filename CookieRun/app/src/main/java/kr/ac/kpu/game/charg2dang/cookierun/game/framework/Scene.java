@@ -97,6 +97,23 @@ public abstract class Scene
     }
 
 
+    public void updateAfterCollide()
+    {
+        if(paused == false)
+        {
+            for (ArrayList<GameObject> objects : layers)
+            {
+                for (GameObject o : objects)
+                {
+                    o.updateAfterCollide();
+                }
+            }
+
+            removeTrashObjects();
+        }
+    }
+
+
 
     public void collide(long frameTimeNanos)
     {

@@ -106,7 +106,7 @@ public class GameScene extends Scene
 
 		resetTextMap();
 
-		Terrain terrain = new Terrain(UiBridge.metrics.center.x, UiBridge.metrics.fullSize.y - 20);
+		Terrain terrain = new Terrain(UiBridge.metrics.center.x, UiBridge.metrics.fullSize.y + 20);
 		add(LayerType.terrain, terrain);
 
 		startGame();

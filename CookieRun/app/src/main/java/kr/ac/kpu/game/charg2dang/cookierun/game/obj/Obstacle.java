@@ -28,7 +28,7 @@ public class Obstacle extends BitmapObject implements  Recyclable
 
 	public Obstacle(float x, float y, int width, int height)
     {
-		super(x, y, width, height, R.mipmap.obstacle_fork);
+		super(x, y, width, height, R.mipmap.obstacle_pinset);
 		this.x = x;
         this.y = y;
 

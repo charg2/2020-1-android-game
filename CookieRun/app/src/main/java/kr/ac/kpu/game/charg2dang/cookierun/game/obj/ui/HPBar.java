@@ -70,12 +70,11 @@ public class HPBar extends GameObject
 			mainDstRect.right = mainDstRect.left;
 		}
 
-//		mainSrcRect.right = (int)mainDstRect.right - mainSrcRect.left;
-//		if(mainSrcRect.right < 0)
-//		{
-//			mainSrcRect.right = 0;
-//		}
-
+		mainSrcRect.right = (int)mainDstRect.right - mainSrcRect.left;
+		if(mainSrcRect.right < 0)
+		{
+			mainSrcRect.right = 0;
+		}
 
 	}
 

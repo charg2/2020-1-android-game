@@ -91,8 +91,6 @@ public class ScoreManager extends GameObject
 
 	public void save()
 	{
-		Log.d(TAG, "ScoreManager::save()" );
-
 		scores.add(new HighscoreItem("", new Date(), scoreObject.getScore()));
 
 		Serializer.save(Framework.getInstance().getContext(), scores);

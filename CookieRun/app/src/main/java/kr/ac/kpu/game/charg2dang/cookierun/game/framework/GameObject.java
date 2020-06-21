@@ -40,4 +40,7 @@ public class GameObject
 		}
 	}
 
+	public void updateAfterCollide()
+	{ }
+
 }
