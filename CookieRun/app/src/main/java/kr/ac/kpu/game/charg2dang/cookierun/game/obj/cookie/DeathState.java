@@ -52,16 +52,19 @@ public class DeathState extends FSM
 	@Override
 	public void update(long timeDiffNanos)
 	{
+
 		if(fab.done() == true)
 		{
 			// show end game ui
-			SceneManager.getInstance().getCurrentScene().pause(PauseReason.CookieDeath);
+//
+//			if(SceneManager.getInstance().getCurrentScene().getPaused() == false)
+//				SceneManager.getInstance().getCurrentScene().pause(PauseReason.CookieDeath);
 
 			menuTime += GameTimer.getInstance().getDeltaSecondsSingle();
 			if(this.menuTimer <= menuTime)
 			{
 				Log.d(TAG, "resultScene1");
-				SceneManager.getInstance().getCurrentScene().resume();
+//				SceneManager.getInstance().getCurrentScene().resume();
 				SceneManager.getInstance().changeScene(SceneType.result, true);
 
 				menuTime = 0.0f;
@@ -71,12 +74,16 @@ public class DeathState extends FSM
 		else
 		{
 		//	xOffset += Framework.getInstance().getCommonVelocity() * GameTimer.getInstance().getCurrentDeltaSecondsSngle();
+
+//			if(SceneManager.getInstance().getCurrentScene().getPaused() == false)
+//				SceneManager.getInstance().getCurrentScene().pause(PauseReason.CookieDeath);
+
 			menuTime += GameTimer.getInstance().getDeltaSecondsSingle();
 			if(this.menuTimer <= menuTime)
 			{
-				Log.d(TAG, "resultScene2");
+//				SceneManager.getInstance().getCurrentScene().resume();
 				SceneManager.getInstance().changeScene(SceneType.result, true);
-				SceneManager.getInstance().getCurrentScene().resume();
+
 				menuTime = 0.0f;
 			}
 
@@ -103,7 +110,10 @@ public class DeathState extends FSM
 	@Override
 	public void exit()
 	{
-		SceneManager.getInstance().getCurrentScene().resume();
+//		SceneManager.getInstance().getScene(SceneType.game).resume();
+//		SceneManager.getInstance().getScene(SceneType.game).reset();
+
+//		SceneManager.getInstance().getCurrentScene().reset();
 	}
 
 	private static Point size;

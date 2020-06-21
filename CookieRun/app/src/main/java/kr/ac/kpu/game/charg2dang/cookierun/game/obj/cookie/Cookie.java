@@ -109,7 +109,6 @@ public class Cookie extends  GameObject implements BoxCollidable
             {
                 this.pushState(new DeathState(this));
 
-                Log.d("Cookie", " time : " + GameTimer.getInstance().getDeltaSecondsSingle() );
                 ScoreManager.getInstance().save();
             }
         }
@@ -136,7 +135,6 @@ public class Cookie extends  GameObject implements BoxCollidable
 
     public void pushState(FSM state)
     {
-        Log.d(TAG, " state : " + state.getClass());
         stateStack.push(state);
     }
 

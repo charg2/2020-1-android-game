@@ -76,7 +76,6 @@ public class GameScene extends Scene
 		add(LayerType.player, cookie);
 
 		add(LayerType.ui, ScoreManager.getInstance().getScoreObject()); /// 머지;;
-//		add(LayerType.ui, ScoreManager.getInstance().getHighScoreObject());
 
 		add(LayerType.ui, HPBar.getInstance());
 
@@ -118,7 +117,6 @@ public class GameScene extends Scene
 	private void startGame()
 	{
 		playState = PlayState.normal;
-
 		cookie.move(0, -50.f);
 //		scoreObject.reset();
 
@@ -126,22 +124,7 @@ public class GameScene extends Scene
 //		int highScore = prefs.getInt(PREF_KEY_HIGHSCORE, 0);
 //		highScoreObject.setScore(highScore);
 	}
-
-	public void endGame()
-	{
-		this.playState = PlayState.gameOver;
-		int score = 0;// scoreObject.getScore();
-
-		SharedPreferences prefs = view.getContext().getSharedPreferences( PREFS_NAME, Context.MODE_PRIVATE);
-		int highScore = prefs.getInt(PREF_KEY_HIGHSCORE, 0);
-		if (score > highScore)	// score가 high_screo 보다 높으면 바꿔서 저장.
-		{
-			SharedPreferences.Editor editor = prefs.edit();
-			editor.putInt(PREF_KEY_HIGHSCORE, score);
-			editor.commit();
-		}
-	}
-
+//
 
 //
 //	@Override
@@ -181,10 +164,10 @@ public class GameScene extends Scene
 		Log.d("GameScene", "tt");
 		HPBar.getInstance().reset();
 		cookie.reset();
+		cookie.setPosition(350, 900);
 		resume();
 		ScoreManager.getInstance().reset();
 		resetTextMap();
-//		mapGenerator = new TextMap("stage_01.txt",this);
 
 		BGMManger.getInstance().play(R.raw.bgm_game2);
 	}
@@ -195,7 +178,8 @@ public class GameScene extends Scene
 		clearUI();
 		setGameUI();
 		cookie.setPosition(350, 900);
-//		pauseBg.setState(false);
+
+
 		switch (currentPauseReason)
 		{
 			case Stop:
@@ -239,6 +223,7 @@ public class GameScene extends Scene
 				break;
 		}
 	}
+
 
 	private void clearUI()
 	{
@@ -300,7 +285,7 @@ public class GameScene extends Scene
 		ArrayList<GameObject> itms = layers.get(LayerType.item.ordinal());
 		ArrayList<GameObject> events = layers.get(LayerType.event.ordinal());
 
-		for (GameObject o  :obss)
+		for (GameObject o :obss)
 		{
 			o.setState(false);
 		}
@@ -314,6 +299,8 @@ public class GameScene extends Scene
 		{
 			o.setState(false);
 		}
+
+		removeTrashObjects();
 
 		TextMap mapGenerator = new TextMap("stage_01.txt",this);
 

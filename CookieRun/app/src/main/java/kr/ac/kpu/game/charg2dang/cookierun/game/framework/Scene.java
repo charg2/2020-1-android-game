@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -159,7 +160,7 @@ public abstract class Scene
     }
 
 
-    private void removeTrashObjects()
+    protected void removeTrashObjects()
     {
         for( ArrayList<GameObject> layer : layers)
         {
@@ -168,6 +169,7 @@ public abstract class Scene
                 GameObject go = iterator.next();
                 if (go.getState() == false)
                 {
+                    Log.d(TAG, "remove : " + go.getClass());
                     iterator.remove();
 
                     if (go instanceof Recyclable)
@@ -260,5 +262,10 @@ public abstract class Scene
     public void setCurrentSceneType(SceneType currentSceneType)
     {
         Scene.currentSceneType = currentSceneType;
+    }
+
+    public boolean getPaused()
+    {
+        return paused;
     }
 }
