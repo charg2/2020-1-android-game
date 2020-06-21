@@ -178,7 +178,6 @@ public class Cookie extends  GameObject implements BoxCollidable
             this.currentHP -= damage;
         }
 
-
         if(this.currentHP <= 1.0f)  // 체력이 0 이하면
         {
             this.currentHP = 0.0f;

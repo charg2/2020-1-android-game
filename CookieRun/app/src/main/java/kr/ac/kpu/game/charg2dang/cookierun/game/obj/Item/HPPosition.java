@@ -13,6 +13,7 @@ import kr.ac.kpu.game.charg2dang.cookierun.game.framework.SceneManager;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.BoxCollidable;
 import kr.ac.kpu.game.charg2dang.cookierun.game.framework.GameObject;
 import kr.ac.kpu.game.charg2dang.cookierun.game.iface.Recyclable;
+import kr.ac.kpu.game.charg2dang.cookierun.game.obj.cookie.Cookie;
 import kr.ac.kpu.game.charg2dang.cookierun.res.bitmap.SharedBitmap;
 
 public class HPPosition  extends GameObject implements  BoxCollidable, Recyclable
@@ -67,7 +68,8 @@ public class HPPosition  extends GameObject implements  BoxCollidable, Recyclabl
 	@Override
 	public void onCollision(BoxCollidable o1)
 	{
-//		((Cookie)o1);  // hp 추가.
+		((Cookie)o1).decreaseHP( -10.f , false);  // hp 추가.
+
 		state = false;
 	}
 

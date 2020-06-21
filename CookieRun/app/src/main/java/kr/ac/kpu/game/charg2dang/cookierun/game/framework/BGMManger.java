@@ -35,13 +35,13 @@ public class BGMManger
 		bgms.put(R.raw.bgm_lobby2, MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_lobby2));
 		bgms.put(R.raw.bgm_main, MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_main));
 
-//		bgms.get(R.raw.bgm_lobby2).start();
-//		MediaPlayer m =  bgms.get(R.raw.bgm_main);
-//		m.start();
-//		m.stop();
-//
-
-
+		for (HashMap.Entry<Integer, MediaPlayer> entry : bgms.entrySet())
+		{
+			if(entry.getValue() != null)
+			{
+				entry.getValue().setLooping(true);
+			}
+		}
 	}
 
 

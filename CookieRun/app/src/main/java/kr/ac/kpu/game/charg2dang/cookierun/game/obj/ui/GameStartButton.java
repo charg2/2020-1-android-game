@@ -124,8 +124,6 @@ public class GameStartButton extends GameObject
 						if(down == false)
 						{
 							SceneManager.getInstance().changeScene(SceneType.game, true);
-//							Scene scene = SceneManager.getInstance().getScene(SceneType.game);
-//							scene.reset();
 						}
 						down = true;
 					}
