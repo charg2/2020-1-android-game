@@ -6,6 +6,7 @@ import android.graphics.RectF;
 import android.util.Log;
 
 import java.util.Stack;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.CookieState;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.ColliderTag;
@@ -103,10 +104,12 @@ public class Cookie extends  GameObject implements BoxCollidable
     {
         if(currentHP <= 0.0f)
         {
-            if(CookieState.death != cookieState) // 한번만..
+            CookieState temp = cookieState;
+            if(CookieState.death != temp) // 한번만..
             {
                 this.pushState(new DeathState(this));
 
+                Log.d("Cookie", " time : " + GameTimer.getInstance().getDeltaSecondsSingle() );
                 ScoreManager.getInstance().save();
             }
         }
@@ -127,11 +130,13 @@ public class Cookie extends  GameObject implements BoxCollidable
         {
             stateMachine.exit();
             stateMachine = stateStack.pop();
+            stateStack.clear();
         }
     }
 
     public void pushState(FSM state)
     {
+        Log.d(TAG, " state : " + state.getClass());
         stateStack.push(state);
     }
 
@@ -215,9 +220,9 @@ public class Cookie extends  GameObject implements BoxCollidable
     {
         return halfSize * 2;
     }
-    public void setFSMState(CookieState jump)
+    public void setFSMState(CookieState state)
     {
-        this.cookieState = jump;
+        this.cookieState = state;
     }
     public boolean isGround()  {  return this.isGround;  }
     public boolean isGiantMode()  {  return this.giantComponent.canGrow;  }
