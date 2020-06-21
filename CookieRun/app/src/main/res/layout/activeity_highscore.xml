@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.activity.HighscoreActivity"
-    android:background="@mipmap/bg_score"
+    android:background="@mipmap/bg_main_lobby"
     >
     <ListView
             android:focusableInTouchMode="true"

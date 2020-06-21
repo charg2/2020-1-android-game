@@ -35,6 +35,9 @@ public class BGMManger
 		bgms.put(R.raw.bgm_lobby, MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_lobby));
 		bgms.put(R.raw.bgm_lobby2, MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_lobby2));
 		bgms.put(R.raw.bgm_main, MediaPlayer.create(Framework.getInstance().getContext(), R.raw.bgm_main));
+
+		bgms.get(R.raw.bgm_lobby2).start();
+		bgms.get(R.raw.bgm_main).start();;
 	}
 
 	public void play(int bgmID)
