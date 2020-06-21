@@ -51,6 +51,7 @@ public class HPBar extends GameObject
 		this.currentHP = cookie.getCurrentHP();
 		this.maxHP = cookie.getMaxHP();
 
+
 	}
 
 	@Override
@@ -61,18 +62,21 @@ public class HPBar extends GameObject
 		if( currentHP != tempCurrentHP)
 		{
 			currentHP = tempCurrentHP;
-//			this.hpGageAnimator.setFloatValues(goalHP, currentHP);
-//			hpGageAnimator.setDuration(500);
-//
-//			hpGageAnimator.start();
 		}
 
 		mainDstRect.right =  mainDstRect.left  + ( mainWitdh * ( currentHP / maxHP) );
-		if(mainDstRect.right <= mainDstRect.left)
+		if(mainDstRect.right < mainDstRect.left)
 		{
 			mainDstRect.right = mainDstRect.left;
 		}
-		mainSrcRect.right = (int)mainDstRect.right;
+
+//		mainSrcRect.right = (int)mainDstRect.right - mainSrcRect.left;
+//		if(mainSrcRect.right < 0)
+//		{
+//			mainSrcRect.right = 0;
+//		}
+
+
 	}
 
 	@Override
@@ -90,11 +94,6 @@ public class HPBar extends GameObject
 		canvs.restore();
 	}
 
-	@Override
-	public boolean getState()
-	{
-		return true;
-	}
 
 	public void reset()
 	{
@@ -122,11 +121,11 @@ public class HPBar extends GameObject
 		mainDstRect.top 	= ( UiBridge.metrics.fullSize.y / 20 )  -  ( bgSrcRect.bottom / 2 );
 		mainDstRect.bottom 	= ( UiBridge.metrics.fullSize.y / 20 )  +  ( bgSrcRect.bottom / 2 );
 
-		hpGageAnimator = ObjectAnimator.ofFloat(this, "goalHP", maxHP);
+//		hpGageAnimator = ObjectAnimator.ofFloat(this, "goalHP", maxHP);
 	}
 
 	public void setGoalHP(float goalHP)
 	{
-		this.goalHP = goalHP;
+//		this.goalHP = goalHP;
 	}
 }

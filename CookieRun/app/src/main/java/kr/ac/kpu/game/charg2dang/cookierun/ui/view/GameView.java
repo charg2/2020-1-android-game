@@ -109,7 +109,6 @@ public class GameView extends View
 		sceneManager.addScene(SceneType.game, gameScene);
 		sceneManager.addScene(SceneType.result, resultScene);
 
-
 		sceneManager.changeScene(SceneType.loading, false);
 	}
 

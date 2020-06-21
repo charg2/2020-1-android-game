@@ -104,10 +104,12 @@ public class TextMap extends GameObject
 		ArrayList<GameObject> obstacleLayer = gameScene.getLayer(LayerType.obstacle);
 		switch (ch)
 		{
+
 			case '1':
 			{
-				GameObject item = Coin.get(x, y);
+				GameObject item = CoinSilver.get(x, y);
 				itemLayer.add(item);
+
 				break;
 			}
 
@@ -119,11 +121,11 @@ public class TextMap extends GameObject
 				break;
 			}
 
+
 			case '3':
 			{
-				GameObject item = CoinSilver.get(x, y);
+				GameObject item = Coin.get(x, y);
 				itemLayer.add(item);
-
 				break;
 			}
 

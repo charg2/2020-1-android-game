@@ -23,7 +23,7 @@ public class Obstacle extends BitmapObject implements  Recyclable
 	private static  		float 			halfHegith;
 	private 				RectF 			box;
 	private static 			SharedBitmap 	bitamp;
-	private 				float 			scale			= 1;
+	private 				float 			scale			= .9f;
 	private static final  	float  			velocity 		= Framework.getCommonVelocity();
 
 	public Obstacle(float x, float y, int width, int height)

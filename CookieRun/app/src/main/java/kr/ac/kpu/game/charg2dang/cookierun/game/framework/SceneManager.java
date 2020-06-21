@@ -51,6 +51,23 @@ public class SceneManager
 		currentScene.update(timeDiffNano);
 	}
 
+//	public void updateForCollide(long timeDiffNano)
+//	{
+//		if(currentSceneType != currentScene.getCurrentSceneType())
+//		{
+//			currentScene = scenes[currentSceneType.ordinal()];
+//			currentScene.setCurrentSceneType(currentSceneType);
+//			if( resetFlag == true )
+//			{
+//				currentScene.reset();
+//			}
+//		}
+//
+//		currentScene.update(timeDiffNano);
+//	}
+
+
+
 	public Scene getCurrentScene()
 	{
 		return 	currentScene;

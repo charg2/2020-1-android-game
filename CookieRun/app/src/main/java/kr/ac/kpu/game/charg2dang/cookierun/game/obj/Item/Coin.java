@@ -2,6 +2,8 @@ package kr.ac.kpu.game.charg2dang.cookierun.game.obj.Item;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.util.Log;
+
 import kr.ac.kpu.game.charg2dang.cookierun.R;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.ColliderTag;
 import kr.ac.kpu.game.charg2dang.cookierun.game.enumeration.SceneType;
@@ -70,6 +72,8 @@ public class Coin extends  GameObject implements  BoxCollidable, Recyclable
 			item.y = y;
 			item.state = true;
 			item.updateForColliderBox();
+
+			Log.d("Coin", "zz");
 		}
 
 		return item;
