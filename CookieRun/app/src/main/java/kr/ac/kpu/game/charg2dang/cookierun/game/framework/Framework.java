@@ -14,7 +14,7 @@ public class Framework
 {
 	private static HighscoreActivity hightscoreActiviey;
 	private final String TAG = Framework.class.getSimpleName();
-	private  boolean isDebuMode = true;
+	private  boolean isDebuMode = false;
 	private static Framework  inst;
 	private Paint collisionBoxpaint = new Paint();
 	private View view;

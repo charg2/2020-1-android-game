@@ -23,9 +23,7 @@ public class StopButton extends GameObject
 	private 				float 			scale = 2;
 	private 				RectF 			box;
 
-
 	private static StopButton instance;
-	private boolean state = true;
 	public static StopButton getInstance()
 	{
 		if(instance == null)
@@ -91,11 +89,6 @@ public class StopButton extends GameObject
 		canvas.restore();
 	}
 
-	@Override
-	public boolean getState()
-	{
-		return state;
-	}
 
 	public boolean isPressed()
 	{
@@ -151,10 +144,5 @@ public class StopButton extends GameObject
 			default:
 				break;
 		}
-	}
-
-	public void setState(boolean b)
-	{
-		state = b;
 	}
 }

@@ -15,6 +15,7 @@ public class SceneManager
 	private Scene[]				scenes = new Scene[SceneType.max.ordinal()];
 	// private Stack<Scene> 		sceneStack = new Stack<>();
 	private boolean				resetFlag = false;
+
 	private SceneManager()
 	{
 	}

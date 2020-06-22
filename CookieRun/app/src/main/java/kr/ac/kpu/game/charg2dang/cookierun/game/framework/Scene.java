@@ -169,7 +169,6 @@ public abstract class Scene
                 GameObject go = iterator.next();
                 if (go.getState() == false)
                 {
-                    Log.d(TAG, "remove : " + go.getClass());
                     iterator.remove();
 
                     if (go instanceof Recyclable)

@@ -20,7 +20,6 @@ public class JumpButton extends GameObject
 	private float scale;
 	private Cookie cookie;
 
-
 	private static JumpButton instance;
 	private boolean state = true;
 
@@ -38,7 +37,7 @@ public class JumpButton extends GameObject
 	{
 		this.x = x;
 		this.y = y;
-		organizeBox();
+		updateForColliderBox();
 	}
 	private JumpButton(float x, float y)
 	{
@@ -54,17 +53,17 @@ public class JumpButton extends GameObject
 
 		cookie = Cookie.getInstance();
 
-		organizeBox();
+		updateForColliderBox();
 	}
 
 	public void setScale(float scale)
 	{
 		this.scale = scale;
 
-		organizeBox();
+		updateForColliderBox();
 	}
 
-	public void organizeBox()
+	public void updateForColliderBox()
 	{
 		box.left = x;
 		box.right = x + (scale * jump.getWidth());

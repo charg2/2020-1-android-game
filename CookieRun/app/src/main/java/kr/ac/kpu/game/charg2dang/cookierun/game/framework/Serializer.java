@@ -31,7 +31,7 @@ public class Serializer
 
 	private static String convertJson(ArrayList<HighscoreItem> items)
 	{
-		int limit = 20;
+		int limit = 30;
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("[");
